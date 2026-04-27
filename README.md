@@ -2,6 +2,10 @@
 
 Portfolio foundation built with Next.js, shadcn/ui, Tailwind, MDX content, and Cloudflare deployment support.
 
+## Repository
+
+- GitHub: `https://github.com/MathiasBoutin/mathiasportfolio`
+
 ## Stack
 
 - Next.js App Router + TypeScript
