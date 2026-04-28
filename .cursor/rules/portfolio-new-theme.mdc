@@ -1,0 +1,51 @@
+---
+description: Add or modify portfolio presentation themes safely and consistently
+globs: src/lib/presentation-themes.ts
+alwaysApply: false
+---
+
+# Portfolio Presentation Themes
+
+Themes in this portfolio are presentation themes, not color-only modes. A new theme may change color tokens, layout density, typography scale, page chrome, motion, and background atmosphere while preserving the same content sources.
+
+## Theme Setup
+
+1. Add the theme id to `PresentationThemeId` in `src/lib/presentation-themes.ts`.
+2. Add an entry to `presentationThemes` with the same slot shape as the default theme.
+3. Add matching CSS variables in `src/app/globals.css` under `[data-presentation-theme="<id>"]`.
+4. If the theme is selectable, keep selection wiring aligned: `PRESENTATION_THEME_COOKIE`, `resolvePresentationThemeId()`, layout root `data-presentation-theme`, and toggle values.
+5. Keep content unchanged: case studies stay in `content/work`, profile docs stay in `content/profile`, and homepage facts stay in `src/lib/content/home.ts`.
+
+## Selection and Rendering Notes
+
+- Cookie-based theme resolution in `layout.tsx` can make app routes dynamic. Treat this as expected unless there is an explicit requirement to keep static output.
+- Internal validation themes (for example `proof`) should stay unexposed in UI unless explicitly requested.
+
+## Slot Guidance
+
+- Use slots for real presentation decisions: shell width, header/footer chrome, section rhythm, page header scale, cards, MDX typography, homepage layout, and motion.
+- Do not move every utility class into the registry. Tiny one-off classes can stay local until a future theme needs to vary them.
+- If a theme changes CSS tokens only, reuse the default slots intentionally:
+
+```ts
+dark: {
+  id: "dark",
+  slots: basePresentationThemes.default.slots,
+}
+```
+
+## CSS Guidance
+
+- Theme-specific colors, radii, rails, background atmosphere, and shader-like effects belong in `globals.css` under `[data-presentation-theme="<id>"]`.
+- Keep `:root` as a safe fallback for the default theme.
+- Scope dramatic background treatments to CSS variables so other themes can disable or replace them without editing shared selectors.
+
+## Verification
+
+After adding a theme:
+
+1. Run `npm run lint` and `npm run build`.
+2. Smoke-check `/`, `/work`, one case study detail page, `/about`, and `/cv`.
+3. If a toggle exists, verify theme persistence across reload and route navigation.
+4. Verify header/footer readability over the active background in each theme.
+5. Verify reduced-motion behavior remains acceptable for animated backgrounds.

@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import { Geist_Mono, IBM_Plex_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { SiteHeader } from "@/components/portfolio/site-header";
 import { SiteFooter } from "@/components/portfolio/site-footer";
+import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import { Analytics } from "@/components/portfolio/analytics";
 import { siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata/seo";
+import {
+  getPresentationTheme,
+  PRESENTATION_THEME_COOKIE,
+  resolvePresentationThemeId,
+} from "@/lib/presentation-themes";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -38,27 +45,36 @@ export const metadata: Metadata = {
   }).twitter,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const themeId = resolvePresentationThemeId(
+    cookieStore.get(PRESENTATION_THEME_COOKIE)?.value,
+  );
+  const theme = getPresentationTheme(themeId);
+
   return (
     <html
       lang="en"
-      className={`${geistMono.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      data-presentation-theme={themeId}
+      suppressHydrationWarning
+      className={`${geistMono.variable} ${ibmPlexMono.variable} ${theme.slots.shell.html}`}
     >
-      <body className="flex min-h-full flex-col">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2">
+      <body className={theme.slots.shell.body}>
+        <a href="#main-content" className={theme.slots.shell.skipLink}>
           Skip to content
         </a>
-        <div className="page-rails mx-auto flex w-full max-w-[61rem] flex-1 flex-col px-6 md:px-8">
+        <div className={theme.slots.shell.pageRails}>
           <SiteHeader />
           <main id="main-content" className="flex-1">
             {children}
           </main>
           <SiteFooter />
         </div>
+        <ThemeToggle currentTheme={themeId} />
         <Analytics />
       </body>
     </html>

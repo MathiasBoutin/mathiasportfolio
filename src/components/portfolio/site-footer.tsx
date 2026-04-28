@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 export function SiteFooter() {
+  const theme = getActivePresentationTheme();
+
   return (
-    <footer className="py-8">
-      <div className="flex w-full flex-col justify-between gap-4 text-[0.78rem] font-semibold uppercase text-muted-foreground md:flex-row">
+    <footer className={theme.slots.shell.footer}>
+      <div className={theme.slots.shell.footerInner}>
         <p>Based in Canada</p>
         <Link
           href={`mailto:${siteConfig.contactEmail}`}

@@ -1,0 +1,17 @@
+---
+description: >-
+  For non-trivial features, fixes, or refactors, follow the pre-build-plan-personal workflow in ~/.cursor/skills/pre-build-plan-personal/SKILL.md — plan before code, reuse audit, durable plan under .claude/docs/plans/, paired with pre-push review before push.
+alwaysApply: true
+---
+
+# Pre-build plan (personal)
+
+Before writing substantial code for new scope, read and follow the full skill:
+
+`~/.cursor/skills/pre-build-plan-personal/SKILL.md`
+
+Companion quality checklist (risks, reuse patterns):
+
+`~/.cursor/skills/pre-build-plan-personal/web-feedback-profile.md`
+
+Skip the heavy workflow for trivial edits (typos, single-line fixes, copy-only tweaks). Use it when scope touches multiple files, UX, API boundaries, auth/data, or new patterns.

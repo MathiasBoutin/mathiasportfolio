@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/portfolio/page-header";
 import { Section } from "@/components/portfolio/section";
 import { getCaseStudies, getCaseStudyBySlug } from "@/lib/content/work";
 import { renderMdx } from "@/lib/content/render-mdx";
+import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
   const caseStudy = await getCaseStudyBySlug(slug);
   if (!caseStudy) notFound();
+  const theme = getActivePresentationTheme();
 
   const content = await renderMdx(caseStudy.content);
 
@@ -53,26 +55,26 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         ))}
       </div>
 
-      <div className="mt-16 grid gap-8 border-y border-border py-8 md:grid-cols-2">
+      <div className={theme.slots.content.detailGrid}>
         <div>
-          <p className="text-[0.78rem] font-semibold uppercase text-muted-foreground">
+          <p className={theme.slots.content.detailLabel}>
             Problem
           </p>
-          <p className="mt-4 text-[clamp(1.5rem,3vw,2.8rem)] font-medium leading-[1.02] tracking-[-0.065em]">
+          <p className={theme.slots.content.detailValue}>
             {caseStudy.data.problem}
           </p>
         </div>
         <div>
-          <p className="text-[0.78rem] font-semibold uppercase text-muted-foreground">
+          <p className={theme.slots.content.detailLabel}>
             Outcome
           </p>
-          <p className="mt-4 text-[clamp(1.5rem,3vw,2.8rem)] font-medium leading-[1.02] tracking-[-0.065em]">
+          <p className={theme.slots.content.detailValue}>
             {caseStudy.data.outcome}
           </p>
         </div>
       </div>
 
-      <article className="mt-16 max-w-3xl">
+      <article className={theme.slots.content.detailArticle}>
         {content}
       </article>
     </Section>

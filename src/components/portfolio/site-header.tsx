@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 export function SiteHeader() {
+  const theme = getActivePresentationTheme();
+
   return (
-    <header className="sticky top-0 z-40 bg-background">
-      <div className="mx-auto flex w-full max-w-[61rem] items-center justify-between py-7 text-[0.78rem] font-semibold uppercase leading-none tracking-[-0.02em]">
+    <header className={theme.slots.shell.header}>
+      <div className={theme.slots.shell.headerInner}>
         <Link
           href="/"
           className="transition-opacity hover:opacity-50"

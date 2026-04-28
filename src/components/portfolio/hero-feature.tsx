@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { CaseStudyFrontmatter } from "@/lib/content/schema";
+import { homeContent } from "@/lib/content/home";
+import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 type HeroFeatureProps = {
   studies: {
@@ -8,46 +10,30 @@ type HeroFeatureProps = {
   }[];
 };
 
-const experience = [
-  {
-    timeline: "Mar 2022 - Present",
-    company: "Patch",
-    role: "Staff Product Designer",
-    summary: "Leading EAC purchasing and portfolio management.",
-  },
-  {
-    timeline: "Jan 2018 - Mar 2022",
-    company: "Shopify",
-    role: "Senior Product Designer",
-    summary: "Shaped Shop Pay, Shop App, and buyer-facing commerce experiences.",
-  },
-];
-
 export function HeroFeature({ studies }: HeroFeatureProps) {
-  if (studies.length === 0 && experience.length === 0) {
-    return null;
-  }
+  const theme = getActivePresentationTheme();
+  const { experience } = homeContent;
 
   return (
-    <div className="mt-8 grid w-full gap-8 md:mt-9 md:gap-8">
-      <section className="grid gap-3 md:grid-cols-[6.2rem_1fr] md:gap-6">
-        <h2 className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground/55">
+    <div className={theme.slots.home.featureRoot}>
+      <section className={theme.slots.home.featureSection}>
+        <h2 className={theme.slots.home.featureEyebrow}>
           Experience
         </h2>
         <div className="grid gap-4">
           {experience.map((role) => (
             <article
               key={`${role.company}-${role.timeline}`}
-              className="grid gap-1 md:grid-cols-[6.2rem_1fr] md:gap-6"
+              className={theme.slots.home.featureRow}
             >
-              <p className="font-ibm-plex-mono text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground/55">
+              <p className={theme.slots.home.featureTimeline}>
                 {role.timeline}
               </p>
               <div>
-                <h3 className="text-[clamp(1.05rem,1.45vw,1.4rem)] font-medium leading-none tracking-[-0.045em] text-foreground/82">
+                <h3 className={theme.slots.home.featureHeading}>
                   {role.company}
                 </h3>
-                <p className="mt-0.5 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.01em] text-muted-foreground/78">
+                <p className={theme.slots.home.featureDescription}>
                   {role.role} · {role.summary}
                 </p>
               </div>
@@ -56,22 +42,22 @@ export function HeroFeature({ studies }: HeroFeatureProps) {
         </div>
       </section>
 
-      <section id="work" className="grid gap-3 md:grid-cols-[6.2rem_1fr] md:gap-6">
-        <h2 className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground/55">
+      <section id="work" className={theme.slots.home.featureSection}>
+        <h2 className={theme.slots.home.featureEyebrow}>
           Featured work
         </h2>
         <div className="grid gap-4">
           {studies.map((study) => (
             <Link key={study.slug} href={`/work/${study.slug}`} className="group block">
-              <article className="grid gap-1 md:grid-cols-[6.2rem_1fr] md:gap-6">
-                <p className="font-ibm-plex-mono text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground/55">
+              <article className={theme.slots.home.featureRow}>
+                <p className={theme.slots.home.featureTimeline}>
                   {study.data.timeline}
                 </p>
                 <div>
-                  <h3 className="text-[clamp(1.05rem,1.45vw,1.4rem)] font-medium leading-none tracking-[-0.045em] text-foreground/82 transition-opacity group-hover:opacity-55">
+                  <h3 className={theme.slots.home.featureLinkHeading}>
                     {study.data.title}
                   </h3>
-                  <p className="mt-0.5 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.01em] text-muted-foreground/78 transition-colors group-hover:text-foreground/65">
+                  <p className={theme.slots.home.featureLinkDescription}>
                     {study.data.role} · {study.data.outcome}
                   </p>
                 </div>

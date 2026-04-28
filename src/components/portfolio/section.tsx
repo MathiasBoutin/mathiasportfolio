@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 type SectionProps = {
   id?: string;
@@ -8,9 +9,11 @@ type SectionProps = {
 };
 
 export function Section({ id, className, fullWidth = false, children }: SectionProps) {
+  const theme = getActivePresentationTheme();
+
   return (
-    <section id={id} className={cn("py-16 md:py-24", className)}>
-      <div className={cn("w-full", fullWidth ? "" : "mx-auto max-w-[61rem]")}>
+    <section id={id} className={cn(theme.slots.section.base, className)}>
+      <div className={cn("w-full", fullWidth ? "" : theme.slots.section.contained)}>
         {children}
       </div>
     </section>

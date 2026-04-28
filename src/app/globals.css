@@ -55,6 +55,10 @@
 
 :root {
   --font-muoto: "Muoto", "Muoto Trial", "MuotoTrial", Arial, Helvetica, sans-serif;
+}
+
+:root,
+[data-presentation-theme="default"] {
   --portfolio-paper: oklch(0.972 0.008 84);
   --portfolio-ink: oklch(0.24 0.012 72);
   --portfolio-muted: oklch(0.58 0.01 78);
@@ -91,6 +95,128 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --portfolio-atmosphere-opacity: 0.08;
+  --portfolio-atmosphere-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 24% 18%, rgb(0 0 0 / 0.08), transparent 28%),
+    radial-gradient(circle at 78% 62%, rgb(255 255 255 / 0.45), transparent 30%);
+  --portfolio-atmosphere-size:
+    180px 180px,
+    72rem 72rem,
+    64rem 64rem;
+  --portfolio-atmosphere-blend-mode: multiply;
+  --portfolio-atmosphere-animation: ambient-noise 8s steps(6) infinite;
+  --portfolio-rails-opacity: 0.55;
+  --portfolio-rails-color: color-mix(in oklab, var(--foreground) 28%, transparent);
+  --portfolio-shader-opacity: 0;
+  --portfolio-shader-background: none;
+  --portfolio-shader-filter: none;
+  --portfolio-shader-animation: none;
+}
+
+[data-presentation-theme="dark"] {
+  --portfolio-paper: oklch(0.13 0.028 264);
+  --portfolio-ink: oklch(0.92 0.018 235);
+  --portfolio-muted: oklch(0.71 0.035 250);
+  --portfolio-line: oklch(0.38 0.045 258);
+  --background: var(--portfolio-paper);
+  --foreground: var(--portfolio-ink);
+  --card: oklch(0.17 0.03 264);
+  --card-foreground: var(--portfolio-ink);
+  --popover: oklch(0.17 0.03 264);
+  --popover-foreground: var(--portfolio-ink);
+  --primary: var(--portfolio-ink);
+  --primary-foreground: var(--portfolio-paper);
+  --secondary: oklch(0.22 0.04 264);
+  --secondary-foreground: var(--portfolio-ink);
+  --muted: oklch(0.22 0.04 264);
+  --muted-foreground: var(--portfolio-muted);
+  --accent: var(--portfolio-ink);
+  --accent-foreground: var(--portfolio-paper);
+  --destructive: oklch(0.65 0.2 27);
+  --border: var(--portfolio-line);
+  --input: var(--portfolio-line);
+  --ring: var(--portfolio-ink);
+  --chart-1: oklch(0.8 0 0);
+  --chart-2: oklch(0.68 0 0);
+  --chart-3: oklch(0.54 0 0);
+  --chart-4: oklch(0.42 0 0);
+  --chart-5: oklch(0.32 0 0);
+  --radius: 1.25rem;
+  --sidebar: oklch(0.17 0.03 264);
+  --sidebar-foreground: var(--portfolio-ink);
+  --sidebar-primary: var(--portfolio-ink);
+  --sidebar-primary-foreground: var(--portfolio-paper);
+  --sidebar-accent: oklch(0.22 0.04 264);
+  --sidebar-accent-foreground: var(--portfolio-ink);
+  --sidebar-border: var(--portfolio-line);
+  --sidebar-ring: var(--portfolio-ink);
+  --portfolio-atmosphere-opacity: 0.22;
+  --portfolio-atmosphere-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.74' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 20% 18%, rgb(0 209 255 / 0.12), transparent 28%),
+    radial-gradient(circle at 82% 64%, rgb(3 8 35 / 0.72), transparent 34%);
+  --portfolio-atmosphere-size:
+    180px 180px,
+    72rem 72rem,
+    64rem 64rem;
+  --portfolio-atmosphere-blend-mode: screen;
+  --portfolio-atmosphere-animation: ambient-noise 8s steps(6) infinite;
+  --portfolio-rails-opacity: 0.36;
+  --portfolio-rails-color: color-mix(in oklab, var(--foreground) 20%, transparent);
+  --portfolio-shader-opacity: 0.82;
+  --portfolio-shader-background:
+    radial-gradient(ellipse 85% 70% at 12% 42%, rgb(255 188 112 / 0.92) 0%, rgb(255 162 196 / 0.68) 18%, transparent 42%),
+    radial-gradient(ellipse 78% 82% at 82% 23%, rgb(255 178 154 / 0.88) 0%, rgb(226 147 255 / 0.7) 18%, transparent 46%),
+    radial-gradient(ellipse 85% 72% at 70% 54%, rgb(0 208 255 / 0.95) 0%, rgb(23 99 255 / 0.86) 35%, transparent 60%),
+    radial-gradient(ellipse 70% 74% at 48% 10%, rgb(38 201 255 / 0.92) 0%, rgb(36 86 255 / 0.82) 34%, transparent 58%),
+    radial-gradient(ellipse 72% 58% at 52% 68%, rgb(5 9 38 / 0.96) 0%, rgb(4 17 82 / 0.9) 44%, transparent 68%),
+    linear-gradient(125deg, rgb(5 8 32) 0%, rgb(9 31 108) 42%, rgb(4 8 28) 100%);
+  --portfolio-shader-filter: saturate(1.35) contrast(1.12) blur(18px);
+  --portfolio-shader-animation: shader-flow 18s ease-in-out infinite alternate;
+}
+
+[data-presentation-theme="proof"] {
+  --portfolio-paper: oklch(0.96 0.008 220);
+  --portfolio-ink: oklch(0.27 0.02 250);
+  --portfolio-muted: oklch(0.54 0.015 235);
+  --portfolio-line: oklch(0.82 0.01 225);
+  --background: var(--portfolio-paper);
+  --foreground: var(--portfolio-ink);
+  --card: var(--portfolio-paper);
+  --card-foreground: var(--portfolio-ink);
+  --popover: var(--portfolio-paper);
+  --popover-foreground: var(--portfolio-ink);
+  --primary: var(--portfolio-ink);
+  --primary-foreground: var(--portfolio-paper);
+  --secondary: oklch(0.92 0.008 220);
+  --secondary-foreground: var(--portfolio-ink);
+  --muted: oklch(0.93 0.008 220);
+  --muted-foreground: var(--portfolio-muted);
+  --accent: var(--portfolio-ink);
+  --accent-foreground: var(--portfolio-paper);
+  --destructive: oklch(0.5 0.19 27);
+  --border: var(--portfolio-line);
+  --input: var(--portfolio-line);
+  --ring: var(--portfolio-ink);
+  --radius: 1.1rem;
+  --portfolio-atmosphere-opacity: 0.06;
+  --portfolio-atmosphere-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.38'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 20% 14%, rgb(0 0 0 / 0.06), transparent 30%),
+    radial-gradient(circle at 80% 64%, rgb(255 255 255 / 0.35), transparent 32%);
+  --portfolio-atmosphere-size:
+    220px 220px,
+    76rem 76rem,
+    68rem 68rem;
+  --portfolio-atmosphere-blend-mode: multiply;
+  --portfolio-atmosphere-animation: ambient-noise 10s steps(6) infinite;
+  --portfolio-rails-opacity: 0.42;
+  --portfolio-rails-color: color-mix(in oklab, var(--foreground) 24%, transparent);
+  --portfolio-shader-opacity: 0;
+  --portfolio-shader-background: none;
+  --portfolio-shader-filter: none;
+  --portfolio-shader-animation: none;
 }
 
 @layer base {
@@ -110,7 +236,7 @@
   }
   body > * {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   body::before {
     pointer-events: none;
@@ -118,17 +244,38 @@
     position: fixed;
     inset: 0;
     z-index: 0;
-    opacity: 0.08;
-    background-image:
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E"),
-      radial-gradient(circle at 24% 18%, rgb(0 0 0 / 0.08), transparent 28%),
-      radial-gradient(circle at 78% 62%, rgb(255 255 255 / 0.45), transparent 30%);
+    opacity: var(--portfolio-atmosphere-opacity);
+    background-image: var(--portfolio-atmosphere-image);
+    background-size: var(--portfolio-atmosphere-size);
+    mix-blend-mode: var(--portfolio-atmosphere-blend-mode);
+    animation: var(--portfolio-atmosphere-animation);
+  }
+  body::after {
+    pointer-events: none;
+    content: "";
+    position: fixed;
+    inset: -18%;
+    z-index: 0;
+    opacity: var(--portfolio-shader-opacity);
+    background-image: var(--portfolio-shader-background);
     background-size:
-      180px 180px,
-      72rem 72rem,
-      64rem 64rem;
-    mix-blend-mode: multiply;
-    animation: ambient-noise 8s steps(6) infinite;
+      115% 110%,
+      115% 112%,
+      130% 120%,
+      125% 120%,
+      120% 110%,
+      100% 100%;
+    background-position:
+      0% 42%,
+      100% 12%,
+      82% 62%,
+      50% 0%,
+      48% 76%,
+      center;
+    filter: var(--portfolio-shader-filter);
+    transform: translate3d(0, 0, 0) scale(1.04);
+    animation: var(--portfolio-shader-animation);
+    will-change: background-position, transform, filter;
   }
   html {
     @apply font-sans;
@@ -160,11 +307,11 @@
   position: absolute;
   inset-block: 0;
   width: 1px;
-  opacity: 0.55;
+  opacity: var(--portfolio-rails-opacity);
   background-image: repeating-linear-gradient(
     to bottom,
-    color-mix(in oklab, var(--foreground) 28%, transparent) 0,
-    color-mix(in oklab, var(--foreground) 28%, transparent) 4px,
+    var(--portfolio-rails-color) 0,
+    var(--portfolio-rails-color) 4px,
     transparent 4px,
     transparent 10px
   );
@@ -213,5 +360,49 @@
       0 0,
       0 0,
       0 0;
+  }
+}
+
+@keyframes shader-flow {
+  0% {
+    background-position:
+      0% 42%,
+      100% 12%,
+      82% 62%,
+      50% 0%,
+      48% 76%,
+      center;
+    transform: translate3d(-1.5%, -1%, 0) scale(1.05) rotate(-1deg);
+    filter: var(--portfolio-shader-filter);
+  }
+  35% {
+    background-position:
+      8% 54%,
+      92% 18%,
+      76% 52%,
+      42% 8%,
+      55% 70%,
+      center;
+    transform: translate3d(1%, -2%, 0) scale(1.08) rotate(0.75deg);
+  }
+  70% {
+    background-position:
+      4% 34%,
+      86% 30%,
+      88% 66%,
+      58% 6%,
+      44% 80%,
+      center;
+    transform: translate3d(2%, 1%, 0) scale(1.06) rotate(1.5deg);
+  }
+  100% {
+    background-position:
+      12% 48%,
+      96% 24%,
+      70% 58%,
+      46% 12%,
+      52% 72%,
+      center;
+    transform: translate3d(-1%, 1.5%, 0) scale(1.09) rotate(-0.5deg);
   }
 }
