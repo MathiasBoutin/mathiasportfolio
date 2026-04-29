@@ -10,5 +10,5 @@ export const siteConfig = {
     { href: "/about", label: "Bio" },
     { href: "/cv", label: "CV" },
   ],
-  contactEmail: "hello@mathiasboutin.com",
+  contactEmail: "mathiasboutin@gmail.com",
 } as const;

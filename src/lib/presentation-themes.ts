@@ -93,10 +93,10 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         pageRails: "page-rails mx-auto flex w-full max-w-[61rem] flex-1 flex-col px-6 md:px-8",
         header: "sticky top-0 z-40",
         headerInner:
-          "mx-auto flex w-full max-w-[61rem] items-center justify-between py-7 text-[0.78rem] font-semibold uppercase leading-none tracking-[-0.02em]",
+          "mx-auto flex w-full max-w-[61rem] items-center justify-between py-7 text-[0.78rem] font-medium uppercase leading-none tracking-[-0.02em] text-muted-foreground/85",
         footer: "py-8",
         footerInner:
-          "flex w-full flex-col justify-between gap-4 text-[0.78rem] font-semibold uppercase text-muted-foreground md:flex-row",
+          "flex w-full flex-col justify-between gap-4 text-[0.78rem] font-medium uppercase text-muted-foreground/85 md:flex-row",
       },
       section: {
         base: "py-16 md:py-24",
@@ -112,7 +112,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
       home: {
         heroSection: "flex min-h-screen items-center pb-20 pt-24 md:pb-24 md:pt-32",
         heroTitle:
-          "max-w-[30ch] text-balance text-[clamp(2rem,3.6vw,3.15rem)] font-semibold leading-[1.04] tracking-[-0.06em] text-foreground",
+          "max-w-[30ch] text-balance text-[clamp(2.3rem,4.4vw,3.8rem)] font-normal leading-[1.04] tracking-[-0.06em] text-foreground",
         aboutSection: "pt-4",
         aboutGrid: "grid gap-8 border-t border-border pt-12 md:grid-cols-[1fr_2.2fr]",
         aboutEyebrow: "text-[0.78rem] font-semibold uppercase text-muted-foreground",
