@@ -1,5 +1,8 @@
 export const homeContent = {
-  heroTitle: "Product designer building useful digital experiences with purpose and care over details",
+  heroBadge: "Staff product design @ Patch",
+  heroTitle: "Bonjour/hi! I'm Mathias, and I define, design & craft human experiences.",
+  workExperienceBlurb:
+    "I was at Shopify from 2017 to 2021, building Shop Pay and the Shop app, before moving to Patch in 2021 to design EAC infrastructure software to fight climate chanage",
   aboutEyebrow: "About",
   aboutLead: "I turn ambiguous product problems into clear interaction models, practical systems, and interfaces that feel resolved.",
   aboutBody:
