@@ -7,12 +7,17 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={theme.slots.shell.footer}>
-      <div className={`${theme.slots.shell.footerInner} gap-2 text-[0.74rem] font-medium normal-case tracking-[0.01em]`}>
+    <footer data-print-hide className={theme.slots.shell.footer}>
+      <div
+        className={`${theme.slots.shell.footerInner} gap-2 text-[0.74rem] font-medium tracking-[0.01em] normal-case`}
+      >
         <p className="text-muted-foreground/78">Based in Montreal, Canada.</p>
-        <div className="flex items-center gap-2 text-muted-foreground/78">
+        <div className="text-muted-foreground/78 flex items-center gap-2">
           <span aria-hidden>·</span>
-          <Link href={`mailto:${siteConfig.contactEmail}`} className="transition-colors hover:text-foreground">
+          <Link
+            href={`mailto:${siteConfig.contactEmail}`}
+            className="hover:text-foreground transition-colors"
+          >
             {siteConfig.contactEmail}
           </Link>
           <span aria-hidden>·</span>

@@ -28,11 +28,12 @@ export function ThemeToggle({ currentTheme }: ThemeToggleProps) {
 
   return (
     <button
+      data-print-hide
       type="button"
       aria-pressed={isDark}
       aria-label={`Switch to ${isDark ? "default" : "dark"} theme`}
       onClick={toggleTheme}
-      className="fixed bottom-5 right-5 z-50 rounded-full border border-border bg-background/90 px-4 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-foreground shadow-lg shadow-foreground/10 backdrop-blur transition hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="border-border bg-background/90 text-foreground shadow-foreground/10 hover:bg-foreground hover:text-background focus-visible:outline-ring fixed right-5 bottom-5 z-50 rounded-full border px-4 py-3 text-[0.72rem] font-semibold tracking-[0.08em] uppercase shadow-lg backdrop-blur transition focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {isDark ? "Default" : "Dark"}
     </button>
