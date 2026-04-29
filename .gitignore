@@ -15,8 +15,10 @@
 
 # next.js
 /.next/
+/.next.broken.*/
 /out/
 /.open-next/
+/.wrangler/
 
 # production
 /build

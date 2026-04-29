@@ -11,7 +11,15 @@ const config = [
     extends: ["next/core-web-vitals", "next/typescript"],
   }),
   {
-    ignores: [".next/**", "out/**", "build/**", "next-env.d.ts", ".open-next/**"],
+    ignores: [
+      ".next/**",
+      ".next.broken.*/**",
+      ".open-next/**",
+      ".wrangler/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
   },
 ];
 

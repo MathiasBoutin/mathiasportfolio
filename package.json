@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:next": "next build",
     "build:worker": "NEXT_PRIVATE_STANDALONE=true next build && opennextjs-cloudflare build --skipNextBuild",
     "start": "next start",
     "lint": "eslint .",
