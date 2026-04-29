@@ -2,6 +2,7 @@ import { FadeIn } from "@/components/portfolio/fade-in";
 import { Section } from "@/components/portfolio/section";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
 import { homeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
@@ -25,7 +26,26 @@ export default async function Home() {
             <div className="mt-10 space-y-7 text-sm leading-relaxed text-foreground/70 md:mt-12 md:space-y-8 md:text-base">
               <section className="space-y-2">
                 <h2 className="text-base font-medium text-foreground/88 md:text-lg">My work experience</h2>
-                <p>{homeContent.workExperienceBlurb}</p>
+                <p>
+                  I spent 2017-2021 at{" "}
+                  <DefinitionPopover
+                    term="Shopify"
+                    pronunciation="shop-uh-fy"
+                    definition="A commerce platform that helps businesses create online stores, accept payments, and sell across digital and physical channels."
+                    learnMoreHref="https://www.shopify.com"
+                    learnMoreLabel="Visit Shopify"
+                  />{" "}
+                  where I worked on Shop Pay and the Shop app. In 2021, I
+                  joined{" "}
+                  <DefinitionPopover
+                    term="Patch"
+                    pronunciation="patch"
+                    definition="A climate technology company that helps organizations buy, manage, and scale high-quality carbon removal."
+                    learnMoreHref="https://www.patch.io"
+                    learnMoreLabel="Visit Patch"
+                  />{" "}
+                  to design EAC infrastructure software for climate action.
+                </p>
               </section>
 
               <section className="space-y-2">

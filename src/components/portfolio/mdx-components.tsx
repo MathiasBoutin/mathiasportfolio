@@ -1,9 +1,11 @@
 import type { MDXComponents } from "mdx/types";
+import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 const theme = getActivePresentationTheme();
 
 export const mdxComponents: MDXComponents = {
+  DefinitionPopover,
   h2: (props) => (
     <h2
       className={theme.slots.content.mdxH2}
