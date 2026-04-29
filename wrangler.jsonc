@@ -3,10 +3,21 @@
   "name": "mathiasportfolio",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-04-27",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "routes": [
+    {
+      "pattern": "mathiasboutin.com/*",
+      "zone_name": "mathiasboutin.com"
+    },
+    {
+      "pattern": "www.mathiasboutin.com/*",
+      "zone_name": "mathiasboutin.com"
+    }
+  ],
   "observability": {
     "enabled": true
   }
