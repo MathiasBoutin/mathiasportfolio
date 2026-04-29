@@ -24,8 +24,8 @@ export default async function Home() {
               {homeContent.heroTitle}
             </h1>
             <div className="mt-10 space-y-7 text-sm leading-relaxed text-foreground/70 md:mt-12 md:space-y-8 md:text-base">
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">My work experience</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">My work experience</h2>
                 <p>
                   I spent 2017-2021 at{" "}
                   <DefinitionPopover
@@ -35,8 +35,8 @@ export default async function Home() {
                     learnMoreHref="https://www.shopify.com"
                     learnMoreLabel="Visit Shopify"
                   />{" "}
-                  where I worked on Shop Pay and the Shop app. In 2021, I
-                  joined{" "}
+                  shaping Shop Pay and the Shop app across checkout and buyer
+                  experiences. In 2021, I joined{" "}
                   <DefinitionPopover
                     term="Patch"
                     pronunciation="patch"
@@ -44,17 +44,18 @@ export default async function Home() {
                     learnMoreHref="https://www.patch.io"
                     learnMoreLabel="Visit Patch"
                   />{" "}
-                  to design EAC infrastructure software for climate action.
+                  to design environmental impact infrastructure software for
+                  climate action.
                 </p>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">What I&apos;m good at</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">What I&apos;m good at</h2>
                 <p>{homeContent.aboutLead}</p>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">Case Studies</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Case Studies</h2>
                 <ul className="space-y-1">
                   {featuredStudies.map((study) => (
                     <li key={study.slug}>
@@ -69,8 +70,8 @@ export default async function Home() {
                 </ul>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">Connect</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Connect</h2>
                 <ul className="space-y-1">
                   <li>
                     <Link
