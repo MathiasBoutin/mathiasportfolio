@@ -10,13 +10,13 @@ export function SiteHeader() {
       <div className={theme.slots.shell.headerInner}>
         <Link
           href="/"
-          className="transition-opacity hover:opacity-50"
+          className="text-muted-foreground/85 transition-colors hover:text-foreground/70"
         >
           Mathias Boutin
         </Link>
         <Link
           href={`mailto:${siteConfig.contactEmail}`}
-          className="transition-opacity hover:opacity-50"
+          className="text-muted-foreground/85 transition-colors hover:text-foreground/70"
         >
           Contact
         </Link>

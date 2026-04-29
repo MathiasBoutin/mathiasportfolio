@@ -8,10 +8,10 @@ export function SiteFooter() {
   return (
     <footer className={theme.slots.shell.footer}>
       <div className={theme.slots.shell.footerInner}>
-        <p>Based in Canada</p>
+        <p>Based in Montreal, Canada.</p>
         <Link
           href={`mailto:${siteConfig.contactEmail}`}
-          className="text-foreground transition-opacity hover:opacity-50"
+          className="text-muted-foreground/85 transition-colors hover:text-foreground/70"
         >
           {siteConfig.contactEmail}
         </Link>

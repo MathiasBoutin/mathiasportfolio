@@ -112,6 +112,7 @@
   --portfolio-shader-background: none;
   --portfolio-shader-filter: none;
   --portfolio-shader-animation: none;
+  --portfolio-link-underline: oklch(0.78 0.018 78 / 0.78);
 }
 
 [data-presentation-theme="dark"] {
@@ -174,6 +175,7 @@
     linear-gradient(125deg, rgb(5 8 32) 0%, rgb(9 31 108) 42%, rgb(4 8 28) 100%);
   --portfolio-shader-filter: saturate(1.35) contrast(1.12) blur(18px);
   --portfolio-shader-animation: shader-flow 18s ease-in-out infinite alternate;
+  --portfolio-link-underline: oklch(0.62 0.02 62 / 0.55);
 }
 
 [data-presentation-theme="proof"] {
@@ -217,6 +219,7 @@
   --portfolio-shader-background: none;
   --portfolio-shader-filter: none;
   --portfolio-shader-animation: none;
+  --portfolio-link-underline: oklch(0.72 0.015 75 / 0.72);
 }
 
 @layer base {
@@ -323,6 +326,26 @@
 
 .page-rails::after {
   inset-inline-end: 0;
+}
+
+.soft-link {
+  font-weight: inherit;
+  color: color-mix(in oklab, var(--foreground) 72%, transparent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.12em;
+  text-decoration-color: var(--portfolio-link-underline);
+  text-underline-offset: 0.14em;
+  transition:
+    color 180ms ease,
+    text-decoration-thickness 180ms ease,
+    text-decoration-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.soft-link:hover {
+  color: color-mix(in oklab, var(--foreground) 90%, transparent);
+  text-decoration-thickness: 0.16em;
+  text-decoration-color: color-mix(in oklab, var(--portfolio-link-underline) 72%, var(--foreground));
 }
 
 @keyframes ambient-noise {
