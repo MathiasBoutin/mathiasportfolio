@@ -2,6 +2,7 @@ import { FadeIn } from "@/components/portfolio/fade-in";
 import { Section } from "@/components/portfolio/section";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
 import { homeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
@@ -23,18 +24,38 @@ export default async function Home() {
               {homeContent.heroTitle}
             </h1>
             <div className="mt-10 space-y-7 text-sm leading-relaxed text-foreground/70 md:mt-12 md:space-y-8 md:text-base">
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">My work experience</h2>
-                <p>{homeContent.workExperienceBlurb}</p>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">My work experience</h2>
+                <p>
+                  I spent 2017-2021 at{" "}
+                  <DefinitionPopover
+                    term="Shopify"
+                    pronunciation="shop-uh-fy"
+                    definition="A commerce platform that helps businesses create online stores, accept payments, and sell across digital and physical channels."
+                    learnMoreHref="https://www.shopify.com"
+                    learnMoreLabel="Visit Shopify"
+                  />{" "}
+                  shaping Shop Pay and the Shop app across checkout and buyer
+                  experiences. In 2021, I joined{" "}
+                  <DefinitionPopover
+                    term="Patch"
+                    pronunciation="patch"
+                    definition="A climate technology company that helps organizations buy, manage, and scale high-quality carbon removal."
+                    learnMoreHref="https://www.patch.io"
+                    learnMoreLabel="Visit Patch"
+                  />{" "}
+                  to design environmental impact infrastructure software for
+                  climate action.
+                </p>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">What I&apos;m good at</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">What I&apos;m good at</h2>
                 <p>{homeContent.aboutLead}</p>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">Case Studies</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Case Studies</h2>
                 <ul className="space-y-1">
                   {featuredStudies.map((study) => (
                     <li key={study.slug}>
@@ -49,8 +70,8 @@ export default async function Home() {
                 </ul>
               </section>
 
-              <section className="space-y-2">
-                <h2 className="text-base font-medium text-foreground/88 md:text-lg">Connect</h2>
+              <section className="space-y-1">
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Connect</h2>
                 <ul className="space-y-1">
                   <li>
                     <Link
