@@ -65,5 +65,5 @@ npx wrangler deploy
 ## Next Content Steps
 
 - Add your real case studies in `content/work`.
-- Add your final PDF CV in `public/cv.pdf`.
+- Update `src/lib/cv-data.ts` to keep `/cv` and its print-to-PDF flow in sync.
 - Replace placeholder site info in `src/lib/site-config.ts`.
