@@ -3,9 +3,7 @@
 import * as React from "react";
 import { Popover } from "@base-ui/react/popover";
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
-
-import { buttonVariants } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/link-button";
 import { defaultMessages } from "@/lib/i18n/messages";
 import { cn } from "@/lib/utils";
 
@@ -215,9 +213,6 @@ function DefinitionPopover({
     [prefersReducedMotion],
   );
 
-  const isExternalHref =
-    typeof learnMoreHref === "string" && /^(https?:)?\/\//.test(learnMoreHref);
-
   React.useEffect(() => {
     if (!open) {
       return;
@@ -369,32 +364,12 @@ function DefinitionPopover({
               </Popover.Description>
 
               {learnMoreHref ? (
-                isExternalHref ? (
-                  <a
-                    href={learnMoreHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn(
-                      buttonVariants({ variant: "secondary", size: "xs" }),
-                      "mt-1 w-fit",
-                      theme?.link,
-                    )}
-                  >
-                    {learnMoreLabel}
-                    <span className="sr-only"> (opens in new tab)</span>
-                  </a>
-                ) : (
-                  <Link
-                    href={learnMoreHref}
-                    className={cn(
-                      buttonVariants({ variant: "secondary", size: "xs" }),
-                      "mt-1 w-fit",
-                      theme?.link,
-                    )}
-                  >
-                    {learnMoreLabel}
-                  </Link>
-                )
+                <LinkButton
+                  href={learnMoreHref}
+                  className={cn("mt-1 w-fit", theme?.link)}
+                >
+                  {learnMoreLabel}
+                </LinkButton>
               ) : null}
             </motion.div>
           </Popover.Popup>

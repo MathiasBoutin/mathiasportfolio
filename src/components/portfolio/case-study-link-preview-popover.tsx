@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/link-button";
 import { cn } from "@/lib/utils";
 
 type PreviewMedia = {
@@ -225,16 +225,15 @@ function CaseStudyDialogContent({
         </div>
 
         <div className="relative z-10 mt-7">
-          <Link
+          <LinkButton
             href={href}
             className={cn(
-              buttonVariants({ variant: "secondary", size: "xs" }),
               "mt-1 flex h-11 w-full justify-center bg-[#68ff89] text-[#153f36] hover:bg-[#68ff89] hover:text-[#153f36]",
               theme?.cta,
             )}
           >
             View case study
-          </Link>
+          </LinkButton>
         </div>
       </div>
     </div>
