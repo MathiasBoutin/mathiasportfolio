@@ -98,9 +98,11 @@ function DefinitionPopover({
         ? {
             closed: {
               opacity: 0,
+              boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
             },
             open: {
               opacity: 1,
+              boxShadow: "0 10px 24px rgba(0, 0, 0, 0.1)",
             },
           }
         : {
@@ -112,12 +114,14 @@ function DefinitionPopover({
                   : 0.18,
               scaleY: 0.18,
               y: motionSize.triggerHeight > 0 ? -(motionSize.triggerHeight + 6) : -28,
+              boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
             },
             open: {
               opacity: 1,
               scaleX: 1,
               scaleY: 1,
               y: 0,
+              boxShadow: "0 10px 24px rgba(0, 0, 0, 0.1)",
             },
           },
     [motionSize.popupWidth, motionSize.triggerHeight, motionSize.triggerWidth, prefersReducedMotion],
@@ -139,6 +143,7 @@ function DefinitionPopover({
               scale: 1,
               y: 0,
               boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] as const },
             },
             active: {
               scale: 1.01,
@@ -156,6 +161,7 @@ function DefinitionPopover({
               scale: 1,
               y: 0,
               boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] as const },
             },
             active: {
               scale: 1.018,
