@@ -8,6 +8,7 @@ import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { localizePath } from "@/lib/i18n/routing";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
+import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { siteConfig } from "@/lib/site-config";
@@ -53,6 +54,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                   definition={homeMessages.popovers.shopify.definition}
                   learnMoreHref={homeMessages.popovers.shopify.learnMoreHref}
                   learnMoreLabel={homeMessages.popovers.shopify.learnMoreLabel}
+                  theme={definitionPopoverThemes.shopify}
                 />{" "}
                 {homeContent.workExperienceText.betweenPopovers}{" "}
                 <DefinitionPopover
@@ -61,6 +63,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                   definition={homeMessages.popovers.patch.definition}
                   learnMoreHref={homeMessages.popovers.patch.learnMoreHref}
                   learnMoreLabel={homeMessages.popovers.patch.learnMoreLabel}
+                  theme={definitionPopoverThemes.patch}
                 />{" "}
                 {homeContent.workExperienceText.afterSecondPopover}
               </p>
