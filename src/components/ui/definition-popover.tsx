@@ -270,7 +270,7 @@ function DefinitionPopover({
                 whileFocus="active"
                 whileTap="active"
                 className={cn(
-                  "text-foreground focus-visible:ring-ring/40 data-[popup-open]:bg-foreground/12 relative z-[70] inline-flex items-center cursor-help appearance-none rounded-[4px] border-0 bg-foreground/8 px-2 py-[0.12em] text-left text-[0.92em] font-[inherit] leading-[inherit] tracking-[inherit] transition-[background-color,color] duration-200 ease-out will-change-[transform,background-color,color] hover:bg-foreground/12 focus-visible:ring-3 focus-visible:outline-none",
+                  "text-foreground focus-visible:ring-ring/40 data-[popup-open]:bg-foreground/12 relative z-[40] inline-flex items-center cursor-help appearance-none rounded-[4px] border-0 bg-foreground/8 px-2 py-[0.12em] text-left text-[0.92em] font-[inherit] leading-[inherit] tracking-[inherit] transition-[background-color,color] duration-200 ease-out will-change-[transform,background-color,color] hover:bg-foreground/12 focus-visible:ring-3 focus-visible:outline-none",
                   theme?.trigger,
                   className,
                 )}
@@ -293,7 +293,7 @@ function DefinitionPopover({
             align: "shift",
             fallbackAxisSide: "none",
           }}
-          className="z-[50] outline-none"
+          className="z-[80] outline-none"
         >
           <Popover.Popup
             initialFocus={(openType) => (openType === "keyboard" ? true : false)}
