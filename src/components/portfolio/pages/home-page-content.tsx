@@ -9,7 +9,10 @@ import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { localizePath } from "@/lib/i18n/routing";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
-import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
+import {
+  caseStudyLinkPreviewThemes,
+  definitionPopoverThemes,
+} from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { siteConfig } from "@/lib/site-config";
@@ -90,6 +93,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                       timeline={study.data.timeline}
                       topics={study.data.topics}
                       previewMedia={study.data.previewMedia}
+                      theme={caseStudyLinkPreviewThemes.patch}
                     >
                       {study.data.title}
                     </CaseStudyLinkPreviewPopover>

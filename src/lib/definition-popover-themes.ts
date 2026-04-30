@@ -1,3 +1,4 @@
+import type { CaseStudyLinkPreviewPopoverTheme } from "@/components/portfolio/case-study-link-preview-popover";
 import type { DefinitionPopoverTheme } from "@/components/ui/definition-popover";
 
 export const definitionPopoverThemes: Record<"shopify" | "patch", DefinitionPopoverTheme> = {
@@ -18,5 +19,17 @@ export const definitionPopoverThemes: Record<"shopify" | "patch", DefinitionPopo
     pronunciation: "text-[#F48C60]",
     description: "text-[#F48C60]",
     link: "bg-[#F48C60] text-[#2B261C] hover:bg-[#F48C60] hover:text-[#2B261C]",
+  },
+};
+
+export const caseStudyLinkPreviewThemes: Record<"patch", CaseStudyLinkPreviewPopoverTheme> = {
+  patch: {
+    popup: "bg-[#2B261C] text-[#F48C60]",
+    dialog: "bg-[#2B261C] text-[#F48C60]",
+    backgroundWord: "text-[#F48C60]/16",
+    tag: "bg-[#F48C60]/14 text-[#FFD5BF]/86",
+    title: "text-white",
+    timeline: "text-[#FFD5BF]/56",
+    cta: "bg-[#F48C60] text-[#2B261C] hover:bg-[#F48C60] hover:text-[#2B261C]",
   },
 };
