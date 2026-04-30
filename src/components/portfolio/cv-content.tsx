@@ -1,4 +1,6 @@
 import { getCvData } from "@/lib/cv-data";
+import { DefinitionPopover } from "@/components/ui/definition-popover";
+import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 
@@ -10,7 +12,45 @@ type CvContentProps = {
 export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvContentProps) {
   const isPrint = mode === "print";
   const cvData = getCvData(locale);
-  const cvMessages = getMessages(locale).cv;
+  const messages = getMessages(locale);
+  const cvMessages = messages.cv;
+  const homeMessages = messages.home;
+
+  const renderCompany = (company: string) => {
+    if (isPrint) {
+      return company;
+    }
+
+    const normalizedCompany = company.toLowerCase();
+
+    if (normalizedCompany === "patch") {
+      return (
+        <DefinitionPopover
+          term={homeMessages.popovers.patch.term}
+          pronunciation={homeMessages.popovers.patch.pronunciation}
+          definition={homeMessages.popovers.patch.definition}
+          learnMoreHref={homeMessages.popovers.patch.learnMoreHref}
+          learnMoreLabel={homeMessages.popovers.patch.learnMoreLabel}
+          theme={definitionPopoverThemes.patch}
+        />
+      );
+    }
+
+    if (normalizedCompany === "shopify") {
+      return (
+        <DefinitionPopover
+          term={homeMessages.popovers.shopify.term}
+          pronunciation={homeMessages.popovers.shopify.pronunciation}
+          definition={homeMessages.popovers.shopify.definition}
+          learnMoreHref={homeMessages.popovers.shopify.learnMoreHref}
+          learnMoreLabel={homeMessages.popovers.shopify.learnMoreLabel}
+          theme={definitionPopoverThemes.shopify}
+        />
+      );
+    }
+
+    return company;
+  };
 
   return (
     <div className={isPrint ? "space-y-8" : "space-y-10 md:space-y-12"}>
@@ -52,7 +92,7 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                   }
                 >
                   <p className="text-foreground/88 text-sm font-semibold md:text-base">
-                    {entry.company}
+                    {renderCompany(entry.company)}
                   </p>
                   <p
                     className={

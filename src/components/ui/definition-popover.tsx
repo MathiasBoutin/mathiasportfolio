@@ -275,7 +275,7 @@ function DefinitionPopover({
                 whileFocus="active"
                 whileTap="active"
                 className={cn(
-                  "text-foreground focus-visible:ring-ring/40 data-[popup-open]:bg-foreground/12 relative z-[70] inline-flex items-center cursor-help appearance-none rounded-[4px] border-0 bg-foreground/8 px-2 py-[0.12em] text-left text-[0.92em] font-[inherit] leading-[inherit] tracking-[inherit] transition-[background-color,color] duration-200 ease-out will-change-transform hover:bg-foreground/12 focus-visible:ring-3 focus-visible:outline-none",
+                  "text-foreground focus-visible:ring-ring/40 data-[popup-open]:bg-foreground/12 relative z-[70] inline-flex items-center cursor-help appearance-none rounded-[4px] border-0 bg-foreground/8 px-2 py-[0.12em] text-left text-[0.92em] font-[inherit] leading-[inherit] tracking-[inherit] transition-[background-color,color] duration-200 ease-out will-change-[transform,background-color,color] hover:bg-foreground/12 focus-visible:ring-3 focus-visible:outline-none",
                   theme?.trigger,
                   className,
                 )}
@@ -322,7 +322,7 @@ function DefinitionPopover({
                     }
                   }}
                   className={cn(
-                    "border-border bg-popover text-popover-foreground w-[min(22rem,calc(100vw-2rem))] origin-top-left overflow-hidden rounded-sm border p-3.5 shadow-[0_10px_24px_rgb(0_0_0/0.1)] will-change-[transform,opacity] outline-none",
+                    "border-border bg-popover text-popover-foreground w-[min(22rem,calc(100vw-2rem))] origin-top-left overflow-hidden rounded-sm border p-3.5 font-normal shadow-[0_10px_24px_rgb(0_0_0/0.1)] will-change-[transform,opacity] outline-none",
                     theme?.popup,
                     popupClassName,
                   )}
@@ -361,7 +361,7 @@ function DefinitionPopover({
               <Popover.Description
                 render={<div />}
                 className={cn(
-                  "text-popover-foreground/84 text-[0.9rem] leading-snug tracking-[-0.01em] text-pretty",
+                  "text-popover-foreground/84 text-[0.9rem] leading-snug font-normal tracking-[-0.01em] text-pretty",
                   theme?.description,
                 )}
               >
