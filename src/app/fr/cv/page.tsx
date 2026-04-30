@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { CvPageContent } from "@/components/portfolio/pages/cv-page-content";
-import { buildMetadata } from "@/lib/metadata/seo";
 import { getMessages } from "@/lib/i18n/messages";
+import { buildMetadata } from "@/lib/metadata/seo";
 
-const cvMessages = getMessages("en").cv;
+const cvMessages = getMessages("fr").cv;
 
 export const metadata: Metadata = buildMetadata({
   title: cvMessages.metadataTitle,
   description: cvMessages.metadataDescription,
   path: "/cv",
+  locale: "fr",
 });
 
-export default async function CvPage() {
-  return <CvPageContent locale="en" />;
+export default async function FrenchCvPage() {
+  return <CvPageContent locale="fr" />;
 }

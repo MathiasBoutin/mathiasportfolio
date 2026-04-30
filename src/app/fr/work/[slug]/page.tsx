@@ -4,32 +4,33 @@ import { WorkDetailPageContent } from "@/components/portfolio/pages/work-detail-
 import { getCaseStudies, getCaseStudyBySlug } from "@/lib/content/work";
 import { buildMetadata } from "@/lib/metadata/seo";
 
-type CaseStudyPageProps = {
+type FrenchCaseStudyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  const studies = await getCaseStudies();
+  const studies = await getCaseStudies("fr");
   return studies.map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({
   params,
-}: CaseStudyPageProps): Promise<Metadata> {
+}: FrenchCaseStudyPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const study = await getCaseStudyBySlug(slug);
+  const study = await getCaseStudyBySlug(slug, "fr");
   if (!study) return {};
 
   return buildMetadata({
     title: study.data.title,
     description: study.data.summary,
     path: `/work/${study.slug}`,
+    locale: "fr",
   });
 }
 
-export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
+export default async function FrenchCaseStudyPage({ params }: FrenchCaseStudyPageProps) {
   const { slug } = await params;
-  const caseStudy = await getCaseStudyBySlug(slug, "en");
+  const caseStudy = await getCaseStudyBySlug(slug, "fr");
   if (!caseStudy) notFound();
-  return <WorkDetailPageContent slug={slug} locale="en" />;
+  return <WorkDetailPageContent slug={slug} locale="fr" />;
 }

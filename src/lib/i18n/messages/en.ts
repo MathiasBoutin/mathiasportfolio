@@ -39,6 +39,11 @@ const enMessages = {
         learnMoreLabel: "Visit Patch",
       },
     },
+    languagePicker: {
+      switchLabel: "Choose language",
+      englishGreeting: "hi!",
+      frenchGreeting: "Bonjour",
+    },
   },
   about: {
     metadataTitle: "Bio",

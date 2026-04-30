@@ -1,9 +1,12 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { defaultMessages } from "@/lib/i18n/messages";
 
-export function CvPrintButton() {
+type CvPrintButtonProps = {
+  label: string;
+};
+
+export function CvPrintButton({ label }: CvPrintButtonProps) {
   return (
     <button
       data-print-hide
@@ -11,7 +14,7 @@ export function CvPrintButton() {
       className={buttonVariants({ variant: "secondary", size: "sm" })}
       onClick={() => window.print()}
     >
-      {defaultMessages.cv.printButtonLabel}
+      {label}
     </button>
   );
 }

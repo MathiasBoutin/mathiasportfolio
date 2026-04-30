@@ -49,6 +49,51 @@ updatedAt: "2026-04-27"
 - Design systems
 `,
   },
+  fr: {
+    about: `---
+title: "À propos"
+summary: "Parcours, valeurs et façon de travailler."
+updatedAt: "2026-04-30"
+---
+
+Je suis designer UX et produit, et j'aide les équipes à rendre des produits complexes plus clairs et plus simples à utiliser.
+
+Ma pratique combine recherche utilisateur, architecture de l'information et prototypage pragmatique. Je privilégie des résultats mesurables et significatifs pour les utilisateurs.
+
+J'aime collaborer de près avec les product managers et les ingénieurs, avec des points de synchronisation fréquents pour limiter le rework et garder des décisions traçables.
+`,
+    cv: `---
+title: "Curriculum Vitae"
+summary: "Expérience, formation et compétences."
+updatedAt: "2026-04-30"
+---
+
+## Experience
+
+### Senior Product Designer, Acme (2022-aujourd'hui)
+
+- Pilotage de redesigns complets sur des produits checkout et reporting.
+- Collaboration avec l'engineering pour livrer des améliorations UX testées.
+- Mise en place de patterns de design réutilisables.
+
+### Product Designer, North Studio (2019-2022)
+
+- Livraison d'expériences produit web et mobile responsive.
+- Amélioration de l'architecture de navigation et des parcours de conversion.
+
+## Formation
+
+- Baccalauréat en design
+
+## Compétences clés
+
+- Recherche UX
+- Stratégie produit
+- Design d'interaction
+- Architecture de l'information
+- Design systems
+`,
+  },
 };
 
 export const getProfileDocument = cache(async (slug: string, locale: Locale = DEFAULT_LOCALE) => {

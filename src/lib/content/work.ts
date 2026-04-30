@@ -76,6 +76,78 @@ The unified dashboard became the default source for weekly decision meetings and
 Shared metric definitions matter as much as visual consistency in analytics products.
 `,
   },
+  fr: {
+    "mobile-checkout-redesign": `---
+title: "Refonte du checkout mobile"
+summary: "Hausse du taux de complétion grâce à une architecture d'information simplifiée."
+role: "Lead Product Designer"
+timeline: "T1 2025"
+team: "Trio produit + 2 ingénieurs"
+tools:
+  - "Figma"
+  - "Maze"
+  - "Amplitude"
+coverImage: "/images/work/mobile-checkout-cover.jpg"
+featured: true
+problem: "Les utilisateurs mobiles abandonnaient lors de la saisie paiement et adresse."
+outcome: "Le taux de complétion checkout a augmenté de 18%."
+order: 1
+---
+
+## Contexte
+
+Ce projet traitait le parcours mobile le plus frictionnel du produit. Nous avons travaillé à réduire la charge cognitive tout en maintenant la confiance utilisateur.
+
+## Démarche
+
+- Audit des funnels events et enregistrements de session pour identifier les points de chute.
+- Cinq tests utilisateurs modérés sur le flux existant.
+- Prototypage et test de deux structures checkout avant la mise en production.
+
+## Résultat
+
+Le design mis en production a réduit le temps moyen de checkout et augmenté le taux de complétion de 18% sur le premier mois.
+
+## Rétrospective
+
+Le principal gain venait de la clarté du contenu et de la divulgation progressive, pas d'un ajout d'éléments d'interface.
+`,
+    "analytics-dashboard-unification": `---
+title: "Unification du dashboard analytique"
+summary: "Consolidation de rapports fragmentés dans un dashboard unique pour les équipes produit et opérations."
+role: "Senior Product Designer"
+timeline: "T3 2024"
+team: "Design, PM, data analyst, 3 ingénieurs"
+tools:
+  - "Figma"
+  - "Looker"
+  - "Hotjar"
+coverImage: "/images/work/analytics-dashboard-cover.jpg"
+featured: true
+problem: "Les parties prenantes s'appuyaient sur des rapports déconnectés difficiles à fiabiliser."
+outcome: "La préparation du reporting hebdo est passée de 4h à 45min."
+order: 2
+---
+
+## Contexte
+
+Plusieurs équipes recoupaient des données de sources différents, ce qui créait de la latence décisionnelle et de l'incohérence.
+
+## Démarche
+
+- Cartographie des décisions stakeholders pour isoler les métriques clés.
+- Création d'un modèle hiérarchique séparant métriques de santé globale et analyses détaillées.
+- Itération rapide avec l'engineering sur des composants de visualisation réalistes.
+
+## Résultat
+
+Le dashboard unifié est devenu la source par défaut des revues hebdomadaires et a fortement réduit le temps de préparation.
+
+## Rétrospective
+
+Des définitions de métriques partagées comptent autant que la cohérence visuelle dans les produits analytiques.
+`,
+  },
 };
 
 export const getCaseStudies = cache(async (locale: Locale = DEFAULT_LOCALE) => {

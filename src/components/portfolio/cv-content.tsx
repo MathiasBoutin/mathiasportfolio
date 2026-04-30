@@ -1,13 +1,16 @@
 import { getCvData } from "@/lib/cv-data";
-import { defaultMessages } from "@/lib/i18n/messages";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { getMessages } from "@/lib/i18n/messages";
 
 type CvContentProps = {
   mode?: "screen" | "print";
+  locale?: Locale;
 };
 
-export function CvContent({ mode = "screen" }: CvContentProps) {
+export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvContentProps) {
   const isPrint = mode === "print";
-  const cvData = getCvData();
+  const cvData = getCvData(locale);
+  const cvMessages = getMessages(locale).cv;
 
   return (
     <div className={isPrint ? "space-y-8" : "space-y-10 md:space-y-12"}>
@@ -26,7 +29,7 @@ export function CvContent({ mode = "screen" }: CvContentProps) {
         </p>
       </div>
 
-      <section aria-label={defaultMessages.cv.timelineAriaLabel}>
+      <section aria-label={cvMessages.timelineAriaLabel}>
         <ol className={isPrint ? "space-y-6" : "space-y-8 md:space-y-9"}>
           {cvData.experience.map((entry) => (
             <li
@@ -114,7 +117,7 @@ export function CvContent({ mode = "screen" }: CvContentProps) {
 
       <section className="space-y-3">
         <h2 className="text-foreground/88 text-sm font-semibold md:text-base">
-          {defaultMessages.cv.focusAreasHeading}
+          {cvMessages.focusAreasHeading}
         </h2>
         <ul className="flex flex-wrap gap-2">
           {cvData.focusAreas.map((area) => (

@@ -17,11 +17,19 @@ export function buildMetadata({
   locale = DEFAULT_LOCALE,
 }: BuildMetadataInput): Metadata {
   const url = localizeUrl(path, locale);
+  const enUrl = localizeUrl(path, "en");
+  const frUrl = localizeUrl(path, "fr");
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: enUrl,
+        fr: frUrl,
+      },
+    },
     openGraph: {
       title,
       description,

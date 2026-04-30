@@ -87,6 +87,65 @@ const cvDataByLocale: Record<Locale, CvData> = {
       "Climate and environmental impact infrastructure",
     ],
   },
+  fr: {
+    name: "Mathias Boutin",
+    about:
+      "Je conçois des produits dans des environnements de forte complexité, des parcours checkout grand public aux infrastructures d'impact environnemental. Mon travail se situe au croisement de la stratégie produit, du design d'interaction et de la pensée systémique, avec un focus sur la valeur livrée sans perdre la cohérence long terme.",
+    experience: [
+      {
+        company: "Patch",
+        context: "Montreal, remote",
+        tenure: "2022 - Aujourd'hui",
+        roles: [
+          {
+            title: "Staff Product Designer",
+            tenure: "2025 - Aujourd'hui",
+          },
+        ],
+        highlights: [
+          "Promotion depuis Senior Product Designer (2022-2025).",
+          "Pilotage du design produit pour l'infrastructure d'impact environnemental, incluant achats EAC et gestion de portefeuille.",
+          "Conception d'expériences plateforme de bout en bout avec alignement design system et stratégie produit entre équipes.",
+        ],
+      },
+      {
+        company: "Shopify",
+        context: "Montréal, hybride",
+        tenure: "2018 - 2022",
+        roles: [
+          {
+            title: "Senior Product Designer",
+            tenure: "2020 - 2022",
+          },
+        ],
+        highlights: [
+          "Promotion depuis Product Designer en cours de mandat.",
+          "Conception de parcours Shop Pay et Shop app sur les expériences commerce côté acheteur.",
+          "Livraison d'améliorations produit grand public à grande échelle en partenariat étroit avec produit et engineering.",
+        ],
+      },
+    ],
+    education: [
+      {
+        school: "HEC Montréal",
+        credential: "Maîtrise, UX en contexte d'affaires",
+        tenure: "2017 - 2018",
+      },
+      {
+        school: "Université de Montréal",
+        credential: "Baccalauréat, Études internationales",
+        tenure: "2014 - 2017",
+      },
+    ],
+    focusAreas: [
+      "Stratégie produit",
+      "Design d'interaction",
+      "Pensée systémique",
+      "Design systems",
+      "Workflows IA / produit",
+      "Infrastructure climat et impact environnemental",
+    ],
+  },
 };
 
 export function getCvData(locale: Locale = DEFAULT_LOCALE): CvData {
