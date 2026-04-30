@@ -388,7 +388,15 @@ function CaseStudyLinkPreviewPopover({
     () =>
       prefersReducedMotion
         ? { duration: 0.14, ease: [0, 0, 1, 1] as const }
-        : { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const },
+        : { duration: 0.24, ease: [0.22, 1, 0.36, 1] as const },
+    [prefersReducedMotion],
+  );
+
+  const dialogPopupTransition = React.useMemo(
+    () =>
+      prefersReducedMotion
+        ? { duration: 0.14, ease: [0, 0, 1, 1] as const }
+        : { type: "spring" as const, stiffness: 145, damping: 19, mass: 0.9 },
     [prefersReducedMotion],
   );
 
@@ -598,11 +606,11 @@ function CaseStudyLinkPreviewPopover({
           transition={dialogTransition}
           className="fixed inset-0 z-[100] bg-background/72 backdrop-blur-sm"
         />
-        <Dialog.Viewport className="fixed inset-0 z-[101] flex items-center justify-center overflow-y-auto p-4">
+        <Dialog.Viewport className="fixed inset-0 z-[101] flex items-center justify-center overflow-hidden p-4">
           <MotionDialogPopup
-            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: "100vh" }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: "120dvh" }}
             animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={dialogTransition}
+            transition={dialogPopupTransition}
             finalFocus={triggerRef}
             className={cn("overflow-hidden rounded-[1.45rem] transform-gpu outline-none")}
           >
