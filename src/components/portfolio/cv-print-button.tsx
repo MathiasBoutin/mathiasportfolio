@@ -1,6 +1,7 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 export function CvPrintButton() {
   return (
@@ -10,7 +11,7 @@ export function CvPrintButton() {
       className={buttonVariants({ variant: "secondary", size: "sm" })}
       onClick={() => window.print()}
     >
-      Download PDF
+      {defaultMessages.cv.printButtonLabel}
     </button>
   );
 }

@@ -6,8 +6,10 @@ import { SiteHeader } from "@/components/portfolio/site-header";
 import { SiteFooter } from "@/components/portfolio/site-footer";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import { Analytics } from "@/components/portfolio/analytics";
-import { siteConfig } from "@/lib/site-config";
+import { getSiteCopy, siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata/seo";
+import { DEFAULT_LOCALE } from "@/lib/i18n/config";
+import { defaultMessages } from "@/lib/i18n/messages";
 import {
   getPresentationTheme,
   PRESENTATION_THEME_COOKIE,
@@ -25,22 +27,24 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+const siteCopy = getSiteCopy();
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.title,
+    default: siteCopy.title,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: siteCopy.description,
   alternates: { canonical: siteConfig.url },
   openGraph: buildMetadata({
-    title: siteConfig.title,
-    description: siteConfig.description,
+    title: siteCopy.title,
+    description: siteCopy.description,
     path: "/",
   }).openGraph,
   twitter: buildMetadata({
-    title: siteConfig.title,
-    description: siteConfig.description,
+    title: siteCopy.title,
+    description: siteCopy.description,
     path: "/",
   }).twitter,
 };
@@ -58,14 +62,14 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang={DEFAULT_LOCALE}
       data-presentation-theme={themeId}
       suppressHydrationWarning
       className={`${geistMono.variable} ${ibmPlexMono.variable} ${theme.slots.shell.html}`}
     >
       <body className={theme.slots.shell.body}>
         <a href="#main-content" className={theme.slots.shell.skipLink}>
-          Skip to content
+          {defaultMessages.shell.skipToContent}
         </a>
         <div className={theme.slots.shell.pageRails}>
           <SiteHeader />

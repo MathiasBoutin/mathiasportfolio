@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CaseStudyFrontmatter } from "@/lib/content/schema";
 import { Badge } from "@/components/ui/badge";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 type CaseStudyCardProps = {
   slug: string;
@@ -28,17 +29,17 @@ export function CaseStudyCard({ slug, data }: CaseStudyCardProps) {
             </p>
             <div className={theme.slots.card.table}>
               <p className={theme.slots.card.label}>
-                Years
+                {defaultMessages.work.cardLabels.years}
               </p>
               <p className={`${theme.slots.card.value} ${theme.slots.card.timeline}`}>
                 {data.timeline}
               </p>
               <p className={theme.slots.card.label}>
-                Role
+                {defaultMessages.work.cardLabels.role}
               </p>
               <p className={theme.slots.card.value}>{data.role}</p>
               <p className={theme.slots.card.label}>
-                Scope
+                {defaultMessages.work.cardLabels.scope}
               </p>
               <div className={theme.slots.card.toolsWrap}>
                 {data.tools.map((tool) => (
@@ -47,7 +48,9 @@ export function CaseStudyCard({ slug, data }: CaseStudyCardProps) {
                   </Badge>
                 ))}
               </div>
-              <p className="py-3 text-muted-foreground md:border-b-0">Team</p>
+              <p className="py-3 text-muted-foreground md:border-b-0">
+                {defaultMessages.work.cardLabels.team}
+              </p>
               <p className="py-3">{data.team}</p>
             </div>
           </div>

@@ -7,6 +7,7 @@ import {
   PRESENTATION_THEME_COOKIE,
   type PresentationThemeId,
 } from "@/lib/presentation-themes";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 type ThemeToggleProps = {
   currentTheme: PresentationThemeId;
@@ -31,11 +32,17 @@ export function ThemeToggle({ currentTheme }: ThemeToggleProps) {
       data-print-hide
       type="button"
       aria-pressed={isDark}
-      aria-label={`Switch to ${isDark ? "default" : "dark"} theme`}
+      aria-label={
+        isDark
+          ? defaultMessages.themeToggle.ariaLabel.switchToDefault
+          : defaultMessages.themeToggle.ariaLabel.switchToDark
+      }
       onClick={toggleTheme}
       className="border-border bg-background/90 text-foreground shadow-foreground/10 hover:bg-foreground hover:text-background focus-visible:outline-ring fixed right-5 bottom-5 z-50 rounded-full border px-4 py-3 text-[0.72rem] font-semibold tracking-[0.08em] uppercase shadow-lg backdrop-blur transition focus-visible:outline-2 focus-visible:outline-offset-2"
     >
-      {isDark ? "Default" : "Dark"}
+      {isDark
+        ? defaultMessages.themeToggle.defaultLabel
+        : defaultMessages.themeToggle.darkLabel}
     </button>
   );
 }

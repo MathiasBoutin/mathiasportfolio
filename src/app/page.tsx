@@ -4,13 +4,16 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
-import { homeContent } from "@/lib/content/home";
+import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { siteConfig } from "@/lib/site-config";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 export default async function Home() {
   const featuredStudies = await getFeaturedCaseStudies();
+  const homeContent = getHomeContent();
   const theme = getActivePresentationTheme();
+  const homeMessages = defaultMessages.home;
 
   return (
     <>
@@ -25,24 +28,26 @@ export default async function Home() {
             </h1>
             <div className="mt-10 space-y-7 text-sm leading-relaxed text-foreground/70 md:mt-12 md:space-y-8 md:text-base">
               <section className="space-y-1">
-                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">My work experience</h2>
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+                  {homeMessages.sections.workExperience}
+                </h2>
                 <p>
                   I spent 2017-2021 at{" "}
                   <DefinitionPopover
-                    term="Shopify"
-                    pronunciation="shop-uh-fy"
-                    definition="A commerce platform that helps businesses create online stores, accept payments, and sell across digital and physical channels."
-                    learnMoreHref="https://www.shopify.com"
-                    learnMoreLabel="Visit Shopify"
+                    term={homeMessages.popovers.shopify.term}
+                    pronunciation={homeMessages.popovers.shopify.pronunciation}
+                    definition={homeMessages.popovers.shopify.definition}
+                    learnMoreHref={homeMessages.popovers.shopify.learnMoreHref}
+                    learnMoreLabel={homeMessages.popovers.shopify.learnMoreLabel}
                   />{" "}
                   shaping Shop Pay and the Shop app across checkout and buyer
                   experiences. In 2021, I joined{" "}
                   <DefinitionPopover
-                    term="Patch"
-                    pronunciation="patch"
-                    definition="A climate technology company that helps organizations buy, manage, and scale high-quality carbon removal."
-                    learnMoreHref="https://www.patch.io"
-                    learnMoreLabel="Visit Patch"
+                    term={homeMessages.popovers.patch.term}
+                    pronunciation={homeMessages.popovers.patch.pronunciation}
+                    definition={homeMessages.popovers.patch.definition}
+                    learnMoreHref={homeMessages.popovers.patch.learnMoreHref}
+                    learnMoreLabel={homeMessages.popovers.patch.learnMoreLabel}
                   />{" "}
                   to design environmental impact infrastructure software for
                   climate action.
@@ -50,12 +55,16 @@ export default async function Home() {
               </section>
 
               <section className="space-y-1">
-                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">What I&apos;m good at</h2>
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+                  {homeMessages.sections.strengths}
+                </h2>
                 <p>{homeContent.aboutLead}</p>
               </section>
 
               <section className="space-y-1">
-                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Case Studies</h2>
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+                  {homeMessages.sections.caseStudies}
+                </h2>
                 <ul className="space-y-1">
                   {featuredStudies.map((study) => (
                     <li key={study.slug}>
@@ -71,7 +80,9 @@ export default async function Home() {
               </section>
 
               <section className="space-y-1">
-                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">Connect</h2>
+                <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+                  {homeMessages.sections.connect}
+                </h2>
                 <ul className="space-y-1">
                   <li>
                     <Link

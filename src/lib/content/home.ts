@@ -1,4 +1,7 @@
-export const homeContent = {
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+
+const homeContentByLocale = {
+  en: {
   heroBadge: "Staff product design @ Patch",
   heroTitle: "Bonjour/hi! I'm Mathias, and I define, design & craft human experiences.",
   workExperienceBlurb:
@@ -21,4 +24,11 @@ export const homeContent = {
       summary: "Shaped Shop Pay, Shop App, and buyer-facing commerce experiences.",
     },
   ],
-} as const;
+  },
+} as const satisfies Record<Locale, unknown>;
+
+export type HomeContent = (typeof homeContentByLocale)[Locale];
+
+export function getHomeContent(locale: Locale = DEFAULT_LOCALE): HomeContent {
+  return homeContentByLocale[locale];
+}

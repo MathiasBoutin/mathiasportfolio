@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CaseStudyFrontmatter } from "@/lib/content/schema";
-import { homeContent } from "@/lib/content/home";
+import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 type HeroFeatureProps = {
@@ -12,6 +12,7 @@ type HeroFeatureProps = {
 
 export function HeroFeature({ studies }: HeroFeatureProps) {
   const theme = getActivePresentationTheme();
+  const homeContent = getHomeContent();
   const { experience } = homeContent;
 
   return (

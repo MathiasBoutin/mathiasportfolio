@@ -1,4 +1,5 @@
-import { cvData } from "@/lib/cv-data";
+import { getCvData } from "@/lib/cv-data";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 type CvContentProps = {
   mode?: "screen" | "print";
@@ -6,6 +7,7 @@ type CvContentProps = {
 
 export function CvContent({ mode = "screen" }: CvContentProps) {
   const isPrint = mode === "print";
+  const cvData = getCvData();
 
   return (
     <div className={isPrint ? "space-y-8" : "space-y-10 md:space-y-12"}>
@@ -24,7 +26,7 @@ export function CvContent({ mode = "screen" }: CvContentProps) {
         </p>
       </div>
 
-      <section aria-label="Timeline">
+      <section aria-label={defaultMessages.cv.timelineAriaLabel}>
         <ol className={isPrint ? "space-y-6" : "space-y-8 md:space-y-9"}>
           {cvData.experience.map((entry) => (
             <li
@@ -112,7 +114,7 @@ export function CvContent({ mode = "screen" }: CvContentProps) {
 
       <section className="space-y-3">
         <h2 className="text-foreground/88 text-sm font-semibold md:text-base">
-          Focus Areas
+          {defaultMessages.cv.focusAreasHeading}
         </h2>
         <ul className="flex flex-wrap gap-2">
           {cvData.focusAreas.map((area) => (

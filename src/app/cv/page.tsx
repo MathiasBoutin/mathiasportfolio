@@ -3,10 +3,13 @@ import { Section } from "@/components/portfolio/section";
 import { buildMetadata } from "@/lib/metadata/seo";
 import { CvContent } from "@/components/portfolio/cv-content";
 import { CvPrintButton } from "@/components/portfolio/cv-print-button";
+import { defaultMessages } from "@/lib/i18n/messages";
+
+const cvMessages = defaultMessages.cv;
 
 export const metadata: Metadata = buildMetadata({
-  title: "CV",
-  description: "Professional experience, skills, and education.",
+  title: cvMessages.metadataTitle,
+  description: cvMessages.metadataDescription,
   path: "/cv",
 });
 

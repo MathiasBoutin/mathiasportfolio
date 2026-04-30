@@ -1,9 +1,11 @@
 import { cache } from "react";
 import { caseStudySchema } from "@/lib/content/schema";
 import { getMdxFilesFromSources } from "@/lib/content/mdx";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
-const caseStudySources = {
-  "mobile-checkout-redesign": `---
+const caseStudySourcesByLocale: Record<Locale, Record<string, string>> = {
+  en: {
+    "mobile-checkout-redesign": `---
 title: "Mobile Checkout Redesign"
 summary: "Improved completion rate by simplifying the checkout information architecture."
 role: "Lead Product Designer"
@@ -38,7 +40,7 @@ The released design reduced average checkout time and improved completion rate b
 
 The largest impact came from content clarity and progressive disclosure, not from adding new interface elements.
 `,
-  "analytics-dashboard-unification": `---
+    "analytics-dashboard-unification": `---
 title: "Analytics Dashboard Unification"
 summary: "Consolidated fragmented reporting into one dashboard for product and operations teams."
 role: "Senior Product Designer"
@@ -73,23 +75,26 @@ The unified dashboard became the default source for weekly decision meetings and
 
 Shared metric definitions matter as much as visual consistency in analytics products.
 `,
-} as const;
+  },
+};
 
-export const getCaseStudies = cache(async () => {
+export const getCaseStudies = cache(async (locale: Locale = DEFAULT_LOCALE) => {
   const projects = getMdxFilesFromSources({
-    sources: caseStudySources,
+    sources: caseStudySourcesByLocale[locale],
     parse: (input) => caseStudySchema.parse(input),
   });
 
   return projects.sort((a, b) => a.data.order - b.data.order);
 });
 
-export const getFeaturedCaseStudies = cache(async () => {
-  const projects = await getCaseStudies();
+export const getFeaturedCaseStudies = cache(async (locale: Locale = DEFAULT_LOCALE) => {
+  const projects = await getCaseStudies(locale);
   return projects.filter((project) => project.data.featured);
 });
 
-export const getCaseStudyBySlug = cache(async (slug: string) => {
-  const projects = await getCaseStudies();
-  return projects.find((project) => project.slug === slug);
-});
+export const getCaseStudyBySlug = cache(
+  async (slug: string, locale: Locale = DEFAULT_LOCALE) => {
+    const projects = await getCaseStudies(locale);
+    return projects.find((project) => project.slug === slug);
+  },
+);

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { getSiteCopy } from "@/lib/site-config";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 export function SiteHeader() {
   const theme = getActivePresentationTheme();
-  const primaryNav = siteConfig.nav.filter((item) => item.href === "/cv");
+  const siteCopy = getSiteCopy();
+  const primaryNav = siteCopy.nav.filter((item) => item.href === "/cv");
 
   return (
     <header data-print-hide className={theme.slots.shell.header}>

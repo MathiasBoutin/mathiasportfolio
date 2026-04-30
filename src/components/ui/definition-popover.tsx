@@ -5,6 +5,7 @@ import { Popover } from "@base-ui/react/popover";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
+import { defaultMessages } from "@/lib/i18n/messages";
 import { cn } from "@/lib/utils";
 
 type DefinitionPopoverProps = {
@@ -23,7 +24,7 @@ function DefinitionPopover({
   definition,
   pronunciation,
   learnMoreHref,
-  learnMoreLabel = "Dive deeper",
+  learnMoreLabel = defaultMessages.definitionPopover.learnMoreLabel,
   children,
   className,
   popupClassName,

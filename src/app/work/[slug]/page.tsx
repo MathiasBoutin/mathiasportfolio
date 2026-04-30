@@ -6,6 +6,8 @@ import { Section } from "@/components/portfolio/section";
 import { getCaseStudies, getCaseStudyBySlug } from "@/lib/content/work";
 import { renderMdx } from "@/lib/content/render-mdx";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
+import { buildMetadata } from "@/lib/metadata/seo";
+import { defaultMessages } from "@/lib/i18n/messages";
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
@@ -23,10 +25,11 @@ export async function generateMetadata({
   const study = await getCaseStudyBySlug(slug);
   if (!study) return {};
 
-  return {
+  return buildMetadata({
     title: study.data.title,
     description: study.data.summary,
-  };
+    path: `/work/${study.slug}`,
+  });
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
@@ -58,7 +61,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <div className={theme.slots.content.detailGrid}>
         <div>
           <p className={theme.slots.content.detailLabel}>
-            Problem
+            {defaultMessages.work.detailLabels.problem}
           </p>
           <p className={theme.slots.content.detailValue}>
             {caseStudy.data.problem}
@@ -66,7 +69,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </div>
         <div>
           <p className={theme.slots.content.detailLabel}>
-            Outcome
+            {defaultMessages.work.detailLabels.outcome}
           </p>
           <p className={theme.slots.content.detailValue}>
             {caseStudy.data.outcome}

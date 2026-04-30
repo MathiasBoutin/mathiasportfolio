@@ -5,10 +5,13 @@ import { Section } from "@/components/portfolio/section";
 import { getCaseStudies } from "@/lib/content/work";
 import { buildMetadata } from "@/lib/metadata/seo";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
+import { defaultMessages } from "@/lib/i18n/messages";
+
+const workMessages = defaultMessages.work;
 
 export const metadata: Metadata = buildMetadata({
-  title: "Case Studies",
-  description: "Selected UX and product design projects.",
+  title: workMessages.metadataTitle,
+  description: workMessages.metadataDescription,
   path: "/work",
 });
 
@@ -19,9 +22,9 @@ export default async function WorkPage() {
   return (
     <Section className="pt-20 md:pt-24">
       <PageHeader
-        eyebrow="Case studies"
-        title="Selected product work"
-        description="A curated set of projects showing the problem, process, design decisions, and measurable results."
+        eyebrow={workMessages.eyebrow}
+        title={workMessages.title}
+        description={workMessages.description}
       />
       <div className={theme.slots.content.workList}>
         {caseStudies.map((study) => (

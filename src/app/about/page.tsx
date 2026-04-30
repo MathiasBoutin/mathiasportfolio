@@ -5,10 +5,13 @@ import { getProfileDocument } from "@/lib/content/profile";
 import { renderMdx } from "@/lib/content/render-mdx";
 import { buildMetadata } from "@/lib/metadata/seo";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
+import { defaultMessages } from "@/lib/i18n/messages";
+
+const aboutMessages = defaultMessages.about;
 
 export const metadata: Metadata = buildMetadata({
-  title: "Bio",
-  description: "Personal background, values, and design approach.",
+  title: aboutMessages.metadataTitle,
+  description: aboutMessages.metadataDescription,
   path: "/about",
 });
 
@@ -20,9 +23,9 @@ export default async function AboutPage() {
   return (
     <Section className="pt-20 md:pt-24">
       <PageHeader
-        eyebrow="Bio"
-        title="About me"
-        description="The context behind my product design practice, what I value, and how I collaborate."
+        eyebrow={aboutMessages.eyebrow}
+        title={aboutMessages.title}
+        description={aboutMessages.description}
       />
       <article className={theme.slots.content.borderedArticle}>
         {content}

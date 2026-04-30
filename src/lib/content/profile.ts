@@ -1,9 +1,11 @@
 import { cache } from "react";
 import { getMdxFilesFromSources } from "@/lib/content/mdx";
 import { profileSchema } from "@/lib/content/schema";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
-const profileSources = {
-  about: `---
+const profileSourcesByLocale: Record<Locale, Record<string, string>> = {
+  en: {
+    about: `---
 title: "About"
 summary: "Background, values, and how I work."
 updatedAt: "2026-04-27"
@@ -15,7 +17,7 @@ My practice combines user research, information architecture, and pragmatic prot
 
 I enjoy working in close collaboration with product managers and engineers, with frequent checkpoints to reduce rework and keep decisions traceable.
 `,
-  cv: `---
+    cv: `---
 title: "Curriculum Vitae"
 summary: "Experience, education, and skills."
 updatedAt: "2026-04-27"
@@ -46,11 +48,12 @@ updatedAt: "2026-04-27"
 - Information architecture
 - Design systems
 `,
-} as const;
+  },
+};
 
-export const getProfileDocument = cache(async (slug: string) => {
+export const getProfileDocument = cache(async (slug: string, locale: Locale = DEFAULT_LOCALE) => {
   const docs = getMdxFilesFromSources({
-    sources: profileSources,
+    sources: profileSourcesByLocale[locale],
     parse: (input) => profileSchema.parse(input),
   });
 

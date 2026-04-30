@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { localizeUrl } from "@/lib/i18n/routing";
 
 type BuildMetadataInput = {
   title: string;
   description: string;
   path?: string;
+  locale?: Locale;
 };
 
 export function buildMetadata({
   title,
   description,
   path = "",
+  locale = DEFAULT_LOCALE,
 }: BuildMetadataInput): Metadata {
-  const url = `${siteConfig.url}${path}`;
+  const url = localizeUrl(path, locale);
 
   return {
     title,
