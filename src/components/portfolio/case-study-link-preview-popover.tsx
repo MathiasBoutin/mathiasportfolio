@@ -388,17 +388,10 @@ function CaseStudyLinkPreviewPopover({
     () =>
       prefersReducedMotion
         ? { duration: 0.14, ease: [0, 0, 1, 1] as const }
-        : { duration: 0.24, ease: [0.22, 1, 0.36, 1] as const },
+        : { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
     [prefersReducedMotion],
   );
 
-  const dialogPopupTransition = React.useMemo(
-    () =>
-      prefersReducedMotion
-        ? { duration: 0.14, ease: [0, 0, 1, 1] as const }
-        : { type: "spring" as const, stiffness: 145, damping: 19, mass: 0.9 },
-    [prefersReducedMotion],
-  );
 
   React.useEffect(() => {
     if (!open) {
@@ -598,32 +591,42 @@ function CaseStudyLinkPreviewPopover({
         </Popover.Portal>
       </Popover.Root>
 
-      <Dialog.Portal>
-        <MotionDialogBackdrop
-          initial={{ opacity: 0 }}
-          animate={{ opacity: dialogOpen ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          transition={dialogTransition}
-          className="fixed inset-0 z-[100] bg-background/72 backdrop-blur-sm"
-        />
-        <Dialog.Viewport className="fixed inset-0 z-[101] flex items-center justify-center overflow-hidden p-4">
-          <MotionDialogPopup
-            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: "120dvh" }}
-            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={dialogPopupTransition}
-            finalFocus={triggerRef}
-            className={cn("overflow-hidden rounded-[1.45rem] transform-gpu outline-none")}
-          >
-            <CaseStudyDialogContent
-              href={href}
-              title={title}
-              timeline={timeline}
-              topics={topics}
-              previewMedia={previewMedia}
-              open={dialogOpen}
-              theme={theme}
-            />
-          </MotionDialogPopup>
+      <Dialog.Portal keepMounted={false}>
+        {dialogOpen && (
+          <MotionDialogBackdrop
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={dialogTransition}
+            className="fixed inset-0 z-[100] bg-background/72 backdrop-blur-sm"
+          />
+        )}
+        <Dialog.Viewport className="fixed inset-0 z-[101] flex items-center justify-center overflow-hidden p-4 pointer-events-none data-[open]:pointer-events-auto">
+          {dialogOpen && (
+            <MotionDialogPopup
+              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: "120dvh" }}
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0.14 }
+                  : {
+                      y: { type: "spring", stiffness: 120, damping: 18, mass: 1.1 },
+                      opacity: { duration: 0.35, ease: "easeOut" },
+                    }
+              }
+              finalFocus={triggerRef}
+              className={cn("overflow-hidden rounded-[1.45rem] transform-gpu outline-none")}
+            >
+              <CaseStudyDialogContent
+                href={href}
+                title={title}
+                timeline={timeline}
+                topics={topics}
+                previewMedia={previewMedia}
+                open={dialogOpen}
+                theme={theme}
+              />
+            </MotionDialogPopup>
+          )}
         </Dialog.Viewport>
       </Dialog.Portal>
     </Dialog.Root>
