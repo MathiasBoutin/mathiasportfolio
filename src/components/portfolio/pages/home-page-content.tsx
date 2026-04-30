@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/portfolio/fade-in";
 import { LanguageGreetingPicker } from "@/components/portfolio/language-greeting-picker";
+import { CaseStudyLinkPreviewPopover } from "@/components/portfolio/case-study-link-preview-popover";
 import { Section } from "@/components/portfolio/section";
 import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { Badge } from "@/components/ui/badge";
@@ -83,9 +84,15 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
               <ul className="space-y-1">
                 {featuredStudies.map((study) => (
                   <li key={study.slug}>
-                    <Link href={localizePath(`/work/${study.slug}`, locale)} className="soft-link">
+                    <CaseStudyLinkPreviewPopover
+                      href={localizePath(`/work/${study.slug}`, locale)}
+                      title={study.data.title}
+                      timeline={study.data.timeline}
+                      topics={study.data.topics}
+                      previewMedia={study.data.previewMedia}
+                    >
                       {study.data.title}
-                    </Link>
+                    </CaseStudyLinkPreviewPopover>
                   </li>
                 ))}
               </ul>

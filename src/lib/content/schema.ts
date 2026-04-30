@@ -1,5 +1,11 @@
 import { z } from "zod";
 
+export const previewMediaSchema = z.object({
+  type: z.enum(["image", "video"]),
+  src: z.string(),
+  alt: z.string(),
+});
+
 export const caseStudySchema = z.object({
   title: z.string(),
   summary: z.string(),
@@ -7,7 +13,9 @@ export const caseStudySchema = z.object({
   timeline: z.string(),
   team: z.string(),
   tools: z.array(z.string()),
+  topics: z.array(z.string()),
   coverImage: z.string(),
+  previewMedia: previewMediaSchema,
   featured: z.boolean().default(false),
   problem: z.string(),
   outcome: z.string(),

@@ -15,7 +15,15 @@ tools:
   - "Figma"
   - "Maze"
   - "Amplitude"
+topics:
+  - "Checkout UX"
+  - "Mobile flows"
+  - "Conversion"
 coverImage: "/images/work/mobile-checkout-cover.jpg"
+previewMedia:
+  type: "image"
+  src: "/images/work/case-study-preview-placeholder.png"
+  alt: "Abstract aerial landscape placeholder for Mobile Checkout Redesign."
 featured: true
 problem: "Mobile users dropped during payment and address entry."
 outcome: "Checkout completion improved by 18%."
@@ -50,7 +58,15 @@ tools:
   - "Figma"
   - "Looker"
   - "Hotjar"
+topics:
+  - "Analytics"
+  - "Dashboards"
+  - "Decision systems"
 coverImage: "/images/work/analytics-dashboard-cover.jpg"
+previewMedia:
+  type: "image"
+  src: "/images/work/case-study-preview-placeholder.png"
+  alt: "Abstract aerial landscape placeholder for Analytics Dashboard Unification."
 featured: true
 problem: "Stakeholders relied on disconnected reports that were hard to trust."
 outcome: "Weekly reporting prep dropped from 4 hours to 45 minutes."
@@ -87,7 +103,15 @@ tools:
   - "Figma"
   - "Maze"
   - "Amplitude"
+topics:
+  - "UX checkout"
+  - "Parcours mobile"
+  - "Conversion"
 coverImage: "/images/work/mobile-checkout-cover.jpg"
+previewMedia:
+  type: "image"
+  src: "/images/work/case-study-preview-placeholder.png"
+  alt: "Paysage aérien abstrait pour la refonte du checkout mobile."
 featured: true
 problem: "Les utilisateurs mobiles abandonnaient lors de la saisie paiement et adresse."
 outcome: "Le taux de complétion checkout a augmenté de 18%."
@@ -122,7 +146,15 @@ tools:
   - "Figma"
   - "Looker"
   - "Hotjar"
+topics:
+  - "Analytique"
+  - "Dashboards"
+  - "Systèmes de décision"
 coverImage: "/images/work/analytics-dashboard-cover.jpg"
+previewMedia:
+  type: "image"
+  src: "/images/work/case-study-preview-placeholder.png"
+  alt: "Paysage aérien abstrait pour l'unification du dashboard analytique."
 featured: true
 problem: "Les parties prenantes s'appuyaient sur des rapports déconnectés difficiles à fiabiliser."
 outcome: "La préparation du reporting hebdo est passée de 4h à 45min."
