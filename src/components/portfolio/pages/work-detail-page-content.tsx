@@ -2,10 +2,10 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/portfolio/page-header";
 import { Section } from "@/components/portfolio/section";
+import { BlockRenderer } from "@/components/portfolio/case-study-blocks/block-renderer";
 import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { getCaseStudyBySlug } from "@/lib/content/work";
-import { renderMdx } from "@/lib/content/render-mdx";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 
 type WorkDetailPageContentProps = {
@@ -18,7 +18,6 @@ export async function WorkDetailPageContent({ slug, locale }: WorkDetailPageCont
   if (!caseStudy) notFound();
   const theme = getActivePresentationTheme();
   const workMessages = getMessages(locale).work;
-  const content = await renderMdx(caseStudy.content);
 
   return (
     <Section className="pt-20 md:pt-24">
@@ -57,9 +56,7 @@ export async function WorkDetailPageContent({ slug, locale }: WorkDetailPageCont
         </div>
       </div>
 
-      <article className={theme.slots.content.detailArticle}>
-        {content}
-      </article>
+      <BlockRenderer blocks={caseStudy.data.blocks} />
     </Section>
   );
 }

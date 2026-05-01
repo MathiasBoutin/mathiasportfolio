@@ -12,7 +12,7 @@ const frMessages = {
   },
   shell: {
     skipToContent: "Aller au contenu",
-    footerLocation: "Basé à Montréal, Canada.",
+    footerLocation: "Montreal, Canada",
   },
   home: {
     sections: {
