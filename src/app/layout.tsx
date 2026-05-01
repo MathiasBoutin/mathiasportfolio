@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist_Mono, IBM_Plex_Mono } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 import { SiteHeader } from "@/components/portfolio/site-header";
 import { SiteFooter } from "@/components/portfolio/site-footer";
@@ -11,9 +10,8 @@ import { buildMetadata } from "@/lib/metadata/seo";
 import { DEFAULT_LOCALE } from "@/lib/i18n/config";
 import { defaultMessages } from "@/lib/i18n/messages";
 import {
-  getPresentationTheme,
-  PRESENTATION_THEME_COOKIE,
-  resolvePresentationThemeId,
+  ACTIVE_PRESENTATION_THEME,
+  getActivePresentationTheme,
 } from "@/lib/presentation-themes";
 
 const geistMono = Geist_Mono({
@@ -50,16 +48,13 @@ export const metadata: Metadata = {
   }).twitter,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const themeId = resolvePresentationThemeId(
-    cookieStore.get(PRESENTATION_THEME_COOKIE)?.value,
-  );
-  const theme = getPresentationTheme(themeId);
+  const themeId = ACTIVE_PRESENTATION_THEME;
+  const theme = getActivePresentationTheme();
 
   return (
     <html
