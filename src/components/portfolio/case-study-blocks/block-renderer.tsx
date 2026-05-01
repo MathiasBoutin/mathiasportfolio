@@ -9,7 +9,7 @@ type BlockRendererProps = {
   blocks: CaseStudyBlock[];
 };
 
-export async function BlockRenderer({ blocks }: BlockRendererProps) {
+export function BlockRenderer({ blocks }: BlockRendererProps) {
   const theme = getActivePresentationTheme();
 
   if (blocks.length === 0) return null;

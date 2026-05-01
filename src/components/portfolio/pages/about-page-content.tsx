@@ -3,8 +3,8 @@ import { Section } from "@/components/portfolio/section";
 import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { getProfileDocument } from "@/lib/content/profile";
-import { renderMdx } from "@/lib/content/render-mdx";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
+import { MarkdownContent } from "@/components/portfolio/markdown-content";
 
 type AboutPageContentProps = {
   locale: Locale;
@@ -12,7 +12,6 @@ type AboutPageContentProps = {
 
 export async function AboutPageContent({ locale }: AboutPageContentProps) {
   const aboutDoc = await getProfileDocument("about", locale);
-  const content = aboutDoc ? await renderMdx(aboutDoc.content) : null;
   const theme = getActivePresentationTheme();
   const aboutMessages = getMessages(locale).about;
 
@@ -24,7 +23,7 @@ export async function AboutPageContent({ locale }: AboutPageContentProps) {
         description={aboutMessages.description}
       />
       <article className={theme.slots.content.borderedArticle}>
-        {content}
+        {aboutDoc ? <MarkdownContent source={aboutDoc.content} /> : null}
       </article>
     </Section>
   );
