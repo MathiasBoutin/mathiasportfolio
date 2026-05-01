@@ -28,6 +28,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const siteCopy = getSiteCopy();
+const SHOW_THEME_TOGGLE = false;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -78,7 +79,7 @@ export default async function RootLayout({
           </main>
           <SiteFooter />
         </div>
-        <ThemeToggle currentTheme={themeId} />
+        {SHOW_THEME_TOGGLE ? <ThemeToggle currentTheme={themeId} /> : null}
         <Analytics />
       </body>
     </html>

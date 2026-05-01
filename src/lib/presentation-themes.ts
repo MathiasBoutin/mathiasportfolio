@@ -43,6 +43,15 @@ type PresentationThemeSlots = {
     featureLinkHeading: string;
     featureLinkDescription: string;
   };
+  caseStudyLayout: {
+    grid: string;
+    blockFull: string;
+    blockHalf: string;
+    textBlock: string;
+    bigTextBlock: string;
+    mediaBlock: string;
+    mediaCaption: string;
+  };
   content: {
     mdxH2: string;
     mdxH3: string;
@@ -134,6 +143,17 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         featureLinkDescription:
           "mt-0.5 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.01em] text-muted-foreground/78 transition-colors group-hover:text-foreground/65",
       },
+      caseStudyLayout: {
+        grid: "mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10",
+        blockFull: "col-span-1 md:col-span-2",
+        blockHalf: "col-span-1",
+        textBlock: "",
+        bigTextBlock:
+          "flex items-center py-8 text-[clamp(2rem,4.5vw,4.2rem)] font-medium leading-[0.95] tracking-[-0.07em] text-foreground",
+        mediaBlock: "overflow-hidden rounded-lg",
+        mediaCaption:
+          "mt-3 text-[0.78rem] font-medium text-muted-foreground",
+      },
       content: {
         mdxH2: "mt-16 border-t border-border pt-8 text-[clamp(1.8rem,3vw,3rem)] font-medium leading-none tracking-[-0.07em]",
         mdxH3: "mt-10 text-2xl font-medium tracking-[-0.055em]",
@@ -221,6 +241,17 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
           "text-[clamp(1.02rem,1.4vw,1.28rem)] font-medium leading-none tracking-[-0.03em] text-foreground/85 transition-opacity group-hover:opacity-55",
         featureLinkDescription:
           "mt-1 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.005em] text-muted-foreground/82 transition-colors group-hover:text-foreground/65",
+      },
+      caseStudyLayout: {
+        grid: "mt-14 grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8",
+        blockFull: "col-span-1 md:col-span-2",
+        blockHalf: "col-span-1",
+        textBlock: "",
+        bigTextBlock:
+          "flex items-center py-6 text-[clamp(1.8rem,4vw,3.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-foreground",
+        mediaBlock: "overflow-hidden rounded-md",
+        mediaCaption:
+          "mt-2 text-[0.74rem] font-medium text-muted-foreground",
       },
       content: {
         mdxH2: "mt-16 border-t border-border pt-8 text-[clamp(1.6rem,2.7vw,2.8rem)] font-medium leading-none tracking-[-0.05em]",

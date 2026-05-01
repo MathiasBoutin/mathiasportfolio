@@ -12,7 +12,7 @@ const enMessages = {
   },
   shell: {
     skipToContent: "Skip to content",
-    footerLocation: "Based in Montreal, Canada.",
+    footerLocation: "Montreal, Canada",
   },
   home: {
     sections: {
