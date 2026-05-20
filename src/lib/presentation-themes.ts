@@ -44,11 +44,17 @@ type PresentationThemeSlots = {
     featureLinkDescription: string;
   };
   caseStudyLayout: {
-    grid: string;
-    blockFull: string;
-    blockHalf: string;
+    articleStack: string;
+    readingColumn: string;
     textBlock: string;
+    textH2: string;
+    textP: string;
+    textUl: string;
+    textOl: string;
     bigTextBlock: string;
+    mediaSame: string;
+    mediaWider: string;
+    mediaFull: string;
     mediaBlock: string;
     mediaCaption: string;
   };
@@ -96,7 +102,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
     slots: {
       shell: {
         html: "h-full antialiased",
-        body: "flex min-h-full flex-col",
+        body: "flex min-h-full flex-col overflow-x-clip",
         skipLink:
           "sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2",
         pageRails: "page-rails mx-auto flex w-full max-w-[61rem] flex-1 flex-col px-6 md:px-8",
@@ -144,12 +150,23 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
           "mt-0.5 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.01em] text-muted-foreground/78 transition-colors group-hover:text-foreground/65",
       },
       caseStudyLayout: {
-        grid: "mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10",
-        blockFull: "col-span-1 md:col-span-2",
-        blockHalf: "col-span-1",
+        articleStack: "mt-16 flex flex-col gap-10 md:gap-12",
+        readingColumn: "w-full mx-auto",
         textBlock: "",
+        textH2:
+          "mt-10 text-sm font-semibold text-foreground/88 first:mt-0 md:text-base",
+        textP: "mt-2 text-sm leading-relaxed text-foreground/70 md:text-base",
+        textUl:
+          "mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-foreground/70 md:text-base",
+        textOl:
+          "mt-2 list-decimal space-y-1 pl-5 text-sm leading-relaxed text-foreground/70 md:text-base",
         bigTextBlock:
-          "flex items-center py-8 text-[clamp(2rem,4.5vw,4.2rem)] font-medium leading-[0.95] tracking-[-0.07em] text-foreground",
+          "font-editorial border-y border-border py-8 text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.02em] text-foreground italic",
+        mediaSame: "w-full",
+        mediaWider:
+          "mx-auto w-[var(--case-study-media-wider)] min-w-full max-w-none",
+        mediaFull:
+          "relative left-1/2 w-screen max-w-none -translate-x-1/2",
         mediaBlock: "overflow-hidden rounded-lg",
         mediaCaption:
           "mt-3 text-[0.78rem] font-medium text-muted-foreground",
@@ -165,7 +182,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         workList: "mt-16",
         borderedArticle: "mt-16 max-w-3xl border-t border-border pt-10",
         detailArticle: "mt-16 max-w-3xl",
-        detailGrid: "mt-16 grid gap-8 border-y border-border py-8 md:grid-cols-2",
+        detailGrid: "mt-16 flex flex-col gap-8 border-y border-border py-8",
         detailLabel: "text-[0.78rem] font-semibold uppercase text-muted-foreground",
         detailValue: "mt-4 text-[clamp(1.5rem,3vw,2.8rem)] font-medium leading-[1.02] tracking-[-0.065em]",
       },
@@ -195,7 +212,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
     slots: {
       shell: {
         html: "h-full antialiased",
-        body: "flex min-h-full flex-col",
+        body: "flex min-h-full flex-col overflow-x-clip",
         skipLink:
           "sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2",
         pageRails: "page-rails mx-auto flex w-full max-w-[70rem] flex-1 flex-col px-6 md:px-10",
@@ -243,12 +260,23 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
           "mt-1 max-w-xl text-[0.9rem] font-normal leading-snug tracking-[-0.005em] text-muted-foreground/82 transition-colors group-hover:text-foreground/65",
       },
       caseStudyLayout: {
-        grid: "mt-14 grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8",
-        blockFull: "col-span-1 md:col-span-2",
-        blockHalf: "col-span-1",
+        articleStack: "mt-14 flex flex-col gap-9 md:gap-11",
+        readingColumn: "w-full mx-auto",
         textBlock: "",
+        textH2:
+          "mt-9 text-sm font-semibold text-foreground/88 first:mt-0 md:text-base",
+        textP: "mt-2 text-sm leading-relaxed text-foreground/70 md:text-base",
+        textUl:
+          "mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-foreground/70 md:text-base",
+        textOl:
+          "mt-2 list-decimal space-y-1 pl-5 text-sm leading-relaxed text-foreground/70 md:text-base",
         bigTextBlock:
-          "flex items-center py-6 text-[clamp(1.8rem,4vw,3.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-foreground",
+          "font-editorial border-y border-border py-7 text-[clamp(1.35rem,2.6vw,2rem)] leading-[1.18] tracking-[-0.015em] text-foreground italic",
+        mediaSame: "w-full",
+        mediaWider:
+          "mx-auto w-[var(--case-study-media-wider)] min-w-full max-w-none",
+        mediaFull:
+          "relative left-1/2 w-screen max-w-none -translate-x-1/2",
         mediaBlock: "overflow-hidden rounded-md",
         mediaCaption:
           "mt-2 text-[0.74rem] font-medium text-muted-foreground",
@@ -264,7 +292,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         workList: "mt-14",
         borderedArticle: "mt-14 max-w-4xl border-t border-border pt-8",
         detailArticle: "mt-14 max-w-4xl",
-        detailGrid: "mt-14 grid gap-7 border-y border-border py-8 md:grid-cols-2",
+        detailGrid: "mt-14 flex flex-col gap-7 border-y border-border py-8",
         detailLabel: "text-[0.74rem] font-semibold uppercase text-muted-foreground",
         detailValue: "mt-3 text-[clamp(1.3rem,2.5vw,2.35rem)] font-medium leading-[1.04] tracking-[-0.045em]",
       },

@@ -2,13 +2,52 @@ import { Fragment } from "react";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { cn } from "@/lib/utils";
 
+type MarkdownTypography = "default" | "editorial";
+
 type MarkdownContentProps = {
   source: string;
   className?: string;
+  typography?: MarkdownTypography;
 };
 
-export function MarkdownContent({ source, className }: MarkdownContentProps) {
+type MarkdownSlots = {
+  h2: string;
+  h3: string;
+  p: string;
+  ul: string;
+  ol: string;
+};
+
+function getMarkdownSlots(
+  typography: MarkdownTypography,
+): MarkdownSlots {
   const theme = getActivePresentationTheme();
+
+  if (typography === "editorial") {
+    return {
+      h2: theme.slots.caseStudyLayout.textH2,
+      h3: theme.slots.caseStudyLayout.textH2,
+      p: theme.slots.caseStudyLayout.textP,
+      ul: theme.slots.caseStudyLayout.textUl,
+      ol: theme.slots.caseStudyLayout.textOl,
+    };
+  }
+
+  return {
+    h2: theme.slots.content.mdxH2,
+    h3: theme.slots.content.mdxH3,
+    p: theme.slots.content.mdxP,
+    ul: theme.slots.content.mdxUl,
+    ol: theme.slots.content.mdxOl,
+  };
+}
+
+export function MarkdownContent({
+  source,
+  className,
+  typography = "default",
+}: MarkdownContentProps) {
+  const slots = getMarkdownSlots(typography);
   const lines = source.replace(/\r\n/g, "\n").split("\n");
   const blocks: React.ReactNode[] = [];
 
@@ -23,7 +62,7 @@ export function MarkdownContent({ source, className }: MarkdownContentProps) {
 
     if (line.startsWith("## ")) {
       blocks.push(
-        <h2 key={`h2-${i}`} className={theme.slots.content.mdxH2}>
+        <h2 key={`h2-${i}`} className={slots.h2}>
           {line.slice(3)}
         </h2>,
       );
@@ -33,7 +72,7 @@ export function MarkdownContent({ source, className }: MarkdownContentProps) {
 
     if (line.startsWith("### ")) {
       blocks.push(
-        <h3 key={`h3-${i}`} className={theme.slots.content.mdxH3}>
+        <h3 key={`h3-${i}`} className={slots.h3}>
           {line.slice(4)}
         </h3>,
       );
@@ -49,7 +88,7 @@ export function MarkdownContent({ source, className }: MarkdownContentProps) {
       }
 
       blocks.push(
-        <ul key={`ul-${i}`} className={theme.slots.content.mdxUl}>
+        <ul key={`ul-${i}`} className={slots.ul}>
           {items.map((item, index) => (
             <li key={`li-${i}-${index}`}>
               {item}
@@ -71,7 +110,7 @@ export function MarkdownContent({ source, className }: MarkdownContentProps) {
     }
 
     blocks.push(
-      <p key={`p-${i}`} className={theme.slots.content.mdxP}>
+      <p key={`p-${i}`} className={slots.p}>
         {paragraphLines.join(" ")}
       </p>,
     );

@@ -15,13 +15,12 @@ const mobileCheckoutBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "text",
-      span: "half",
       content:
         "## Context\n\nThis project addressed the highest-friction mobile flow in the product. We focused on reducing cognitive load while preserving user confidence.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -30,38 +29,43 @@ const mobileCheckoutBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "18% improvement in checkout completion",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Process\n\n- Audited event funnels and session recordings to identify drop-off moments.\n- Ran five moderated usability sessions on the existing flow.\n- Prototyped and tested two checkout structures before shipping.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Outcome\n\nThe released design reduced average checkout time and improved completion rate by 18% across the first month.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Reflection\n\nThe largest impact came from content clarity and progressive disclosure, not from adding new interface elements.",
+    },
+    {
+      type: "media",
+      width: "full",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Mobile checkout flow detail",
+        caption: "Final checkout flow shipped to production.",
+      },
     },
   ],
   fr: [
     {
       type: "text",
-      span: "half",
       content:
         "## Contexte\n\nCe projet traitait le parcours mobile le plus frictionnel du produit. Nous avons travaillé à réduire la charge cognitive tout en maintenant la confiance utilisateur.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -70,26 +74,32 @@ const mobileCheckoutBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "Hausse de 18 % du taux de complétion checkout",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Démarche\n\n- Audit des funnels events et enregistrements de session pour identifier les points de chute.\n- Cinq tests utilisateurs modérés sur le flux existant.\n- Prototypage et test de deux structures checkout avant la mise en production.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Résultat\n\nLe design mis en production a réduit le temps moyen de checkout et augmenté le taux de complétion de 18 % sur le premier mois.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Rétrospective\n\nLe principal gain venait de la clarté du contenu et de la divulgation progressive, pas d'un ajout d'éléments d'interface.",
+    },
+    {
+      type: "media",
+      width: "full",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Détail du parcours checkout mobile",
+        caption: "Parcours checkout final mis en production.",
+      },
     },
   ],
 };
@@ -98,13 +108,12 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "text",
-      span: "half",
       content:
         "## Context\n\nMultiple teams were stitching data from different sources, creating decision latency and inconsistency.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -113,38 +122,43 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "From 4 hours to 45 minutes of weekly reporting prep",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Process\n\n- Mapped stakeholder decisions to identify core metrics.\n- Created a hierarchy model to separate overview health metrics from deep dives.\n- Iterated quickly with engineering on feasible chart components.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Outcome\n\nThe unified dashboard became the default source for weekly decision meetings and reduced reporting overhead significantly.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Reflection\n\nShared metric definitions matter as much as visual consistency in analytics products.",
+    },
+    {
+      type: "media",
+      width: "same",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Unified dashboard overview",
+        caption: "The unified dashboard at reading-column width.",
+      },
     },
   ],
   fr: [
     {
       type: "text",
-      span: "half",
       content:
         "## Contexte\n\nPlusieurs équipes recoupaient des données de sources différents, ce qui créait de la latence décisionnelle et de l'incohérence.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -153,26 +167,32 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "De 4 heures à 45 minutes de préparation du reporting hebdo",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Démarche\n\n- Cartographie des décisions stakeholders pour isoler les métriques clés.\n- Création d'un modèle hiérarchique séparant métriques de santé globale et analyses détaillées.\n- Itération rapide avec l'engineering sur des composants de visualisation réalistes.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Résultat\n\nLe dashboard unifié est devenu la source par défaut des revues hebdomadaires et a fortement réduit le temps de préparation.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Rétrospective\n\nDes définitions de métriques partagées comptent autant que la cohérence visuelle dans les produits analytiques.",
+    },
+    {
+      type: "media",
+      width: "same",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Aperçu du dashboard unifié",
+        caption: "Le dashboard unifié à la largeur de la colonne de lecture.",
+      },
     },
   ],
 };

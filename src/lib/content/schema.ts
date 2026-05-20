@@ -10,9 +10,9 @@ export const previewMediaSchema = z.object({
 // Case study block types
 // ---------------------------------------------------------------------------
 
-const blockSpanSchema = z.enum(["full", "half"]);
+const mediaWidthSchema = z.enum(["same", "wider", "full"]);
 
-export type BlockSpan = z.infer<typeof blockSpanSchema>;
+export type MediaWidth = z.infer<typeof mediaWidthSchema>;
 
 const mediaItemSchema = z.object({
   type: z.enum(["image", "video", "svg"]),
@@ -25,19 +25,17 @@ export type MediaItem = z.infer<typeof mediaItemSchema>;
 
 const textBlockSchema = z.object({
   type: z.literal("text"),
-  span: blockSpanSchema,
   content: z.string(),
 });
 
 const bigTextBlockSchema = z.object({
   type: z.literal("bigText"),
-  span: blockSpanSchema,
   text: z.string(),
 });
 
 const mediaBlockSchema = z.object({
   type: z.literal("media"),
-  span: blockSpanSchema,
+  width: mediaWidthSchema.default("same"),
   media: mediaItemSchema,
 });
 

@@ -13,6 +13,7 @@ export function TextBlock({ content, className }: TextBlockProps) {
   return (
     <MarkdownContent
       source={content}
+      typography="editorial"
       className={cn(theme.slots.caseStudyLayout.textBlock, className)}
     />
   );
