@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/portfolio/page-header";
 import { Section } from "@/components/portfolio/section";
 import { BlockRenderer } from "@/components/portfolio/case-study-blocks/block-renderer";
@@ -22,41 +21,22 @@ export async function WorkDetailPageContent({ slug, locale }: WorkDetailPageCont
   return (
     <div data-case-study-page>
       <Section className="pt-20 md:pt-24">
-        <PageHeader
-          eyebrow={caseStudy.data.timeline}
-          title={caseStudy.data.title}
-          description={caseStudy.data.summary}
-          titleClassName={theme.slots.home.heroTitle}
-          descriptionClassName={theme.slots.caseStudyPage.headerDescription}
-        />
-
-        <div className="mt-8 flex flex-wrap gap-2">
-          <Badge>{caseStudy.data.role}</Badge>
-          <Badge variant="secondary">{caseStudy.data.team}</Badge>
-          {caseStudy.data.tools.map((tool) => (
-            <Badge key={tool} variant="outline">
-              {tool}
-            </Badge>
-          ))}
-        </div>
-
-        <div className={theme.slots.content.detailGrid}>
-          <div>
-            <p className={theme.slots.content.detailLabel}>
-              {workMessages.detailLabels.problem}
-            </p>
-            <p className={theme.slots.caseStudyPage.detailValue}>
-              {caseStudy.data.problem}
-            </p>
-          </div>
-          <div>
-            <p className={theme.slots.content.detailLabel}>
-              {workMessages.detailLabels.outcome}
-            </p>
-            <p className={theme.slots.caseStudyPage.detailValue}>
-              {caseStudy.data.outcome}
-            </p>
-          </div>
+        <div className={theme.slots.caseStudyLayout.readingColumn}>
+          <PageHeader
+            eyebrow={caseStudy.data.timeline}
+            title={caseStudy.data.title}
+            headerClassName={theme.slots.caseStudyPage.headerRoot}
+            titleClassName={theme.slots.home.heroTitle}
+            descriptionClassName={theme.slots.caseStudyPage.headerDescription}
+            description={
+              <>
+                <span className={theme.slots.caseStudyPage.tldrLead}>
+                  {workMessages.tldrLabel}
+                </span>{" "}
+                {caseStudy.data.summary}
+              </>
+            }
+          />
         </div>
 
         <BlockRenderer

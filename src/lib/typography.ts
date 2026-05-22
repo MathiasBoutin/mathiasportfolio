@@ -2,12 +2,13 @@ function join(...parts: (string | undefined | false)[]): string {
   return parts.filter(Boolean).join(" ");
 }
 
-/** Fixed type scale in px. Responsive pairs: `14to16`, `16to20`. */
+/** Fixed type scale in px. Responsive pairs: `14to16`, `16to20`, `20to24`. */
 export const typeSize = {
   10: "text-[10px]",
   12: "text-[12px]",
   14: "text-[14px]",
   16: "text-[16px]",
+  18: "text-[18px]",
   20: "text-[20px]",
   24: "text-[24px]",
   32: "text-[32px]",
@@ -15,6 +16,7 @@ export const typeSize = {
   56: "text-[56px]",
   "14to16": "text-[14px] md:text-[16px]",
   "16to20": "text-[16px] md:text-[20px]",
+  "20to24": "text-[20px] md:text-[24px]",
 } as const;
 
 export const typeWeight = {
@@ -123,8 +125,20 @@ const typographyRoles = {
   }),
   bodySm: typeClasses({ size: "14to16", leading: "body" }),
   bodyBase: typeClasses({ size: 16, leading: "body" }),
+  articleBody: typeClasses({
+    size: 18,
+    weight: "normal",
+    leading: "body",
+    traits: ["textPretty"],
+  }),
+  articleSubtitle: typeClasses({
+    size: 20,
+    weight: "normal",
+    leading: "body",
+    traits: ["textPretty"],
+  }),
   headingSm: typeClasses({ size: "14to16", weight: "semibold" }),
-  headingMd: typeClasses({ size: "16to20", weight: "medium" }),
+  headingMd: typeClasses({ size: "20to24", weight: "semibold" }),
   bodyMd: typeClasses({
     size: "16to20",
     leading: "body",
@@ -208,6 +222,37 @@ const typographyRoles = {
     leading: "none",
     tracking: "tightSm",
   }),
+  growthBarMetricValue: typeClasses({
+    size: 40,
+    weight: "medium",
+    leading: "none",
+    tracking: "tightLg",
+  }),
+  growthBarMetricUnit: typeClasses({
+    size: 16,
+    weight: "medium",
+    leading: "none",
+    tracking: "tightSm",
+  }),
+  growthBarMetricLabel: typeClasses({
+    size: 12,
+    weight: "medium",
+    leading: "snug",
+    tracking: "wide",
+  }),
+  growthBarRowName: typeClasses({
+    size: 12,
+    weight: "semibold",
+    font: "mono",
+    tracking: "wideLg",
+    traits: ["uppercase"],
+  }),
+  growthBarRowValue: typeClasses({
+    size: 16,
+    weight: "medium",
+    leading: "none",
+    tracking: "tightSm",
+  }),
   featureBody: typeClasses({
     size: 14,
     weight: "normal",
@@ -257,8 +302,8 @@ const typographyRoles = {
     leading: "none",
   }),
   popoverTitle: typeClasses({
-    size: 14,
-    weight: "medium",
+    size: 16,
+    weight: "semibold",
     leading: "tight",
     tracking: "tight",
   }),

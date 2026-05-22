@@ -13,6 +13,7 @@ const frMessages = {
   shell: {
     skipToContent: "Aller au contenu",
     footerLocation: "Montreal, Canada",
+    backLabel: "Retour",
   },
   home: {
     sections: {
@@ -60,6 +61,7 @@ const frMessages = {
     title: "Travaux produits sélectionnés",
     description:
       "Une sélection de projets qui montre le problème, la démarche, les décisions de design et les résultats mesurables.",
+    tldrLabel: "TL;DR",
     detailLabels: {
       problem: "Problème",
       outcome: "Résultat",

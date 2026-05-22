@@ -30,6 +30,10 @@ export function getLocaleFromPathname(pathname: string): Locale {
   return pathname === "/fr" || pathname.startsWith("/fr/") ? "fr" : "en";
 }
 
+export function isCaseStudyPathname(pathname: string): boolean {
+  return /^\/work\/[^/]+$/.test(getPathWithoutLocalePrefix(pathname));
+}
+
 export function localizePathnameForLocale(pathname: string, locale: Locale): string {
   const basePath = getPathWithoutLocalePrefix(pathname);
   return localizePath(basePath, locale);

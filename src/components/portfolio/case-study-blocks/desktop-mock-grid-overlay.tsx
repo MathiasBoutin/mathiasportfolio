@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
 const GRID_SIZE = 28;
 const BASE_DOT_RADIUS = 0.75;
@@ -87,7 +88,7 @@ function getDotTransform(point: GridPoint, pointer: PointerState, reducedMotion:
   };
 }
 
-export function DesktopMockGridOverlay() {
+export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) {
   const rootRef = React.useRef<SVGSVGElement | null>(null);
   const animationFrameRef = React.useRef<number | null>(null);
   const targetPointerRef = React.useRef<PointerState>({
@@ -224,7 +225,11 @@ export function DesktopMockGridOverlay() {
   return (
     <svg
       ref={rootRef}
-      className="absolute inset-0 z-0 size-full rounded-[16px] text-[var(--desktop-mock-grid-dot)] [mask-image:var(--desktop-mock-grid-mask)] [-webkit-mask-image:var(--desktop-mock-grid-mask)]"
+      className={cn(
+        "absolute inset-0 z-0 size-full rounded-[16px] text-[var(--desktop-mock-grid-dot)]",
+        masked &&
+          "[mask-image:var(--desktop-mock-grid-mask)] [-webkit-mask-image:var(--desktop-mock-grid-mask)]",
+      )}
       aria-hidden
       viewBox={`0 0 ${Math.max(size.width, 1)} ${Math.max(size.height, 1)}`}
       preserveAspectRatio="none"

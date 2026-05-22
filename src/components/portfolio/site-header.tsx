@@ -3,6 +3,7 @@ import { getSiteCopy } from "@/lib/site-config";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { type as typeStyle } from "@/lib/typography";
 import { cn } from "@/lib/utils";
+import { SiteHeaderBrand } from "@/components/portfolio/site-header-brand";
 
 export function SiteHeader() {
   const theme = getActivePresentationTheme();
@@ -12,15 +13,7 @@ export function SiteHeader() {
   return (
     <header data-print-hide className={theme.slots.shell.header}>
       <div className={`${theme.slots.shell.headerInner} gap-6`}>
-        <Link
-          href="/"
-          className={cn(
-            "text-foreground/88 hover:text-foreground transition-colors",
-            typeStyle("navBrand"),
-          )}
-        >
-          Mathias Boutin
-        </Link>
+        <SiteHeaderBrand />
         <nav aria-label="Primary" className="ml-auto">
           <ul
             className={cn(

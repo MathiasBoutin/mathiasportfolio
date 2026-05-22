@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 type DefinitionPopoverProps = {
   term: string;
   definition: React.ReactNode;
+  title?: string;
   pronunciation?: string;
   learnMoreHref?: string;
   learnMoreLabel?: string;
@@ -38,6 +39,7 @@ type PopoverMotionSize = {
 function DefinitionPopover({
   term,
   definition,
+  title,
   pronunciation,
   learnMoreHref,
   learnMoreLabel = defaultMessages.definitionPopover.learnMoreLabel,
@@ -337,7 +339,7 @@ function DefinitionPopover({
                 <Popover.Title
                   className={cn("text-foreground", typeStyle("popoverTitle"), theme?.title)}
                 >
-                  {term}
+                  {title ?? term}
                 </Popover.Title>
                 {pronunciation ? (
                   <p

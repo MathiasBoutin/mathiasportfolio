@@ -66,7 +66,7 @@ Next 15.5.15 (App Router, Turbopack, async `params`/`searchParams`/`cookies()`) 
 
 **Semantic shadcn tokens:** `--background`, `--foreground`, `--primary`, `--primary-foreground`, `--secondary`, `--muted`, `--muted-foreground`, `--accent`, `--destructive`, `--border`, `--input`, `--ring`, `--card`, `--popover`, `--chart-1`…`--chart-5`, `--sidebar-*`
 
-**Portfolio tokens:** `--portfolio-paper`, `--portfolio-ink`, `--portfolio-muted`, `--portfolio-line`, `--portfolio-atmosphere-*`, `--portfolio-shader-*`, `--portfolio-rails-*`, `--portfolio-link-underline`, `--case-study-media-wider`, `--desktop-mock-bg`, `--desktop-mock-caption`
+**Portfolio tokens:** `--portfolio-paper`, `--portfolio-ink`, `--portfolio-muted`, `--portfolio-line`, `--portfolio-atmosphere-*`, `--portfolio-shader-*`, `--portfolio-rails-*`, `--portfolio-link-underline`, `--case-study-reading-width`, `--case-study-media-wider`, `--desktop-mock-bg`, `--desktop-mock-caption`
 
 **Radius scale:** derived from `--radius` → `--radius-sm`…`--radius-4xl` in `@theme inline`
 
@@ -98,13 +98,13 @@ import { type, typeClasses } from "@/lib/typography";
 <span className={typeClasses({ size: 14, weight: "medium", leading: "snug" })} />
 ```
 
-**Fixed size scale (px):** `10`, `12`, `14`, `16`, `20`, `24`, `32`, `40`, `56`, plus responsive pairs `14to16`, `16to20`
+**Fixed size scale (px):** `10`, `12`, `14`, `16`, `18`, `20`, `24`, `32`, `40`, `56`, plus responsive pairs `14to16`, `16to20`, `20to24`
 
 **Primitives:** `typeSize`, `typeWeight`, `typeLeading`, `typeTracking`, `typeFont` (`sans` | `editorial` | `mono`), `typeTrait`
 
 **All typography roles** (`type("…")`):
 
-`eyebrow`, `label`, `badge`, `badgeProminent`, `navBrand`, `navLink`, `shellMeta`, `bodySm`, `headingSm`, `bodyMd`, `displayHero`, `displayPage`, `displayPageDescription`, `displayCardTitle`, `displayCardSummary`, `aboutLead`, `aboutBody`, `pullQuote`, `caption`, `desktopMockCaption`, `featureEyebrow`, `featureTimeline`, `featureHeading`, `featureBody`, `mdxH2`, `mdxH3`, `mdxBody`, `mdxList`, `mdxQuote`, `detailValueLarge`, `cvName`, `popoverTitle`, `popoverMeta`, `popoverBody`, `buttonLabel`, `toggleLabel`
+`eyebrow`, `label`, `badge`, `badgeProminent`, `navBrand`, `navLink`, `shellMeta`, `bodySm`, `bodyBase`, `articleBody`, `articleSubtitle`, `headingSm`, `headingMd`, `bodyMd`, `displayHero`, `displayPage`, `displayPageDescription`, `displayCardTitle`, `displayCardSummary`, `aboutLead`, `aboutBody`, `pullQuote`, `caption`, `desktopMockCaption`, `featureEyebrow`, `featureTimeline`, `featureHeading`, `featureBody`, `mdxH2`, `mdxH3`, `mdxBody`, `mdxList`, `mdxQuote`, `detailValueLarge`, `cvName`, `popoverTitle`, `popoverMeta`, `popoverBody`, `buttonLabel`, `toggleLabel`
 
 Never hand-roll `text-[Xpx]` in new code. Add a role to `typographyRoles` if the pattern repeats.
 
