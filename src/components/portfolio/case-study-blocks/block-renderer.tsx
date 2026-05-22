@@ -1,33 +1,55 @@
-import { cn } from "@/lib/utils";
-import { type CaseStudyBlock } from "@/lib/content/schema";
+import { type CaseStudyBlock, type InlineDefinition } from "@/lib/content/schema";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { TextBlock } from "./text-block";
 import { BigTextBlock } from "./big-text-block";
 import { MediaBlock } from "./media-block";
+import { DesktopMockBlock } from "./desktop-mock-block";
 
 type BlockRendererProps = {
   blocks: CaseStudyBlock[];
+  definitions?: Record<string, InlineDefinition>;
 };
 
-export function BlockRenderer({ blocks }: BlockRendererProps) {
+export function BlockRenderer({ blocks, definitions }: BlockRendererProps) {
   const theme = getActivePresentationTheme();
 
   if (blocks.length === 0) return null;
 
   return (
-    <div className={theme.slots.caseStudyLayout.grid}>
+    <div className={theme.slots.caseStudyLayout.articleStack}>
       {blocks.map((block, index) => {
-        const spanClass =
-          block.span === "full"
-            ? theme.slots.caseStudyLayout.blockFull
-            : theme.slots.caseStudyLayout.blockHalf;
+        if (block.type === "text") {
+          return (
+            <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
+              <TextBlock content={block.content} definitions={definitions} />
+            </div>
+          );
+        }
+
+        if (block.type === "bigText") {
+          return (
+            <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
+              <BigTextBlock text={block.text} />
+            </div>
+          );
+        }
+
+        if (block.type === "desktopMock") {
+          return (
+            <DesktopMockBlock
+              key={index}
+              src={block.src}
+              alt={block.alt}
+            />
+          );
+        }
 
         return (
-          <div key={index} className={cn(spanClass)}>
-            {block.type === "text" && <TextBlock content={block.content} />}
-            {block.type === "bigText" && <BigTextBlock text={block.text} />}
-            {block.type === "media" && <MediaBlock media={block.media} />}
-          </div>
+          <MediaBlock
+            key={index}
+            media={block.media}
+            width={block.width}
+          />
         );
       })}
     </div>

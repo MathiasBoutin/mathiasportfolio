@@ -31,7 +31,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-- `npm run dev` - local development
+- `npm run dev` - local development (output in `.next-dev`)
+- `npm run dev:reset` - stop dev, clear `.next-dev`, restart (fixes Turbopack 500s)
 - `npm run lint` - lint code
 - `npm run build` - Next production build
 - `npm run build:worker` - OpenNext build for Cloudflare runtime

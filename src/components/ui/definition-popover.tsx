@@ -5,6 +5,7 @@ import { Popover } from "@base-ui/react/popover";
 import { motion, useReducedMotion } from "framer-motion";
 import { LinkButton } from "@/components/ui/link-button";
 import { defaultMessages } from "@/lib/i18n/messages";
+import { type as typeStyle } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
 type DefinitionPopoverProps = {
@@ -334,17 +335,15 @@ function DefinitionPopover({
             >
               <div className="space-y-1">
                 <Popover.Title
-                  className={cn(
-                    "text-foreground text-[0.95rem] leading-tight font-medium tracking-[-0.02em]",
-                    theme?.title,
-                  )}
+                  className={cn("text-foreground", typeStyle("popoverTitle"), theme?.title)}
                 >
                   {term}
                 </Popover.Title>
                 {pronunciation ? (
                   <p
                     className={cn(
-                      "text-muted-foreground text-[0.72rem] leading-none font-medium tracking-[0.01em]",
+                      "text-muted-foreground",
+                      typeStyle("popoverMeta"),
                       theme?.pronunciation,
                     )}
                   >
@@ -356,7 +355,8 @@ function DefinitionPopover({
               <Popover.Description
                 render={<div />}
                 className={cn(
-                  "text-popover-foreground/84 text-[0.9rem] leading-snug font-normal tracking-[-0.01em] text-pretty",
+                  "text-popover-foreground/84 text-pretty",
+                  typeStyle("popoverBody"),
                   theme?.description,
                 )}
               >

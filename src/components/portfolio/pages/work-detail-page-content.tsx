@@ -20,43 +20,50 @@ export async function WorkDetailPageContent({ slug, locale }: WorkDetailPageCont
   const workMessages = getMessages(locale).work;
 
   return (
-    <Section className="pt-20 md:pt-24">
-      <PageHeader
-        eyebrow={caseStudy.data.timeline}
-        title={caseStudy.data.title}
-        description={caseStudy.data.summary}
-      />
+    <div data-case-study-page>
+      <Section className="pt-20 md:pt-24">
+        <PageHeader
+          eyebrow={caseStudy.data.timeline}
+          title={caseStudy.data.title}
+          description={caseStudy.data.summary}
+          titleClassName={theme.slots.home.heroTitle}
+          descriptionClassName={theme.slots.caseStudyPage.headerDescription}
+        />
 
-      <div className="mt-8 flex flex-wrap gap-2">
-        <Badge>{caseStudy.data.role}</Badge>
-        <Badge variant="secondary">{caseStudy.data.team}</Badge>
-        {caseStudy.data.tools.map((tool) => (
-          <Badge key={tool} variant="outline">
-            {tool}
-          </Badge>
-        ))}
-      </div>
-
-      <div className={theme.slots.content.detailGrid}>
-        <div>
-          <p className={theme.slots.content.detailLabel}>
-            {workMessages.detailLabels.problem}
-          </p>
-          <p className={theme.slots.content.detailValue}>
-            {caseStudy.data.problem}
-          </p>
+        <div className="mt-8 flex flex-wrap gap-2">
+          <Badge>{caseStudy.data.role}</Badge>
+          <Badge variant="secondary">{caseStudy.data.team}</Badge>
+          {caseStudy.data.tools.map((tool) => (
+            <Badge key={tool} variant="outline">
+              {tool}
+            </Badge>
+          ))}
         </div>
-        <div>
-          <p className={theme.slots.content.detailLabel}>
-            {workMessages.detailLabels.outcome}
-          </p>
-          <p className={theme.slots.content.detailValue}>
-            {caseStudy.data.outcome}
-          </p>
-        </div>
-      </div>
 
-      <BlockRenderer blocks={caseStudy.data.blocks} />
-    </Section>
+        <div className={theme.slots.content.detailGrid}>
+          <div>
+            <p className={theme.slots.content.detailLabel}>
+              {workMessages.detailLabels.problem}
+            </p>
+            <p className={theme.slots.caseStudyPage.detailValue}>
+              {caseStudy.data.problem}
+            </p>
+          </div>
+          <div>
+            <p className={theme.slots.content.detailLabel}>
+              {workMessages.detailLabels.outcome}
+            </p>
+            <p className={theme.slots.caseStudyPage.detailValue}>
+              {caseStudy.data.outcome}
+            </p>
+          </div>
+        </div>
+
+        <BlockRenderer
+          blocks={caseStudy.data.blocks}
+          definitions={caseStudy.data.definitions}
+        />
+      </Section>
+    </div>
   );
 }

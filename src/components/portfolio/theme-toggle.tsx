@@ -8,6 +8,8 @@ import {
   type PresentationThemeId,
 } from "@/lib/presentation-themes";
 import { defaultMessages } from "@/lib/i18n/messages";
+import { type as typeStyle } from "@/lib/typography";
+import { cn } from "@/lib/utils";
 
 type ThemeToggleProps = {
   currentTheme: PresentationThemeId;
@@ -38,7 +40,10 @@ export function ThemeToggle({ currentTheme }: ThemeToggleProps) {
           : defaultMessages.themeToggle.ariaLabel.switchToDark
       }
       onClick={toggleTheme}
-      className="border-border bg-background/90 text-foreground shadow-foreground/10 hover:bg-foreground hover:text-background focus-visible:outline-ring fixed right-5 bottom-5 z-50 rounded-full border px-4 py-3 text-[0.72rem] font-semibold tracking-[0.08em] uppercase shadow-lg backdrop-blur transition focus-visible:outline-2 focus-visible:outline-offset-2"
+      className={cn(
+        "border-border bg-background/90 text-foreground shadow-foreground/10 hover:bg-foreground hover:text-background focus-visible:outline-ring fixed right-5 bottom-5 z-50 rounded-full border px-4 py-3 shadow-lg backdrop-blur transition focus-visible:outline-2 focus-visible:outline-offset-2",
+        typeStyle("toggleLabel"),
+      )}
     >
       {isDark
         ? defaultMessages.themeToggle.defaultLabel

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/portfolio/fade-in";
 import { LanguageGreetingPicker } from "@/components/portfolio/language-greeting-picker";
-import { CaseStudyLinkPreviewPopover } from "@/components/portfolio/case-study-link-preview-popover";
 import { Section } from "@/components/portfolio/section";
 import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { Badge } from "@/components/ui/badge";
@@ -9,13 +8,12 @@ import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { localizePath } from "@/lib/i18n/routing";
 import { getFeaturedCaseStudies } from "@/lib/content/work";
-import {
-  caseStudyLinkPreviewThemes,
-  definitionPopoverThemes,
-} from "@/lib/definition-popover-themes";
+import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { siteConfig } from "@/lib/site-config";
+import { type as typeStyle } from "@/lib/typography";
+import { cn } from "@/lib/utils";
 
 type HomePageContentProps = {
   locale: Locale;
@@ -32,7 +30,12 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
     <Section className={`${theme.slots.home.heroSection} !min-h-0 !py-6 md:!py-8`}>
       <FadeIn>
         <div className="flex min-h-[calc(100svh-15rem)] w-full flex-col justify-center md:min-h-[calc(100svh-16rem)]">
-          <Badge className="mb-5 inline-flex rounded-[4px] bg-foreground px-3 py-1 text-[0.72rem] font-bold uppercase tracking-[0.08em] text-background">
+          <Badge
+            className={cn(
+              "mb-5 inline-flex rounded-[4px] bg-foreground px-3 py-1 text-background",
+              typeStyle("badgeProminent"),
+            )}
+          >
             {homeContent.heroBadge}
           </Badge>
           <LanguageGreetingPicker
@@ -40,14 +43,19 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
             englishGreeting={homeMessages.languagePicker.englishGreeting}
             frenchGreeting={homeMessages.languagePicker.frenchGreeting}
             ariaLabel={homeMessages.languagePicker.switchLabel}
-            className={`${theme.slots.home.heroTitle} mb-2 leading-none`}
+            className={`${theme.slots.home.heroTitle} mb-2`}
           />
           <h1 className={`${theme.slots.home.heroTitle} whitespace-pre-line`}>
             {homeContent.heroTitle}
           </h1>
-          <div className="mt-10 space-y-7 text-sm leading-relaxed text-foreground/70 md:mt-12 md:space-y-8 md:text-base">
+          <div
+            className={cn(
+              "mt-10 space-y-7 text-foreground/70 md:mt-12 md:space-y-8",
+              typeStyle("bodySm"),
+            )}
+          >
             <section className="space-y-1">
-              <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                 {homeMessages.sections.workExperience}
               </h2>
               <p>
@@ -74,36 +82,32 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
             </section>
 
             <section className="space-y-1">
-              <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                 {homeMessages.sections.strengths}
               </h2>
               <p>{homeContent.aboutLead}</p>
             </section>
 
             <section className="space-y-1">
-              <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                 {homeMessages.sections.caseStudies}
               </h2>
               <ul className="space-y-1">
                 {featuredStudies.map((study) => (
                   <li key={study.slug}>
-                    <CaseStudyLinkPreviewPopover
+                    <Link
                       href={localizePath(`/work/${study.slug}`, locale)}
-                      title={study.data.title}
-                      timeline={study.data.timeline}
-                      topics={study.data.topics}
-                      previewMedia={study.data.previewMedia}
-                      theme={caseStudyLinkPreviewThemes.patch}
+                      className="soft-link"
                     >
                       {study.data.title}
-                    </CaseStudyLinkPreviewPopover>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </section>
 
             <section className="space-y-1">
-              <h2 className="text-sm font-semibold text-foreground/88 md:text-base">
+              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                 {homeMessages.sections.connect}
               </h2>
               <ul className="space-y-1">

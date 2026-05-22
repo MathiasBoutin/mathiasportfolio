@@ -1,5 +1,9 @@
 import { cache } from "react";
-import { type CaseStudyBlock, type CaseStudyFrontmatter } from "@/lib/content/schema";
+import {
+  type CaseStudyBlock,
+  type CaseStudyFrontmatter,
+  type InlineDefinition,
+} from "@/lib/content/schema";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
 type CaseStudyEntry = {
@@ -11,85 +15,52 @@ type CaseStudyEntry = {
 // Block definitions per case study, per locale
 // ---------------------------------------------------------------------------
 
-const mobileCheckoutBlocks: Record<Locale, CaseStudyBlock[]> = {
+const patchSourcingDefinitions: Record<string, InlineDefinition> = {
+  ICROA: {
+    term: "ICROA",
+    definition:
+      "International Carbon Reduction and Offset Alliance, the standards body whose endorsement defines registry credibility",
+  },
+  registry: {
+    term: "Registry",
+    definition:
+      "In the VCM context, the organizations that certify and track carbon credits (Verra, Gold Standard, Puro, etc.). Not a generic database",
+  },
+  VCM: {
+    term: "VCM",
+    definition: "Voluntary carbon market",
+  },
+};
+
+const patchSourcingProblemBlock = `## The problem
+
+The Patch sourcing product had two audiences with opposite needs. Climate experts running diligence on every dimension of a project. Buyers watching that work, needing to trust the recommendation at the end. One surface, two mental models.
+
+That held when supply was a curated catalog of about 200 [ICROA]-endorsed projects. By late 2024, buyers wanted to see the whole market to feel confident in what they were buying, and the data set grew past 25,000 projects across every endorsed [registry]. The old surface couldn't hold it.
+
+A curated catalog and a queryable [VCM] are different products. The work of the next year was figuring out how to ship the second one without compromising either audience.`;
+
+const patchSourcingBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "text",
-      span: "half",
-      content:
-        "## Context\n\nThis project addressed the highest-friction mobile flow in the product. We focused on reducing cognitive load while preserving user confidence.",
+      content: patchSourcingProblemBlock,
     },
     {
-      type: "media",
-      span: "half",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Mobile checkout flow overview",
-      },
-    },
-    {
-      type: "bigText",
-      span: "full",
-      text: "18% improvement in checkout completion",
-    },
-    {
-      type: "text",
-      span: "half",
-      content:
-        "## Process\n\n- Audited event funnels and session recordings to identify drop-off moments.\n- Ran five moderated usability sessions on the existing flow.\n- Prototyped and tested two checkout structures before shipping.",
-    },
-    {
-      type: "text",
-      span: "half",
-      content:
-        "## Outcome\n\nThe released design reduced average checkout time and improved completion rate by 18% across the first month.",
-    },
-    {
-      type: "text",
-      span: "full",
-      content:
-        "## Reflection\n\nThe largest impact came from content clarity and progressive disclosure, not from adding new interface elements.",
+      type: "desktopMock",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Patch sourcing marketplace showing expert-built portfolios and a browsable project catalog",
     },
   ],
   fr: [
     {
       type: "text",
-      span: "half",
-      content:
-        "## Contexte\n\nCe projet traitait le parcours mobile le plus frictionnel du produit. Nous avons travaillé à réduire la charge cognitive tout en maintenant la confiance utilisateur.",
+      content: patchSourcingProblemBlock,
     },
     {
-      type: "media",
-      span: "half",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Aperçu du parcours checkout mobile",
-      },
-    },
-    {
-      type: "bigText",
-      span: "full",
-      text: "Hausse de 18 % du taux de complétion checkout",
-    },
-    {
-      type: "text",
-      span: "half",
-      content:
-        "## Démarche\n\n- Audit des funnels events et enregistrements de session pour identifier les points de chute.\n- Cinq tests utilisateurs modérés sur le flux existant.\n- Prototypage et test de deux structures checkout avant la mise en production.",
-    },
-    {
-      type: "text",
-      span: "half",
-      content:
-        "## Résultat\n\nLe design mis en production a réduit le temps moyen de checkout et augmenté le taux de complétion de 18 % sur le premier mois.",
-    },
-    {
-      type: "text",
-      span: "full",
-      content:
-        "## Rétrospective\n\nLe principal gain venait de la clarté du contenu et de la divulgation progressive, pas d'un ajout d'éléments d'interface.",
+      type: "desktopMock",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Marketplace Patch sourcing avec portfolios expert et catalogue de projets consultable",
     },
   ],
 };
@@ -98,13 +69,12 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "text",
-      span: "half",
       content:
         "## Context\n\nMultiple teams were stitching data from different sources, creating decision latency and inconsistency.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -113,38 +83,43 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "From 4 hours to 45 minutes of weekly reporting prep",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Process\n\n- Mapped stakeholder decisions to identify core metrics.\n- Created a hierarchy model to separate overview health metrics from deep dives.\n- Iterated quickly with engineering on feasible chart components.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Outcome\n\nThe unified dashboard became the default source for weekly decision meetings and reduced reporting overhead significantly.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Reflection\n\nShared metric definitions matter as much as visual consistency in analytics products.",
+    },
+    {
+      type: "media",
+      width: "same",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Unified dashboard overview",
+        caption: "The unified dashboard at reading-column width.",
+      },
     },
   ],
   fr: [
     {
       type: "text",
-      span: "half",
       content:
         "## Contexte\n\nPlusieurs équipes recoupaient des données de sources différents, ce qui créait de la latence décisionnelle et de l'incohérence.",
     },
     {
       type: "media",
-      span: "half",
+      width: "wider",
       media: {
         type: "image",
         src: "/images/work/case-study-preview-placeholder.png",
@@ -153,26 +128,32 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "bigText",
-      span: "full",
       text: "De 4 heures à 45 minutes de préparation du reporting hebdo",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Démarche\n\n- Cartographie des décisions stakeholders pour isoler les métriques clés.\n- Création d'un modèle hiérarchique séparant métriques de santé globale et analyses détaillées.\n- Itération rapide avec l'engineering sur des composants de visualisation réalistes.",
     },
     {
       type: "text",
-      span: "half",
       content:
         "## Résultat\n\nLe dashboard unifié est devenu la source par défaut des revues hebdomadaires et a fortement réduit le temps de préparation.",
     },
     {
       type: "text",
-      span: "full",
       content:
         "## Rétrospective\n\nDes définitions de métriques partagées comptent autant que la cohérence visuelle dans les produits analytiques.",
+    },
+    {
+      type: "media",
+      width: "same",
+      media: {
+        type: "image",
+        src: "/images/work/case-study-preview-placeholder.png",
+        alt: "Aperçu du dashboard unifié",
+        caption: "Le dashboard unifié à la largeur de la colonne de lecture.",
+      },
     },
   ],
 };
@@ -184,27 +165,27 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
 const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
-      slug: "mobile-checkout-redesign",
+      slug: "patch-sourcing-marketplace",
       data: {
-        title: "Mobile Checkout Redesign",
-        summary:
-          "Improved completion rate by simplifying the checkout information architecture.",
+        title: "From a curated marketplace to a transparent market (temporary)",
+        summary: "Placeholder",
         role: "Lead Product Designer",
-        timeline: "Q1 2025",
-        team: "Product trio + 2 engineers",
-        tools: ["Figma", "Maze", "Amplitude"],
-        topics: ["Checkout UX", "Mobile flows", "Conversion"],
-        coverImage: "/images/work/mobile-checkout-cover.jpg",
+        timeline: "2024–2025",
+        team: "Placeholder",
+        tools: ["Figma"],
+        topics: ["Carbon markets", "Marketplace", "Sourcing"],
+        coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Abstract aerial landscape placeholder for Mobile Checkout Redesign.",
+          alt: "Placeholder preview for Patch sourcing marketplace case study.",
         },
         featured: true,
-        problem: "Mobile users dropped during payment and address entry.",
-        outcome: "Checkout completion improved by 18%.",
+        problem: "Placeholder",
+        outcome: "Placeholder",
         order: 1,
-        blocks: mobileCheckoutBlocks.en,
+        definitions: patchSourcingDefinitions,
+        blocks: patchSourcingBlocks.en,
       },
     },
     {
@@ -234,28 +215,27 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
   ],
   fr: [
     {
-      slug: "mobile-checkout-redesign",
+      slug: "patch-sourcing-marketplace",
       data: {
-        title: "Refonte du checkout mobile",
-        summary:
-          "Hausse du taux de complétion grâce à une architecture d'information simplifiée.",
+        title: "D'un marché curaté à un marché transparent (temporaire)",
+        summary: "Placeholder",
         role: "Lead Product Designer",
-        timeline: "T1 2025",
-        team: "Trio produit + 2 ingénieurs",
-        tools: ["Figma", "Maze", "Amplitude"],
-        topics: ["UX checkout", "Parcours mobile", "Conversion"],
-        coverImage: "/images/work/mobile-checkout-cover.jpg",
+        timeline: "2024–2025",
+        team: "Placeholder",
+        tools: ["Figma"],
+        topics: ["Marchés carbone", "Marketplace", "Sourcing"],
+        coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Paysage aérien abstrait pour la refonte du checkout mobile.",
+          alt: "Aperçu placeholder pour l'étude de cas Patch sourcing marketplace.",
         },
         featured: true,
-        problem:
-          "Les utilisateurs mobiles abandonnaient lors de la saisie paiement et adresse.",
-        outcome: "Le taux de complétion checkout a augmenté de 18%.",
+        problem: "Placeholder",
+        outcome: "Placeholder",
         order: 1,
-        blocks: mobileCheckoutBlocks.fr,
+        definitions: patchSourcingDefinitions,
+        blocks: patchSourcingBlocks.fr,
       },
     },
     {

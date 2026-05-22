@@ -10,9 +10,9 @@ export const previewMediaSchema = z.object({
 // Case study block types
 // ---------------------------------------------------------------------------
 
-const blockSpanSchema = z.enum(["full", "half"]);
+const mediaWidthSchema = z.enum(["same", "wider", "full"]);
 
-export type BlockSpan = z.infer<typeof blockSpanSchema>;
+export type MediaWidth = z.infer<typeof mediaWidthSchema>;
 
 const mediaItemSchema = z.object({
   type: z.enum(["image", "video", "svg"]),
@@ -25,26 +25,33 @@ export type MediaItem = z.infer<typeof mediaItemSchema>;
 
 const textBlockSchema = z.object({
   type: z.literal("text"),
-  span: blockSpanSchema,
   content: z.string(),
 });
 
 const bigTextBlockSchema = z.object({
   type: z.literal("bigText"),
-  span: blockSpanSchema,
   text: z.string(),
 });
 
 const mediaBlockSchema = z.object({
   type: z.literal("media"),
-  span: blockSpanSchema,
+  width: mediaWidthSchema.default("same"),
   media: mediaItemSchema,
 });
+
+const desktopMockBlockSchema = z.object({
+  type: z.literal("desktopMock"),
+  src: z.string().optional(),
+  alt: z.string().default(""),
+});
+
+export type DesktopMockBlock = z.infer<typeof desktopMockBlockSchema>;
 
 export const caseStudyBlockSchema = z.discriminatedUnion("type", [
   textBlockSchema,
   bigTextBlockSchema,
   mediaBlockSchema,
+  desktopMockBlockSchema,
 ]);
 
 export type CaseStudyBlock = z.infer<typeof caseStudyBlockSchema>;
@@ -73,6 +80,19 @@ export const caseStudyMetaSchema = z.object({
 export type CaseStudyMeta = z.infer<typeof caseStudyMetaSchema>;
 
 // ---------------------------------------------------------------------------
+// Inline definition glossary (case study text blocks)
+// ---------------------------------------------------------------------------
+
+export const inlineDefinitionSchema = z.object({
+  term: z.string(),
+  definition: z.string(),
+  pronunciation: z.string().optional(),
+  learnMoreHref: z.string().optional(),
+});
+
+export type InlineDefinition = z.infer<typeof inlineDefinitionSchema>;
+
+// ---------------------------------------------------------------------------
 // Case study frontmatter
 // ---------------------------------------------------------------------------
 
@@ -91,6 +111,7 @@ export const caseStudySchema = z.object({
   outcome: z.string(),
   order: z.number().int(),
   blocks: z.array(caseStudyBlockSchema).default([]),
+  definitions: z.record(z.string(), inlineDefinitionSchema).optional(),
   hero: caseStudyHeroSchema.optional(),
   meta: caseStudyMetaSchema.optional(),
 });

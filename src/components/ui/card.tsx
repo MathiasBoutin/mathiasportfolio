@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import { typeClasses } from "@/lib/typography"
 import { cn } from "@/lib/utils"
 
 function Card({
@@ -12,7 +13,8 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-4 overflow-hidden rounded-none border-2 border-foreground bg-card py-4 text-sm text-card-foreground shadow-[8px_8px_0_var(--foreground)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0",
+        "group/card flex flex-col gap-4 overflow-hidden rounded-none border-2 border-foreground bg-card py-4 text-card-foreground shadow-[8px_8px_0_var(--foreground)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0",
+        typeClasses({ size: 14 }),
         className
       )}
       {...props}
@@ -38,8 +40,9 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-title"
       className={cn(
-        "font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm",
-        className
+        "font-heading group-data-[size=sm]/card:text-[14px]",
+        typeClasses({ size: 16, weight: "medium", leading: "snug" }),
+        className,
       )}
       {...props}
     />
@@ -50,7 +53,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn(typeClasses({ size: 14 }), "text-muted-foreground", className)}
       {...props}
     />
   )

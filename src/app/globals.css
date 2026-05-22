@@ -61,6 +61,16 @@
 
 :root,
 [data-presentation-theme="default"] {
+  --case-study-media-wider: min(80vw, 100%);
+  --desktop-mock-bg: #2b261c;
+  --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
+  --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
+  --desktop-mock-grid-mask: radial-gradient(
+    ellipse 92% 84% at 50% 50%,
+    rgb(0 0 0 / 1) 32%,
+    rgb(0 0 0 / 0.42) 58%,
+    rgb(0 0 0 / 0) 82%
+  );
   --portfolio-paper: oklch(0.982 0.008 84);
   --portfolio-ink: oklch(0.24 0.012 72);
   --portfolio-muted: oklch(0.58 0.01 78);
@@ -118,6 +128,15 @@
 }
 
 [data-presentation-theme="dark"] {
+  --desktop-mock-bg: #2b261c;
+  --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
+  --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
+  --desktop-mock-grid-mask: radial-gradient(
+    ellipse 92% 84% at 50% 50%,
+    rgb(0 0 0 / 1) 32%,
+    rgb(0 0 0 / 0.42) 58%,
+    rgb(0 0 0 / 0) 82%
+  );
   --portfolio-paper: oklch(0.13 0.028 264);
   --portfolio-ink: oklch(0.92 0.018 235);
   --portfolio-muted: oklch(0.71 0.035 250);
@@ -181,6 +200,16 @@
 }
 
 [data-presentation-theme="proof"] {
+  --case-study-media-wider: min(80vw, 100%);
+  --desktop-mock-bg: #2b261c;
+  --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
+  --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
+  --desktop-mock-grid-mask: radial-gradient(
+    ellipse 92% 84% at 50% 50%,
+    rgb(0 0 0 / 1) 32%,
+    rgb(0 0 0 / 0.42) 58%,
+    rgb(0 0 0 / 0) 82%
+  );
   --portfolio-paper: oklch(0.96 0.008 220);
   --portfolio-ink: oklch(0.27 0.02 250);
   --portfolio-muted: oklch(0.54 0.015 235);
@@ -305,6 +334,29 @@
   position: relative;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 .page-rails::before,
 .page-rails::after {
   pointer-events: none;
@@ -328,6 +380,11 @@
 
 .page-rails::after {
   inset-inline-end: 0;
+}
+
+.page-rails:has(main [data-case-study-page])::before,
+.page-rails:has(main [data-case-study-page])::after {
+  content: none;
 }
 
 .soft-link {

@@ -44,7 +44,7 @@ dark: {
 
 After adding a theme:
 
-1. Run `npm run lint` and `npm run build`.
+1. Run `npm run lint`. Run `npm run build` only when the dev server is stopped (see AGENTS.md — concurrent build + dev corrupts the dev cache).
 2. Smoke-check `/`, `/work`, one case study detail page, `/about`, and `/cv`.
 3. If a toggle exists, verify theme persistence across reload and route navigation.
 4. Verify header/footer readability over the active background in each theme.
