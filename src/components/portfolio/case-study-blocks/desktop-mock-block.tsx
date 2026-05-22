@@ -41,7 +41,6 @@ export function DesktopMockBlock({
                   height={DESKTOP_MOCK_HEIGHT}
                   className={layout.desktopMockScreen}
                   sizes={getImageSizes()}
-                  quality={90}
                 />
                 {alt ? (
                   <figcaption className={layout.desktopMockCaption}>{alt}</figcaption>
