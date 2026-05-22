@@ -99,6 +99,7 @@ export type InlineDefinition = z.infer<typeof inlineDefinitionSchema>;
 export const caseStudySchema = z.object({
   title: z.string(),
   summary: z.string(),
+  company: z.string(),
   role: z.string(),
   timeline: z.string(),
   team: z.string(),

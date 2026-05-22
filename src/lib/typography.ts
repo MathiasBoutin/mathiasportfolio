@@ -28,6 +28,7 @@ export const typeLeading = {
   none: "leading-none",
   tight: "leading-tight",
   snug: "leading-snug",
+  body: "leading-[1.5]",
   relaxed: "leading-relaxed",
   displayTight: "leading-[0.9]",
   displaySnug: "leading-[0.98]",
@@ -120,11 +121,13 @@ const typographyRoles = {
     weight: "medium",
     traits: ["uppercase"],
   }),
-  bodySm: typeClasses({ size: "14to16", leading: "relaxed" }),
+  bodySm: typeClasses({ size: "14to16", leading: "body" }),
+  bodyBase: typeClasses({ size: 16, leading: "body" }),
   headingSm: typeClasses({ size: "14to16", weight: "semibold" }),
+  headingMd: typeClasses({ size: "16to20", weight: "medium" }),
   bodyMd: typeClasses({
     size: "16to20",
-    leading: "relaxed",
+    leading: "body",
     tracking: "tight",
   }),
   displayHero: typeClasses({

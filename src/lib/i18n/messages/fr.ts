@@ -16,9 +16,9 @@ const frMessages = {
   },
   home: {
     sections: {
-      workExperience: "Mon expérience de travail",
-      strengths: "Ce que je fais bien",
-      caseStudies: "Études de cas",
+      workExperience: "Expérience",
+      strengths: "Compétences",
+      caseStudies: "Projets",
       connect: "Contact",
     },
     popovers: {

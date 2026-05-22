@@ -169,8 +169,9 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
       data: {
         title: "From a curated marketplace to a transparent market (temporary)",
         summary: "Placeholder",
+        company: "Patch",
         role: "Lead Product Designer",
-        timeline: "2024–2025",
+        timeline: "Q3 2025",
         team: "Placeholder",
         tools: ["Figma"],
         topics: ["Carbon markets", "Marketplace", "Sourcing"],
@@ -194,6 +195,7 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
         title: "Analytics Dashboard Unification",
         summary:
           "Consolidated fragmented reporting into one dashboard for product and operations teams.",
+        company: "Patch",
         role: "Senior Product Designer",
         timeline: "Q3 2024",
         team: "Design, PM, data analyst, 3 engineers",
@@ -219,8 +221,9 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
       data: {
         title: "D'un marché curaté à un marché transparent (temporaire)",
         summary: "Placeholder",
+        company: "Patch",
         role: "Lead Product Designer",
-        timeline: "2024–2025",
+        timeline: "T3 2025",
         team: "Placeholder",
         tools: ["Figma"],
         topics: ["Marchés carbone", "Marketplace", "Sourcing"],
@@ -244,6 +247,7 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
         title: "Unification du dashboard analytique",
         summary:
           "Consolidation de rapports fragmentés dans un dashboard unique pour les équipes produit et opérations.",
+        company: "Patch",
         role: "Senior Product Designer",
         timeline: "T3 2024",
         team: "Design, PM, data analyst, 3 ingénieurs",

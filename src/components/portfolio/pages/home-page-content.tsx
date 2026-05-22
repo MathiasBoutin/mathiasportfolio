@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/portfolio/fade-in";
 import { LanguageGreetingPicker } from "@/components/portfolio/language-greeting-picker";
 import { Section } from "@/components/portfolio/section";
@@ -11,7 +12,6 @@ import { getFeaturedCaseStudies } from "@/lib/content/work";
 import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
-import { siteConfig } from "@/lib/site-config";
 import { type as typeStyle } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
@@ -50,8 +50,8 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
           </h1>
           <div
             className={cn(
-              "mt-10 space-y-7 text-foreground/70 md:mt-12 md:space-y-8",
-              typeStyle("bodySm"),
+              "mt-10 space-y-8 text-foreground/70",
+              typeStyle("bodyBase"),
             )}
           >
             <section className="space-y-1">
@@ -92,30 +92,30 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
               <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                 {homeMessages.sections.caseStudies}
               </h2>
-              <ul className="space-y-1">
+              <ul className="page-rails-rule-list -mx-6 md:-mx-8">
                 {featuredStudies.map((study) => (
-                  <li key={study.slug}>
+                  <li key={study.slug} className="page-rails-rule-row">
                     <Link
                       href={localizePath(`/work/${study.slug}`, locale)}
-                      className="soft-link"
+                      className="group flex items-start justify-between gap-4 p-6 transition-colors duration-300 ease-out hover:bg-portfolio-surface-hover md:p-8"
                     >
-                      {study.data.title}
+                      <div className="min-w-0">
+                        <h3 className={theme.slots.home.featureHeading}>{study.data.title}</h3>
+                        <p className={cn(typeStyle("featureBody"), "mt-0.5 max-w-none text-muted-foreground/78")}>
+                          {study.data.summary}
+                        </p>
+                      </div>
+                      <div className="flex shrink-0 items-center gap-3 pt-0.5 md:gap-6">
+                        <span className={theme.slots.home.featureTimeline}>{study.data.company}</span>
+                        <span className={theme.slots.home.featureTimeline}>{study.data.timeline}</span>
+                        <ArrowRight
+                          size={14}
+                          className="shrink-0 text-muted-foreground/55 transition-transform group-hover:translate-x-0.5"
+                        />
+                      </div>
                     </Link>
                   </li>
                 ))}
-              </ul>
-            </section>
-
-            <section className="space-y-1">
-              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
-                {homeMessages.sections.connect}
-              </h2>
-              <ul className="space-y-1">
-                <li>
-                  <Link href={`mailto:${siteConfig.contactEmail}`} className="soft-link">
-                    {siteConfig.contactEmail}
-                  </Link>
-                </li>
               </ul>
             </section>
           </div>

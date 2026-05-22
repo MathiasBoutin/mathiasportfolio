@@ -16,9 +16,9 @@ const enMessages = {
   },
   home: {
     sections: {
-      workExperience: "My work experience",
-      strengths: "What I'm good at",
-      caseStudies: "Case Studies",
+      workExperience: "Experience",
+      strengths: "Skills",
+      caseStudies: "Work",
       connect: "Connect",
     },
     popovers: {
