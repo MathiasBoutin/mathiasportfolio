@@ -45,13 +45,27 @@ const desktopMockBlockSchema = z.object({
   alt: z.string().default(""),
 });
 
+const growthBarRowSchema = z.object({
+  label: z.string(),
+  value: z.number(),
+  displayValue: z.string().optional(),
+});
+
+const growthBarBlockSchema = z.object({
+  type: z.literal("growthBar"),
+  rows: z.array(growthBarRowSchema).min(2),
+  metricLabel: z.string(),
+});
+
 export type DesktopMockBlock = z.infer<typeof desktopMockBlockSchema>;
+export type GrowthBarBlock = z.infer<typeof growthBarBlockSchema>;
 
 export const caseStudyBlockSchema = z.discriminatedUnion("type", [
   textBlockSchema,
   bigTextBlockSchema,
   mediaBlockSchema,
   desktopMockBlockSchema,
+  growthBarBlockSchema,
 ]);
 
 export type CaseStudyBlock = z.infer<typeof caseStudyBlockSchema>;
@@ -86,6 +100,8 @@ export type CaseStudyMeta = z.infer<typeof caseStudyMetaSchema>;
 export const inlineDefinitionSchema = z.object({
   term: z.string(),
   definition: z.string(),
+  title: z.string().optional(),
+  theme: z.enum(["default", "shopify", "patch"]).optional(),
   pronunciation: z.string().optional(),
   learnMoreHref: z.string().optional(),
 });

@@ -1,7 +1,19 @@
 import type { CaseStudyLinkPreviewPopoverTheme } from "@/components/portfolio/case-study-link-preview-popover";
 import type { DefinitionPopoverTheme } from "@/components/ui/definition-popover";
 
-export const definitionPopoverThemes: Record<"shopify" | "patch", DefinitionPopoverTheme> = {
+export const definitionPopoverThemeIds = ["default", "shopify", "patch"] as const;
+
+export type DefinitionPopoverThemeId = (typeof definitionPopoverThemeIds)[number];
+
+export const definitionPopoverThemes: Record<
+  DefinitionPopoverThemeId,
+  DefinitionPopoverTheme
+> = {
+  default: {
+    popup: "bg-background text-foreground",
+    title: "text-foreground",
+    description: "text-foreground/84",
+  },
   shopify: {
     trigger:
       "hover:bg-[#1B3B36] hover:text-[#6BFF91] data-[popup-open]:bg-[#1B3B36] data-[popup-open]:text-[#6BFF91]",

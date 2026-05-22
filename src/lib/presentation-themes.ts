@@ -54,6 +54,21 @@ type PresentationThemeSlots = {
     textUl: string;
     textOl: string;
     bigTextBlock: string;
+    growthBarBlock: string;
+    growthBarBand: string;
+    growthBarInner: string;
+    growthBarMetric: string;
+    growthBarMetricValue: string;
+    growthBarMetricUnit: string;
+    growthBarMetricLabel: string;
+    growthBarLabel: string;
+    growthBarValue: string;
+    growthBarRowHeader: string;
+    growthBarRows: string;
+    growthBarTickFilled: string;
+    growthBarTickEmpty: string;
+    growthBarTicks: string;
+    growthBarTick: string;
     mediaSame: string;
     mediaWider: string;
     mediaFull: string;
@@ -66,7 +81,9 @@ type PresentationThemeSlots = {
     desktopMockCaption: string;
   };
   caseStudyPage: {
+    headerRoot: string;
     headerDescription: string;
+    tldrLead: string;
     detailValue: string;
   };
   content: {
@@ -117,9 +134,9 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         skipLink:
           "sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2",
         pageRails: "page-rails mx-auto flex w-full max-w-[61rem] flex-1 flex-col px-6 md:px-8",
-        header: "sticky top-0 z-40",
+        header: "sticky top-0 z-40 pt-4 md:pt-5",
         headerInner:
-          `mx-auto flex w-full max-w-[61rem] items-center justify-between py-7 ${type("shellMeta")} leading-none tracking-[-0.02em] text-muted-foreground/85`,
+          `mx-auto flex w-full max-w-[61rem] items-center justify-between rounded-sm border border-border bg-background/90 px-5 py-4 backdrop-blur-sm md:px-6 ${type("shellMeta")} leading-none tracking-[-0.02em] text-muted-foreground/85`,
         footer: "py-8",
         footerInner:
           `flex w-full flex-col justify-between gap-4 ${type("shellMeta")} text-muted-foreground/85 md:flex-row`,
@@ -154,13 +171,30 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
       },
       caseStudyLayout: {
         articleStack: "mt-16 flex flex-col gap-10 md:gap-12",
-        readingColumn: "w-full mx-auto",
+        readingColumn:
+          "w-full mx-auto md:max-w-[var(--case-study-reading-width)]",
         textBlock: "",
-        textH2: `mt-10 ${type("headingSm")} text-foreground/88 first:mt-0`,
-        textP: `mt-2 ${type("bodySm")} text-foreground/70`,
-        textUl: `mt-2 list-disc space-y-1 pl-5 ${type("bodySm")} text-foreground/70`,
-        textOl: `mt-2 list-decimal space-y-1 pl-5 ${type("bodySm")} text-foreground/70`,
+        textH2: `mb-1 mt-10 ${type("headingMd")} text-foreground/88 first:mt-0`,
+        textP: `mt-3 ${type("articleBody")} text-foreground/80`,
+        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
+        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
         bigTextBlock: `border-y border-border py-8 ${type("pullQuote")} text-foreground`,
+        growthBarBlock: "w-full",
+        growthBarBand:
+          "relative w-full overflow-hidden rounded-[16px] bg-[var(--desktop-mock-bg)] p-6 md:p-16",
+        growthBarInner: "relative z-10 w-full",
+        growthBarMetric: "grid gap-1",
+        growthBarMetricValue: `flex items-baseline gap-1 ${type("growthBarMetricValue")} text-[var(--primary-foreground)]`,
+        growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
+        growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
+        growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
+        growthBarValue: `tabular-nums ${type("growthBarRowValue")} uppercase text-[var(--primary-foreground)]`,
+        growthBarRowHeader: "flex items-baseline justify-between gap-4",
+        growthBarRows: "mt-8 flex flex-col gap-8",
+        growthBarTickFilled: "bg-[var(--primary-foreground)]/85",
+        growthBarTickEmpty: "bg-[var(--primary-foreground)]/18",
+        growthBarTicks: "flex w-full justify-between",
+        growthBarTick: "relative h-[30px] w-[3px] shrink-0 overflow-hidden rounded-[2px] md:w-[6px]",
         mediaSame: "w-full",
         mediaWider:
           "mx-auto w-[var(--case-study-media-wider)] min-w-full max-w-none",
@@ -178,15 +212,17 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         desktopMockCaption: `mt-10 ${type("desktopMockCaption")} text-[var(--desktop-mock-caption)]`,
       },
       caseStudyPage: {
-        headerDescription: `max-w-2xl text-pretty ${type("bodyMd")} text-foreground/75`,
+        headerRoot: "space-y-8",
+        headerDescription: `-mt-4 ${type("articleSubtitle")} text-foreground/80`,
+        tldrLead: "font-semibold uppercase",
         detailValue: `mt-2 ${type("bodyMd")} text-foreground/80`,
       },
       content: {
         mdxH2: `mt-16 border-t border-border pt-8 ${type("mdxH2")}`,
         mdxH3: `mt-10 ${type("mdxH3")}`,
-        mdxP: `mt-5 ${type("mdxBody")} text-foreground/85`,
-        mdxUl: `mt-6 space-y-3 pl-6 ${type("mdxList")} [list-style-type:square]`,
-        mdxOl: `mt-6 list-decimal space-y-3 pl-6 ${type("mdxList")}`,
+        mdxP: `mt-5 ${type("articleBody")} text-foreground/85`,
+        mdxUl: `mt-6 list-disc space-y-2 pl-6 ${type("articleBody")} text-foreground/85`,
+        mdxOl: `mt-6 list-decimal space-y-2 pl-6 ${type("articleBody")} text-foreground/85`,
         mdxBlockquote: `mt-10 border-l border-border pl-6 ${type("mdxQuote")} text-foreground/75`,
         workList: "mt-16",
         borderedArticle: "mt-16 max-w-3xl border-t border-border pt-10",
@@ -224,9 +260,9 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         skipLink:
           "sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2",
         pageRails: "page-rails mx-auto flex w-full max-w-[70rem] flex-1 flex-col px-6 md:px-10",
-        header: "sticky top-0 z-40 backdrop-blur-sm",
+        header: "sticky top-0 z-40 pt-4 md:pt-5",
         headerInner:
-          `mx-auto flex w-full max-w-[70rem] items-center justify-between py-6 ${type("shellMeta")} leading-none tracking-[0.01em]`,
+          `mx-auto flex w-full max-w-[70rem] items-center justify-between rounded-sm border border-border bg-background/90 px-5 py-4 backdrop-blur-sm md:px-6 ${type("shellMeta")} leading-none tracking-[0.01em]`,
         footer: "py-10",
         footerInner:
           `flex w-full flex-col justify-between gap-5 ${type("shellMeta")} text-muted-foreground md:flex-row`,
@@ -261,13 +297,30 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
       },
       caseStudyLayout: {
         articleStack: "mt-14 flex flex-col gap-9 md:gap-11",
-        readingColumn: "w-full mx-auto",
+        readingColumn:
+          "w-full mx-auto md:max-w-[var(--case-study-reading-width)]",
         textBlock: "",
-        textH2: `mt-9 ${type("headingSm")} text-foreground/88 first:mt-0`,
-        textP: `mt-2 ${type("bodySm")} text-foreground/70`,
-        textUl: `mt-2 list-disc space-y-1 pl-5 ${type("bodySm")} text-foreground/70`,
-        textOl: `mt-2 list-decimal space-y-1 pl-5 ${type("bodySm")} text-foreground/70`,
+        textH2: `mb-1 mt-9 ${type("headingMd")} text-foreground/88 first:mt-0`,
+        textP: `mt-3 ${type("articleBody")} text-foreground/80`,
+        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
+        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
         bigTextBlock: `border-y border-border py-7 ${type("pullQuote")} text-foreground`,
+        growthBarBlock: "w-full",
+        growthBarBand:
+          "relative w-full overflow-hidden rounded-[16px] bg-[var(--desktop-mock-bg)] p-6 md:p-16",
+        growthBarInner: "relative z-10 w-full",
+        growthBarMetric: "grid gap-1",
+        growthBarMetricValue: `flex items-baseline gap-1 ${type("growthBarMetricValue")} text-[var(--primary-foreground)]`,
+        growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
+        growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
+        growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
+        growthBarValue: `tabular-nums ${type("growthBarRowValue")} uppercase text-[var(--primary-foreground)]`,
+        growthBarRowHeader: "flex items-baseline justify-between gap-4",
+        growthBarRows: "mt-8 flex flex-col gap-8",
+        growthBarTickFilled: "bg-[var(--primary-foreground)]/85",
+        growthBarTickEmpty: "bg-[var(--primary-foreground)]/18",
+        growthBarTicks: "flex w-full justify-between",
+        growthBarTick: "relative h-[30px] w-[3px] shrink-0 overflow-hidden rounded-[2px] md:w-[6px]",
         mediaSame: "w-full",
         mediaWider:
           "mx-auto w-[var(--case-study-media-wider)] min-w-full max-w-none",
@@ -285,15 +338,17 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         desktopMockCaption: `mt-10 ${type("desktopMockCaption")} text-[var(--desktop-mock-caption)]`,
       },
       caseStudyPage: {
-        headerDescription: `max-w-3xl text-pretty ${type("bodyMd")} text-foreground/78`,
+        headerRoot: "space-y-8",
+        headerDescription: `-mt-4 ${type("articleSubtitle")} text-foreground/80`,
+        tldrLead: "font-semibold uppercase",
         detailValue: `mt-2 ${type("bodyMd")} text-foreground/82`,
       },
       content: {
         mdxH2: `mt-16 border-t border-border pt-8 ${type("mdxH2")}`,
         mdxH3: `mt-10 ${type("mdxH3")}`,
-        mdxP: `mt-5 ${type("mdxBody")} text-foreground/86`,
-        mdxUl: `mt-6 space-y-3 pl-6 ${type("mdxList")} [list-style-type:square]`,
-        mdxOl: `mt-6 list-decimal space-y-3 pl-6 ${type("mdxList")}`,
+        mdxP: `mt-5 ${type("articleBody")} text-foreground/86`,
+        mdxUl: `mt-6 list-disc space-y-2 pl-6 ${type("articleBody")} text-foreground/86`,
+        mdxOl: `mt-6 list-decimal space-y-2 pl-6 ${type("articleBody")} text-foreground/86`,
         mdxBlockquote: `mt-10 border-l border-border pl-6 ${type("mdxQuote")} text-foreground/75`,
         workList: "mt-14",
         borderedArticle: "mt-14 max-w-4xl border-t border-border pt-8",

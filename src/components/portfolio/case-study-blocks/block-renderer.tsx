@@ -4,6 +4,7 @@ import { TextBlock } from "./text-block";
 import { BigTextBlock } from "./big-text-block";
 import { MediaBlock } from "./media-block";
 import { DesktopMockBlock } from "./desktop-mock-block";
+import { GrowthBarBlock } from "./growth-bar-block";
 
 type BlockRendererProps = {
   blocks: CaseStudyBlock[];
@@ -30,6 +31,14 @@ export function BlockRenderer({ blocks, definitions }: BlockRendererProps) {
           return (
             <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
               <BigTextBlock text={block.text} />
+            </div>
+          );
+        }
+
+        if (block.type === "growthBar") {
+          return (
+            <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
+              <GrowthBarBlock rows={block.rows} metricLabel={block.metricLabel} />
             </div>
           );
         }

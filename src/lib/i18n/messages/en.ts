@@ -13,6 +13,7 @@ const enMessages = {
   shell: {
     skipToContent: "Skip to content",
     footerLocation: "Montreal, Canada",
+    backLabel: "Back",
   },
   home: {
     sections: {
@@ -60,6 +61,7 @@ const enMessages = {
     title: "Selected product work",
     description:
       "A curated set of projects showing the problem, process, design decisions, and measurable results.",
+    tldrLabel: "TL;DR",
     detailLabels: {
       problem: "Problem",
       outcome: "Outcome",

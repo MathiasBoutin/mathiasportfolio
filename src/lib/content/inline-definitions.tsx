@@ -1,9 +1,16 @@
 import { Fragment } from "react";
 import { DefinitionPopover } from "@/components/ui/definition-popover";
-import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
+import {
+  definitionPopoverThemes,
+  type DefinitionPopoverThemeId,
+} from "@/lib/definition-popover-themes";
 import { type InlineDefinition } from "@/lib/content/schema";
 
 const DEFINITION_PATTERN = /\[([^\]]+)\]/g;
+
+function resolveDefinitionPopoverTheme(themeId?: DefinitionPopoverThemeId) {
+  return definitionPopoverThemes[themeId ?? "patch"];
+}
 
 function findDefinition(
   key: string,
@@ -46,10 +53,11 @@ export function renderInlineDefinitions(
         <DefinitionPopover
           key={`${matchIndex}-${key}`}
           term={definition.term}
+          title={definition.title}
           definition={definition.definition}
           pronunciation={definition.pronunciation}
           learnMoreHref={definition.learnMoreHref}
-          theme={definitionPopoverThemes.patch}
+          theme={resolveDefinitionPopoverTheme(definition.theme)}
         />,
       );
     } else {
