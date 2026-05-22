@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/portfolio/site-header";
 import { SiteFooter } from "@/components/portfolio/site-footer";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import { Analytics } from "@/components/portfolio/analytics";
+import { SmoothScrollProvider } from "@/components/portfolio/smooth-scroll-provider";
 import { getSiteCopy, siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/metadata/seo";
 import { DEFAULT_LOCALE } from "@/lib/i18n/config";
@@ -64,18 +65,20 @@ export default function RootLayout({
       className={`${geistMono.variable} ${ibmPlexMono.variable} ${theme.slots.shell.html}`}
     >
       <body className={theme.slots.shell.body}>
-        <a href="#main-content" className={theme.slots.shell.skipLink}>
-          {defaultMessages.shell.skipToContent}
-        </a>
-        <div className={theme.slots.shell.pageRails}>
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
-        {SHOW_THEME_TOGGLE ? <ThemeToggle currentTheme={themeId} /> : null}
-        <Analytics />
+        <SmoothScrollProvider>
+          <a href="#main-content" className={theme.slots.shell.skipLink}>
+            {defaultMessages.shell.skipToContent}
+          </a>
+          <div className={theme.slots.shell.pageRails}>
+            <SiteHeader />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+          {SHOW_THEME_TOGGLE ? <ThemeToggle currentTheme={themeId} /> : null}
+          <Analytics />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

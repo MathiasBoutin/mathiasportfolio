@@ -1,14 +1,16 @@
-import { type CaseStudyBlock } from "@/lib/content/schema";
+import { type CaseStudyBlock, type InlineDefinition } from "@/lib/content/schema";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { TextBlock } from "./text-block";
 import { BigTextBlock } from "./big-text-block";
 import { MediaBlock } from "./media-block";
+import { DesktopMockBlock } from "./desktop-mock-block";
 
 type BlockRendererProps = {
   blocks: CaseStudyBlock[];
+  definitions?: Record<string, InlineDefinition>;
 };
 
-export function BlockRenderer({ blocks }: BlockRendererProps) {
+export function BlockRenderer({ blocks, definitions }: BlockRendererProps) {
   const theme = getActivePresentationTheme();
 
   if (blocks.length === 0) return null;
@@ -19,7 +21,7 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
         if (block.type === "text") {
           return (
             <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
-              <TextBlock content={block.content} />
+              <TextBlock content={block.content} definitions={definitions} />
             </div>
           );
         }
@@ -29,6 +31,16 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
             <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
               <BigTextBlock text={block.text} />
             </div>
+          );
+        }
+
+        if (block.type === "desktopMock") {
+          return (
+            <DesktopMockBlock
+              key={index}
+              src={block.src}
+              alt={block.alt}
+            />
           );
         }
 

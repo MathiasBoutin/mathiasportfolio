@@ -3,6 +3,8 @@ import { DefinitionPopover } from "@/components/ui/definition-popover";
 import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
+import { type as typeStyle, typeClasses } from "@/lib/typography";
+import { cn } from "@/lib/utils";
 
 type CvContentProps = {
   mode?: "screen" | "print";
@@ -55,15 +57,12 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
   return (
     <div className={isPrint ? "space-y-8" : "space-y-10 md:space-y-12"}>
       <div className="max-w-3xl space-y-4">
-        <h1 className="cv-print-name text-[clamp(2.2rem,6vw,4.4rem)] leading-[1] font-semibold">
-          {cvData.name}
-        </h1>
+        <h1 className={cn("cv-print-name", typeStyle("cvName"))}>{cvData.name}</h1>
         <p
-          className={
-            isPrint
-              ? "text-foreground max-w-none text-sm leading-relaxed md:text-[0.98rem]"
-              : "text-foreground/70 max-w-2xl text-sm leading-relaxed md:text-base"
-          }
+          className={cn(
+            isPrint ? "text-foreground max-w-none" : "text-foreground/70 max-w-2xl",
+            typeStyle("bodySm"),
+          )}
         >
           {cvData.about}
         </p>
@@ -80,7 +79,7 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                   : "grid gap-2 md:grid-cols-[10rem_1fr] md:gap-8"
               }
             >
-              <p className="text-muted-foreground text-[0.78rem] font-medium tracking-[0.01em] uppercase">
+              <p className={cn("text-muted-foreground", typeStyle("label"))}>
                 {entry.tenure}
               </p>
               <article>
@@ -91,15 +90,14 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                       : "flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-4"
                   }
                 >
-                  <p className="text-foreground/88 text-sm font-semibold md:text-base">
+                  <p className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                     {renderCompany(entry.company)}
                   </p>
                   <p
-                    className={
-                      isPrint
-                        ? "text-foreground/70 text-sm"
-                        : "text-foreground/55 text-sm md:text-right"
-                    }
+                    className={cn(
+                      isPrint ? "text-foreground/70" : "text-foreground/55 md:text-right",
+                      typeClasses({ size: 14 }),
+                    )}
                   >
                     {entry.context}
                   </p>
@@ -109,7 +107,7 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                     {entry.roles.map((role) => (
                       <li
                         key={role.title}
-                        className="text-foreground/78 text-sm leading-relaxed md:text-base"
+                        className={cn(typeStyle("bodySm"), "text-foreground/78")}
                       >
                         <span className="text-foreground/90 font-medium">
                           {role.title}
@@ -121,7 +119,12 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                       </li>
                     ))}
                   </ul>
-                  <ul className="text-foreground/70 list-disc space-y-0.5 pl-4 text-sm leading-relaxed md:text-base">
+                  <ul
+                    className={cn(
+                      typeStyle("bodySm"),
+                      "text-foreground/70 list-disc space-y-0.5 pl-4",
+                    )}
+                  >
                     {entry.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
@@ -139,14 +142,14 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                   : "grid gap-2 md:grid-cols-[10rem_1fr] md:gap-8"
               }
             >
-              <p className="text-muted-foreground text-[0.78rem] font-medium tracking-[0.01em] uppercase">
+              <p className={cn("text-muted-foreground", typeStyle("label"))}>
                 {entry.tenure}
               </p>
               <article>
-                <p className="text-foreground/88 text-sm font-semibold md:text-base">
+                <p className={cn(typeStyle("headingSm"), "text-foreground/88")}>
                   {entry.school}
                 </p>
-                <p className="text-foreground/78 text-sm leading-relaxed md:text-base">
+                <p className={cn(typeStyle("bodySm"), "text-foreground/78")}>
                   {entry.credential}
                 </p>
               </article>
@@ -156,14 +159,17 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-foreground/88 text-sm font-semibold md:text-base">
+        <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
           {cvMessages.focusAreasHeading}
         </h2>
         <ul className="flex flex-wrap gap-2">
           {cvData.focusAreas.map((area) => (
             <li
               key={area}
-              className="bg-foreground/8 text-foreground/78 rounded-[4px] px-2 py-[0.12em] text-sm md:text-base"
+              className={cn(
+                typeStyle("bodySm"),
+                "bg-foreground/8 text-foreground/78 rounded-[4px] px-2 py-[0.12em]",
+              )}
             >
               {area}
             </li>

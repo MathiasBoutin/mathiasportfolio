@@ -1,5 +1,9 @@
 import { cache } from "react";
-import { type CaseStudyBlock, type CaseStudyFrontmatter } from "@/lib/content/schema";
+import {
+  type CaseStudyBlock,
+  type CaseStudyFrontmatter,
+  type InlineDefinition,
+} from "@/lib/content/schema";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
 type CaseStudyEntry = {
@@ -11,95 +15,52 @@ type CaseStudyEntry = {
 // Block definitions per case study, per locale
 // ---------------------------------------------------------------------------
 
-const mobileCheckoutBlocks: Record<Locale, CaseStudyBlock[]> = {
+const patchSourcingDefinitions: Record<string, InlineDefinition> = {
+  ICROA: {
+    term: "ICROA",
+    definition:
+      "International Carbon Reduction and Offset Alliance, the standards body whose endorsement defines registry credibility",
+  },
+  registry: {
+    term: "Registry",
+    definition:
+      "In the VCM context, the organizations that certify and track carbon credits (Verra, Gold Standard, Puro, etc.). Not a generic database",
+  },
+  VCM: {
+    term: "VCM",
+    definition: "Voluntary carbon market",
+  },
+};
+
+const patchSourcingProblemBlock = `## The problem
+
+The Patch sourcing product had two audiences with opposite needs. Climate experts running diligence on every dimension of a project. Buyers watching that work, needing to trust the recommendation at the end. One surface, two mental models.
+
+That held when supply was a curated catalog of about 200 [ICROA]-endorsed projects. By late 2024, buyers wanted to see the whole market to feel confident in what they were buying, and the data set grew past 25,000 projects across every endorsed [registry]. The old surface couldn't hold it.
+
+A curated catalog and a queryable [VCM] are different products. The work of the next year was figuring out how to ship the second one without compromising either audience.`;
+
+const patchSourcingBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "text",
-      content:
-        "## Context\n\nThis project addressed the highest-friction mobile flow in the product. We focused on reducing cognitive load while preserving user confidence.",
+      content: patchSourcingProblemBlock,
     },
     {
-      type: "media",
-      width: "wider",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Mobile checkout flow overview",
-      },
-    },
-    {
-      type: "bigText",
-      text: "18% improvement in checkout completion",
-    },
-    {
-      type: "text",
-      content:
-        "## Process\n\n- Audited event funnels and session recordings to identify drop-off moments.\n- Ran five moderated usability sessions on the existing flow.\n- Prototyped and tested two checkout structures before shipping.",
-    },
-    {
-      type: "text",
-      content:
-        "## Outcome\n\nThe released design reduced average checkout time and improved completion rate by 18% across the first month.",
-    },
-    {
-      type: "text",
-      content:
-        "## Reflection\n\nThe largest impact came from content clarity and progressive disclosure, not from adding new interface elements.",
-    },
-    {
-      type: "media",
-      width: "full",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Mobile checkout flow detail",
-        caption: "Final checkout flow shipped to production.",
-      },
+      type: "desktopMock",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Patch sourcing marketplace showing expert-built portfolios and a browsable project catalog",
     },
   ],
   fr: [
     {
       type: "text",
-      content:
-        "## Contexte\n\nCe projet traitait le parcours mobile le plus frictionnel du produit. Nous avons travaillé à réduire la charge cognitive tout en maintenant la confiance utilisateur.",
+      content: patchSourcingProblemBlock,
     },
     {
-      type: "media",
-      width: "wider",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Aperçu du parcours checkout mobile",
-      },
-    },
-    {
-      type: "bigText",
-      text: "Hausse de 18 % du taux de complétion checkout",
-    },
-    {
-      type: "text",
-      content:
-        "## Démarche\n\n- Audit des funnels events et enregistrements de session pour identifier les points de chute.\n- Cinq tests utilisateurs modérés sur le flux existant.\n- Prototypage et test de deux structures checkout avant la mise en production.",
-    },
-    {
-      type: "text",
-      content:
-        "## Résultat\n\nLe design mis en production a réduit le temps moyen de checkout et augmenté le taux de complétion de 18 % sur le premier mois.",
-    },
-    {
-      type: "text",
-      content:
-        "## Rétrospective\n\nLe principal gain venait de la clarté du contenu et de la divulgation progressive, pas d'un ajout d'éléments d'interface.",
-    },
-    {
-      type: "media",
-      width: "full",
-      media: {
-        type: "image",
-        src: "/images/work/case-study-preview-placeholder.png",
-        alt: "Détail du parcours checkout mobile",
-        caption: "Parcours checkout final mis en production.",
-      },
+      type: "desktopMock",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Marketplace Patch sourcing avec portfolios expert et catalogue de projets consultable",
     },
   ],
 };
@@ -204,27 +165,27 @@ const analyticsDashboardBlocks: Record<Locale, CaseStudyBlock[]> = {
 const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
-      slug: "mobile-checkout-redesign",
+      slug: "patch-sourcing-marketplace",
       data: {
-        title: "Mobile Checkout Redesign",
-        summary:
-          "Improved completion rate by simplifying the checkout information architecture.",
+        title: "From a curated marketplace to a transparent market (temporary)",
+        summary: "Placeholder",
         role: "Lead Product Designer",
-        timeline: "Q1 2025",
-        team: "Product trio + 2 engineers",
-        tools: ["Figma", "Maze", "Amplitude"],
-        topics: ["Checkout UX", "Mobile flows", "Conversion"],
-        coverImage: "/images/work/mobile-checkout-cover.jpg",
+        timeline: "2024–2025",
+        team: "Placeholder",
+        tools: ["Figma"],
+        topics: ["Carbon markets", "Marketplace", "Sourcing"],
+        coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Abstract aerial landscape placeholder for Mobile Checkout Redesign.",
+          alt: "Placeholder preview for Patch sourcing marketplace case study.",
         },
         featured: true,
-        problem: "Mobile users dropped during payment and address entry.",
-        outcome: "Checkout completion improved by 18%.",
+        problem: "Placeholder",
+        outcome: "Placeholder",
         order: 1,
-        blocks: mobileCheckoutBlocks.en,
+        definitions: patchSourcingDefinitions,
+        blocks: patchSourcingBlocks.en,
       },
     },
     {
@@ -254,28 +215,27 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
   ],
   fr: [
     {
-      slug: "mobile-checkout-redesign",
+      slug: "patch-sourcing-marketplace",
       data: {
-        title: "Refonte du checkout mobile",
-        summary:
-          "Hausse du taux de complétion grâce à une architecture d'information simplifiée.",
+        title: "D'un marché curaté à un marché transparent (temporaire)",
+        summary: "Placeholder",
         role: "Lead Product Designer",
-        timeline: "T1 2025",
-        team: "Trio produit + 2 ingénieurs",
-        tools: ["Figma", "Maze", "Amplitude"],
-        topics: ["UX checkout", "Parcours mobile", "Conversion"],
-        coverImage: "/images/work/mobile-checkout-cover.jpg",
+        timeline: "2024–2025",
+        team: "Placeholder",
+        tools: ["Figma"],
+        topics: ["Marchés carbone", "Marketplace", "Sourcing"],
+        coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Paysage aérien abstrait pour la refonte du checkout mobile.",
+          alt: "Aperçu placeholder pour l'étude de cas Patch sourcing marketplace.",
         },
         featured: true,
-        problem:
-          "Les utilisateurs mobiles abandonnaient lors de la saisie paiement et adresse.",
-        outcome: "Le taux de complétion checkout a augmenté de 18%.",
+        problem: "Placeholder",
+        outcome: "Placeholder",
         order: 1,
-        blocks: mobileCheckoutBlocks.fr,
+        definitions: patchSourcingDefinitions,
+        blocks: patchSourcingBlocks.fr,
       },
     },
     {

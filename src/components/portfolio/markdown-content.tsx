@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { renderInlineDefinitions } from "@/lib/content/inline-definitions";
+import { type InlineDefinition } from "@/lib/content/schema";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
 import { cn } from "@/lib/utils";
 
@@ -8,6 +10,7 @@ type MarkdownContentProps = {
   source: string;
   className?: string;
   typography?: MarkdownTypography;
+  definitions?: Record<string, InlineDefinition>;
 };
 
 type MarkdownSlots = {
@@ -46,6 +49,7 @@ export function MarkdownContent({
   source,
   className,
   typography = "default",
+  definitions,
 }: MarkdownContentProps) {
   const slots = getMarkdownSlots(typography);
   const lines = source.replace(/\r\n/g, "\n").split("\n");
@@ -91,7 +95,7 @@ export function MarkdownContent({
         <ul key={`ul-${i}`} className={slots.ul}>
           {items.map((item, index) => (
             <li key={`li-${i}-${index}`}>
-              {item}
+              {renderInlineDefinitions(item, definitions)}
             </li>
           ))}
         </ul>,
@@ -111,7 +115,7 @@ export function MarkdownContent({
 
     blocks.push(
       <p key={`p-${i}`} className={slots.p}>
-        {paragraphLines.join(" ")}
+        {renderInlineDefinitions(paragraphLines.join(" "), definitions)}
       </p>,
     );
   }

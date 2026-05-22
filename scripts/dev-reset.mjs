@@ -2,7 +2,7 @@ import { execFileSync, spawn } from "node:child_process";
 import { rmSync } from "node:fs";
 
 const PROCESS_PATTERNS = ["next dev", "next-server"];
-const NEXT_DIR = ".next";
+const DEV_NEXT_DIR = ".next-dev";
 const NODE_BIN = `${process.env.HOME}/.nvm/versions/node/v22.22.2/bin`;
 const nextEnv = {
   ...process.env,
@@ -79,7 +79,7 @@ for (const pid of remaining) {
 
 await waitForExit(remaining, 1_000);
 
-rmSync(NEXT_DIR, {
+rmSync(DEV_NEXT_DIR, {
   recursive: true,
   force: true,
   maxRetries: 10,

@@ -49,7 +49,7 @@ export function CvPageContent({ locale }: CvPageContentProps) {
             }
 
             .cv-print-name {
-              font-size: 2.4rem !important;
+              font-size: 40px !important;
             }
 
             .cv-print-shell {

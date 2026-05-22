@@ -4,9 +4,17 @@ type PageHeaderProps = {
   eyebrow?: string;
   title: string;
   description: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
 };
 
-export function PageHeader({ eyebrow, title, description }: PageHeaderProps) {
+export function PageHeader({
+  eyebrow,
+  title,
+  description,
+  titleClassName,
+  descriptionClassName,
+}: PageHeaderProps) {
   const theme = getActivePresentationTheme();
 
   return (
@@ -16,10 +24,10 @@ export function PageHeader({ eyebrow, title, description }: PageHeaderProps) {
           {eyebrow}
         </p>
       ) : null}
-      <h1 className={theme.slots.pageHeader.title}>
+      <h1 className={titleClassName ?? theme.slots.pageHeader.title}>
         {title}
       </h1>
-      <p className={theme.slots.pageHeader.description}>
+      <p className={descriptionClassName ?? theme.slots.pageHeader.description}>
         {description}
       </p>
     </header>

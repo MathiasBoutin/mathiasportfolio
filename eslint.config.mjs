@@ -13,6 +13,7 @@ const config = [
   {
     ignores: [
       ".next/**",
+      ".next-dev/**",
       ".next.broken.*/**",
       ".open-next/**",
       ".wrangler/**",
