@@ -14,6 +14,7 @@ type PresentationThemeSlots = {
     pageRails: string;
     header: string;
     headerInner: string;
+    navText: string;
     footer: string;
     footerInner: string;
   };
@@ -145,7 +146,8 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         pageRails: "page-rails mx-auto flex w-full max-w-[61rem] flex-1 flex-col px-6 md:px-8",
         header: "sticky top-0 z-40 pt-4 md:pt-5",
         headerInner:
-          `mx-auto flex w-full max-w-[61rem] items-center justify-between rounded-sm border border-border bg-background/90 px-5 py-4 backdrop-blur-sm md:px-6 ${type("shellMeta")} leading-none tracking-[-0.02em] text-muted-foreground/85`,
+          `mx-auto flex w-full max-w-[61rem] items-center justify-between rounded-sm border border-border bg-background/90 px-5 py-4 backdrop-blur-sm md:px-6 ${type("shellMeta")} leading-none tracking-[-0.02em]`,
+        navText: "text-muted-foreground/90",
         footer: "py-8",
         footerInner:
           `flex w-full flex-col justify-between gap-4 ${type("shellMeta")} text-muted-foreground/85 md:flex-row`,
@@ -197,7 +199,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
         growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
         growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
-        growthBarValue: `tabular-nums ${type("growthBarRowValue")} uppercase text-[var(--primary-foreground)]`,
+        growthBarValue: `tabular-nums ${type("growthBarRowValue")} text-[var(--primary-foreground)]`,
         growthBarRowHeader: "flex items-baseline justify-between gap-4",
         growthBarRows: "mt-8 flex flex-col gap-8",
         growthBarTickFilled: "bg-[var(--primary-foreground)]/85",
@@ -284,6 +286,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         header: "sticky top-0 z-40 pt-4 md:pt-5",
         headerInner:
           `mx-auto flex w-full max-w-[70rem] items-center justify-between rounded-sm border border-border bg-background/90 px-5 py-4 backdrop-blur-sm md:px-6 ${type("shellMeta")} leading-none tracking-[0.01em]`,
+        navText: "text-muted-foreground/90",
         footer: "py-10",
         footerInner:
           `flex w-full flex-col justify-between gap-5 ${type("shellMeta")} text-muted-foreground md:flex-row`,
@@ -335,7 +338,7 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
         growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
         growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
-        growthBarValue: `tabular-nums ${type("growthBarRowValue")} uppercase text-[var(--primary-foreground)]`,
+        growthBarValue: `tabular-nums ${type("growthBarRowValue")} text-[var(--primary-foreground)]`,
         growthBarRowHeader: "flex items-baseline justify-between gap-4",
         growthBarRows: "mt-8 flex flex-col gap-8",
         growthBarTickFilled: "bg-[var(--primary-foreground)]/85",

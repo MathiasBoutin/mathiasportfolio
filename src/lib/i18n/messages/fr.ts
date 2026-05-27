@@ -9,7 +9,7 @@ const frMessages = {
       about: "Bio",
       cv: "CV",
       email: "Email",
-      connect: "Connect",
+      connect: "LinkedIn",
     },
   },
   shell: {

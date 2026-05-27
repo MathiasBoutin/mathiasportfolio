@@ -159,7 +159,7 @@ function CaseStudyPreviewCard({
         <PreviewMediaFrame media={previewMedia} open={open} className={theme?.mediaFrame} />
       </div>
 
-      <div className="relative z-10 flex items-end justify-between gap-5 text-[0.72rem] leading-none font-semibold tracking-[0.08em] uppercase">
+      <div className="relative z-10 flex items-end justify-between gap-5 text-[0.72rem] leading-none font-semibold tracking-[0.08em]">
         <p className={cn("max-w-[12rem] text-white", theme?.title)}>{title}</p>
         <p className={cn("font-mono text-[#d8ffe0]/48", theme?.timeline)}>{timeline}</p>
       </div>

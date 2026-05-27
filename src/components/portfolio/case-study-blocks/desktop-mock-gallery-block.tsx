@@ -265,7 +265,7 @@ export function DesktopMockGalleryBlock({
             </div>
 
             <AnimatePresence mode="wait" initial={false}>
-              {activeImage.alt ? (
+              {activeImage.caption ? (
                 <motion.figcaption
                   key={activeImage.src}
                   className={layout.desktopMockCaption}
@@ -274,7 +274,7 @@ export function DesktopMockGalleryBlock({
                   exit={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
                   transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }}
                 >
-                  {activeImage.alt}
+                  {activeImage.caption}
                 </motion.figcaption>
               ) : null}
             </AnimatePresence>

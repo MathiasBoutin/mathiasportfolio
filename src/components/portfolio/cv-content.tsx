@@ -56,16 +56,8 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
 
   return (
     <div className={isPrint ? "space-y-8" : "space-y-10 md:space-y-12"}>
-      <div className="max-w-3xl space-y-4">
+      <div className="max-w-3xl">
         <h1 className={cn("cv-print-name", typeStyle("cvName"))}>{cvData.name}</h1>
-        <p
-          className={cn(
-            isPrint ? "text-foreground max-w-none" : "text-foreground/70 max-w-2xl",
-            typeStyle("bodySm"),
-          )}
-        >
-          {cvData.about}
-        </p>
       </div>
 
       <section aria-label={cvMessages.timelineAriaLabel}>
@@ -90,13 +82,13 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                       : "flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-4"
                   }
                 >
-                  <p className={cn(typeStyle("headingSm"), "text-foreground/88")}>
+                  <p className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
                     {renderCompany(entry.company)}
                   </p>
                   <p
                     className={cn(
                       isPrint ? "text-foreground/70" : "text-foreground/55 md:text-right",
-                      typeClasses({ size: 14 }),
+                      typeClasses({ size: 16, tracking: "tight" }),
                     )}
                   >
                     {entry.context}
@@ -107,7 +99,7 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                     {entry.roles.map((role) => (
                       <li
                         key={role.title}
-                        className={cn(typeStyle("bodySm"), "text-foreground/78")}
+                        className={cn(typeClasses({ size: 16, leading: "body", tracking: "tight", traits: ["textPretty"] }), "text-foreground/78")}
                       >
                         <span className="text-foreground/90 font-medium">
                           {role.title}
@@ -121,7 +113,7 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                   </ul>
                   <ul
                     className={cn(
-                      typeStyle("bodySm"),
+                      typeClasses({ size: 16, leading: "body", tracking: "tight", traits: ["textPretty"] }),
                       "text-foreground/70 list-disc space-y-0.5 pl-4",
                     )}
                   >
@@ -146,10 +138,10 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
                 {entry.tenure}
               </p>
               <article>
-                <p className={cn(typeStyle("headingSm"), "text-foreground/88")}>
+                <p className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
                   {entry.school}
                 </p>
-                <p className={cn(typeStyle("bodySm"), "text-foreground/78")}>
+                <p className={cn(typeClasses({ size: 16, leading: "body", tracking: "tight", traits: ["textPretty"] }), "text-foreground/78")}>
                   {entry.credential}
                 </p>
               </article>
@@ -158,24 +150,6 @@ export function CvContent({ mode = "screen", locale = DEFAULT_LOCALE }: CvConten
         </ol>
       </section>
 
-      <section className="space-y-3">
-        <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
-          {cvMessages.focusAreasHeading}
-        </h2>
-        <ul className="flex flex-wrap gap-2">
-          {cvData.focusAreas.map((area) => (
-            <li
-              key={area}
-              className={cn(
-                typeStyle("bodySm"),
-                "bg-foreground/8 text-foreground/78 rounded-[4px] px-2 py-[0.12em]",
-              )}
-            >
-              {area}
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }

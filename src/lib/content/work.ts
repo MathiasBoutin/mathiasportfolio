@@ -11,6 +11,18 @@ type CaseStudyEntry = {
   data: CaseStudyFrontmatter;
 };
 
+export type OtherWorkEntry = {
+  slug: string;
+  name: string;
+  summary: string;
+  timeframe: string;
+  company: string;
+  content: string;
+  images: { src: string; alt: string }[];
+  href: string;
+  order: number;
+};
+
 // ---------------------------------------------------------------------------
 // Block definitions per case study, per locale
 // ---------------------------------------------------------------------------
@@ -58,21 +70,42 @@ const patchSourcingBlocks: Record<Locale, CaseStudyBlock[]> = {
     },
     {
       type: "text",
-      content: `## Frame
+      content: `## About Patch and the product
 
-Patch's sourcing product was originally built for about 200 carbon credit projects. In late 2024 we grew that number to 25,000+.
+Patch's core value is data and expertise, delivered to customers through a product that helps buyers and sellers of carbon credits work through the complexity of environmental commodities markets. It needs to serve two primary sets of users:
 
-We grew it as we moved upmarket into enterprise buyers, because a curated set was the one thing our most serious — and our largest — buyers couldn't use. A carbon purchase is often a multi-year commitment worth millions, and the buyer has to defend it to their own leadership, where "here's everything we considered" is a more defensible decision than "here's what a vendor showed us." Mature buyers want to know we had the full market in view, verify it themselves, and push back if there was a project we hadn't considered. A curated catalog gave them none of that, so we went and covered the market instead.
+- Experts, who build procurement programs from strategy to tracking, run diligence and quality assessment, and source inventory.
+- Buyers, who move through procurement stages and rely on expert recommendations and data inside the platform.
 
-A searchable market is a different product than a curated catalog. Rebuilding it meant designing for two audiences at once. Climate experts need depth on every dimension of a project. Buyers need a clear path to a decision they can stand behind. One massive surface for two mental models, and that tension ran through every decision that followed.`,
+That makes Patch's product a two sided pane of glass where experts and credit buyers meet to procure environmental commodities. The process is dense and data heavy. It often involves buyers who do not yet have deep climate expertise, in a market that is relatively new and constantly evolving, and that is balancing the environmental moment with a tough integrity battle. That two sided pane of glass idea shows up directly in the structure of the product: experts and buyers work in the same sourcing surface, but see different levels of detail depending on their role and where they are in the deal.`,
     },
     {
       type: "text",
-      content: `## Reframe
+      content: `## Frame: why we had to change
 
-The brief was to redesign the UI for a much larger set of data. More filters, better sorting, a way to compare projects. It sounded reasonable. I was fairly sure it was wrong.
+One key space in the product is the sourcing platform, the main surface where users explore available inventory and projects. It is where experts assemble recommendations and where buyers see and react to them.
 
-The clearest hint was sitting inside our own company. Patch's climate experts had quietly stopped using the product and moved their real work into Excel — a spreadsheet that had become the de facto source of truth for inventory for most of the team. They hadn't left because the interface was dated. They'd left because the data underneath couldn't support actual diligence, and a spreadsheet they controlled could. As we moved upmarket, that stopped being an internal quirk and became a forecast: enterprise buyers come with their own climate experts, and they were about to hit exactly the wall our experts already had.`,
+By late 2025, as Patch moved upmarket into mature enterprise customers, we expanded data availability from a curated set of roughly 200 to 350 projects to around 25,000 projects covering the major registries. We got there gradually over the year as we integrated additional registries and partners, but the result was a step change in scale from a curated catalog to a market level view.
+
+From a market perspective, this was necessary. Enterprise buyers were not satisfied with a vendor curated set. A carbon purchase is often a multi year, multi million dollar commitment, and buyers have to defend it internally. "Here is everything we considered" lands very differently than "here is what a vendor showed us."
+
+From a design perspective, the original brief came in as a medium scope front end project to improve browsability. We now had over a hundred times more data, so the ask was more filters, better sorting, and stronger search. On paper, that sounded reasonable. I was fairly sure it did not address the real problem.`,
+    },
+    {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Patch sourcing marketplace showing expert-built portfolios and a browsable project catalog",
+      caption:
+        "Can we add filters & rework the UI to make the platform support 25,000 projects please?",
+    },
+    {
+      type: "text",
+      content: `## Reframing the problem
+
+The first hint was inside the company. Our climate experts had quietly stopped using the product and moved their real work into Excel. The spreadsheet, not the app, had become the place where inventory lived and where sourcing and diligence work actually happened.
+
+They were not leaving because the interface looked dated. They were leaving because the data underneath could not support real diligence, and a spreadsheet they controlled could. As we moved upmarket, that stopped being an internal quirk and started to look like a preview. Enterprise buyers bring their own climate experts. They were about to hit the same wall.`,
     },
     {
       type: "desktopMock",
@@ -81,87 +114,153 @@ The clearest hint was sitting inside our own company. Patch's climate experts ha
       alt: "Patch current inventory spreadsheet used as the de facto source of truth for carbon credit projects",
     },
     {
-      type: "desktopMockGallery",
-      images: [
-        {
-          src: "/images/work/patch-sourcing-source-tab-filters.png",
-          alt: "Patch sourcing source tab showing filters, sortable columns, and project inventory results",
-        },
-        {
-          src: "/images/work/patch-sourcing-project-matching.png",
-          alt: "Patch sourcing project matching view showing buyer criteria and matched project attributes",
-        },
-        {
-          src: "/images/work/patch-sourcing-source-tab-table.png",
-          alt: "Patch sourcing source tab showing a filtered project table with registry, inventory, and pricing data",
-        },
-      ],
+      type: "text",
+      content: `Those 25,000 projects came from many different registries and third party partners, each describing things in their own way. The same technology might be labeled several different ways. The same fact might be reported in different formats, or not reported at all. We had many raw signals, but not all of them were actionable on their own. In many cases we could not reliably tell if a project was still issuing credits, whether we could actually source it, or what it might cost. A better UI on top of that would just help people browse an unreliable market faster.
+
+My other challenge was that an internal signal is easy to downplay. We had been punting on a proper fix for our teams for a while but never got to it. The rationale was always that our experts are power users, buyers are different, and maybe buyers would not care as much. Before we spent engineering time on that assumption, I designed an early version of the new sourcing platform in Figma Make, using realistically structured mock data that reflected the real registry inputs and inconsistencies.
+
+Figma Make and the wonders of truly interactive prototypes, at a fraction of the cost, were a huge unlock for Patch, given how often we had to design for real, messy data use cases. A static mock cannot expose a data problem because it does not have to live with the data. It is too easy to ignore the gaps, either willingly or because you do not yet have a sense of what real data will expose. A functioning prototype, even a scrappy one, lets you see how people behave when they are faced with actual structure and constraints. As was typical at Patch, we brought these prototypes into live customer calls with our sales team and watched buyers try to use them.
+`,
+    },
+    {
+      type: "desktopMock",
+      variant: "content",
+      src: "/images/work/uxr-screenshot.png",
+      alt: "Customer research screenshot from a Patch sourcing prototype feedback session",
+      caption:
+        "At Patch, we ran user research in a scrappy way that fit our very small, time-strapped EPD team. Instead of taking every comment at face value, we watched for patterns and used our internal context to interpret what we heard. We did not always nail it, but we were learning constantly.",
     },
     {
       type: "text",
-      content: `So the problem wasn't the interface. It was the data. Our 25,000 projects came from dozens of registries that each described things differently: different names for the same technology, different ways of reporting the same fact, different fields entirely. And the data was incomplete in ways that mattered. It often couldn't tell you whether a project was still issuing credits, whether we could actually source it, or what it might cost. A better UI on top of that would have been a faster way to browse an unreliable market.
+      content: `The failure modes showed up immediately. Buyers could not tell why one project ranked above another. They could not find the facts they cared about at the right time in their process. They did not fully trust what they were seeing. It mirrored what we had already seen internally: the same issues that pushed our experts into Excel were landing on the people this brief was supposed to serve.
 
-An internal signal is easy to wave away, though. Our experts are power users; buyers are different; maybe it wouldn't matter at the scale that counted. So before we committed engineering time, I built a working prototype of the new sourcing platform in Figma Make, running on the real, messy data. That detail was the point: a static mock can't expose a data problem because it has no data underneath it. A functioning prototype on the actual registry data could — and AI was what made building it fast and cheap enough to be worth doing before the real decision got made. I put it in front of customers on the sales calls we already had on the books. The gaps were obvious the moment people tried to use it. Buyers couldn't tell why one project ranked above another, couldn't find the facts they cared about, didn't trust what they were seeing. The same failure that drove our experts to Excel, now in front of the people the brief was meant to serve.
+The prototype was there to make the cost of the wrong plan visible to the people making roadmap decisions. We had one or two engineers available. Fixing the data meant delaying the visible UI work everyone thought they were getting, so the argument had to be concrete enough to change minds. I used those sessions to align our PM, engineering lead, and commercial leadership on pausing the UI work and investing first in the data model.
 
-The prototype wasn't there to test whether buyers liked the UI. It was there to make the cost of the wrong plan visible to the people funding it. We had one or two engineers on this, and fixing the data meant delaying the visible work everyone was expecting — so the argument had to be concrete enough to move a room already committed to a different plan. It was. Instead of redesigning the UI, we'd stop and rebuild the data model first.
+We decided to increase the scope to shape the data and the UI at the same time, delivering the data expansion the business needed while making sure it would solve customer problems.`,
+    },
+    {
+      type: "text",
+      content: `## The challenge: a system, not a single screen
 
-What we deliberately didn't do was the safe version of the brief: a UI/UX refactor on top of the data we had. That would have shipped, demoed well, and changed nothing about whether a buyer could trust the market. Choosing the data instead meant choosing a harder, slower, less visible battle — picked because it was the one actually worth fighting.`,
+There was also straightforward design complexity. We were now asking people to navigate a dataset of about 25,000 rows, each with 30 to 80 dimensions of different types. The interface had to support different phases of procurement, such as:
+
+- Early specification, when buyers define what they want to procure.
+- Diligence, when experts and buyers assess the risk profile of projects against criteria and risk appetite.
+- Sourcing and negotiation, when availability, contracting requirements, and other commercial details matter more.
+
+Experts and buyers care about different pieces of information at different phases. That created information architecture challenges: what to surface, what to nest, how dense the interface should be, and how to aggregate data into elements that feel actionable instead of overwhelming.
+`,
     },
     {
       type: "desktopMock",
       variant: "full",
-      src: "/images/work/patch-sourcing-portfolio-details.png",
-      alt: "Patch sourcing marketplace showing expert-built portfolios and a browsable project catalog",
+      src: "/images/work/project-details-page.png",
+      alt: "Patch project details page showing grouped carbon project data for buyers and experts",
+      caption:
+        "Project-level data is deep in Patch, stretching from basic metadata to expansive expert due diligence and AI-driven quality assessments.",
     },
     {
       type: "text",
-      content: `## The Lever
+      content: `We also needed the surface to scale. As we acquired more data and learned which dimensions people actually used, the UI had to be flexible enough to absorb new fields and composite signals without a full redesign every time. I wanted engineers to be able to clean and extend the data model, and in many cases adjust what showed up, without needing to pull design back into every small change.
 
-Every registry described its projects differently, and even at its best the data was raw: accurate, but not actionable without an expert. Sourcing and pricing weren't in the registries at all. We had to assemble those ourselves.
+At the UI level, that meant being deliberate about how information was grouped and weighted. Fields that answered the same user question needed to live together. Within each group, we spent time on hierarchy and visual cues so important signals were easy to scan, and secondary details stayed readable but did not compete for attention. The goal was that, over time, as people worked in the platform, these patterns would become recognizable and the surface would feel learned rather than new on every deal, even as we added more data.
 
-It would have been easy to treat this as a backend job and hand it off. I pushed against that. Data decisions are some of the most expensive to reverse: once 25,000 projects are modeled a certain way and a product sits on top, re-shaping the model means re-touching everything downstream. Making those calls without the product in view is a bet placed before you can see what you're betting on.
+To move quickly, I relied on scrappy, interactive prototyping in Figma Make, again with realistic data. Prototyping this way is especially useful for data projects. Stakeholders and customers can click through live, browsable lists instead of trying to imagine behavior from static screens. In internal reviews, getting product, engineering, design, and commercial stakeholders to look at the same prototype made alignment, and misalignment, much more obvious than abstract conversations would. I intentionally hit prototypes early to expose those gaps while it was still cheap to course correct.
 
-So we shaped the data with its final home in view. Registries structure their data for accounting. Buyers need it structured for choosing. Most of the work was translating one into the other: deciding the canonical shape so a buyer filtering for one thing found all of it, and merging internally gathered data into the same model without seams, so it read as one coherent picture rather than two sources stitched together.
-
-We sequenced the work to match. Design shaped the model from the consumption side first; engineering constraints came in once we knew what we were building. Then engineering moved to indexing and the infrastructure a dataset this size demands.
-
-AI mattered here, but not as a feature — and not as a black box either. Reconciling dozens of registries' inconsistent labels across 25,000 projects would have eaten the timeline on a one-to-two-engineer team; AI made it tractable. The judgment call was knowing where it couldn't be trusted. We knew the industry well enough to identify up front which categories of reconciliation were genuinely ambiguous — where calling two things "the same" required a climate expert, not a pattern match — and routed those to our experts before the model ran, rather than discovering the bad merges afterward. AI did the volume; we decided in advance where volume wasn't good enough.`,
+Once the Figma Make prototypes had done their job, I turned them into real specs. Being able to rely on design intuition and experience in that part was key. There are many ways I could have diverged on the UI and UX treatment for this interface, but the business reality meant we had to move quickly. Strong design system work we had done beforehand paid off massively here, and identifying which pieces required new UI was the balance we needed to strike to meet our objectives while keeping to our timelines.`,
     },
     {
       type: "text",
-      content: `## The two-sided pane of glass
+      content: `## Shaping the data model
 
-A clean data model made 25,000 projects correct. It didn't make them usable. Twenty-five thousand of anything is unbrowsable, and a buyer still had to get from the whole market down to a shortlist they could act on.
+Those prototypes also made our product gaps obvious, especially around the shape and usefulness of the data.
 
-There was an obvious path here: build two products, an expert tool and a buyer tool, one for depth and one for clarity. We didn't. Two surfaces would have re-created, inside our own product, the exact registry-versus-buyer split we'd just spent the data work closing. The bet was to align business and product incentives on a single surface and scale both audiences' needs at once — on the hypothesis that as the market matures, buyers grow more expert, and the two mental models converge rather than diverge. One surface was a wager on where the market was heading.
+We were aggregating raw fields from registries and partners. Combined, they contained a lot of noise. Transparency and clarity are separate challenges. Good architecture is as much about what you withhold as what you surface, and how.
 
-That made the core of this stage information architecture: deciding what gets surfaced and what gets nested, what order it's read in, what sits next to what. The instinct the brief came with was to show more — more filters, more columns, more sort options. But more is what made the market unusable in the first place. Good architecture is as much about what you withhold. What earns a place in the sourcing platform itself, and what belongs one level down on a project's detail page, was the real decision, and most of the work was making those calls deliberately rather than defaulting everything to the surface.
+One gap we identified was around the sourcability of any given project. We had separate signals like issuing periods, issuance amounts and dates, supplier and developer contacts, retirement details, and registration status. On their own, these data points did not answer a buyer's core question: "Can I actually buy this, and how soon."
 
-The grouping mattered more than the sorting. Inventory availability and issuance timelines, for instance, live together: a buyer asking whether they can get a project is asking, in the same breath, when it will be ready. Grouped, the two answer one question. Apart, the buyer has to assemble the answer themselves. We grouped by how buyers reason, not by how the data is typed.
-
-But a fixed architecture still treats every buyer the same, and buyers don't weight the market the same way. One buyer's spec makes location the dimension everything turns on; another barely cares about it. So the architecture had to respond to the buyer in front of it: a buyer's stated requirements pull the dimensions they care about forward, into the first thing they see on a project and into how the list is sorted. The scorecard is that principle made visible — adapting the architecture to each buyer's spec instead of guessing one fixed hierarchy for all of them, scoring each project against what that buyer actually asked for.
-
-This is also where the single-surface bet did its work. What's surfaced is the buyer's clarity; what's nested is the expert's depth — same surface, read as far down as the job demands, with role-based access governing pricing and supplier detail. The dual-audience tension doesn't fully resolve here, and it isn't meant to. It becomes a standing product principle: every buyer-facing surface built after this one inherits the same question of what to surface and what to nest. The architecture didn't end the tension — it gave the team a consistent way to keep answering it.
-
-Done well, this stage was quiet. It set up the search that came next: a way to read a buyer's intent directly, instead of waiting for them to express it one filter at a time.`,
+Early prototypes exposed this. When we surfaced all the raw fields, customers either got stuck or pulled the data out to reason about it offline. We worked with engineering and our climate experts to shape those inputs into a simple sourcing indicator. That signal combined the underlying data to represent how likely it was that a given project was actually sourcable and purchasable.
+`,
+    },
+    {
+      type: "desktopMock",
+      variant: "content",
+      src: "/images/work/Sourcing status.png",
+      alt: "Patch sourcing status indicator showing consolidated availability and sourcing signals",
     },
     {
       type: "text",
-      content: `## Outcomes
+      content: `Design's value here was in making the gaps intensely clear, then channeling what we heard from customers into concrete data requirements. Data is only as useful as it is actionable. By grounding the model in the decision buyers were trying to make, we helped the team prioritize which fields to standardize, which composite signals to create, and which raw data to keep one level down.
 
-There are no hard metrics I can share here, due to the nature of Patch's product. But the honest result is organizational, and it's specific: the work built a capability the company didn't have before.
+We sequenced the work accordingly. Design first shaped the model from the consumption side: what experts and buyers needed to see, in what combinations, to make real decisions. Engineering then layered in constraints and built indexing and infrastructure suited to this scale.
 
-The counterfactual is the clearest way to see it. Had we executed the original brief, we'd have shipped a polished UI onto a market buyers still couldn't trust — experts still in Excel, enterprise buyers hitting the same wall, the deals that prompted the move upmarket stalling on diligence they couldn't complete. The refactor would have demoed well and changed none of that.
-
-Instead, the internal teams came back first. The climate experts who'd drifted to Excel had somewhere to do real work again, and the platform made that work faster — recommendations shaped to each buyer rather than assembled from scratch each time. The spreadsheet got deprecated. As a designer, beating Excel is not a small thing to put on the board.
-
-The larger shift is what the platform became. It's now the data hub the product runs through. Supply, sales, and operations all work in it — tracking projects, updating them, presenting them to buyers from the same source. That was the real return on shaping the data first. A surface alone doesn't pull three functions onto one system; a data model they can all trust does.
-
-It also became the ground the next thing was built on: search that could read a buyer's intent directly, which is its own story.`,
+AI supported the process, but not as a shiny feature and not as a black box. Reconciling inconsistent labels and categories across tens of thousands of projects would have eaten the entire timeline for a one to two engineer team. AI made that reconciliation feasible. For example, we used AI to cluster and normalize technology labels across registries, while routing edge cases like novel methodologies or mixed category projects to our climate experts. Because we understood the industry context, we could mark areas where calling two things "the same" was actually a hard climate question rather than a pattern matching task. AI handled the volume and experts handled the truly judgment heavy decisions.`,
     },
     {
       type: "text",
-      content: "## Reflexions",
+      content: `## Contextualizing: making relevance obvious
+
+Once the data was usable and consistent, we still had a second problem. Buyers did not care about all dimensions equally. They cared about different combinations of fields depending on their goals and constraints.
+
+For example, some buyers cared deeply about availability timelines. Others focused on technology type, location, or third party ratings. Many operated under the requirements of specific climate certifications, each with its own rules. Some wanted projects co located with their supply chain, or technologies that felt narratively connected to their industry.
+
+Surfacing all dimensions all the time was not an option. It would have recreated the "Excel wall" inside the product.
+`,
+    },
+    {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/source-with-scorecard.png",
+      alt: "Patch sourcing results showing project scorecards matched against buyer specifications",
+    },
+    {
+      type: "text",
+      content: `For this, we built a scorecard type interface directly into the results. Buyers would express their spec up front. The scorecard cross referenced that spec with each project's dimensions and then:
+
+- Sorted projects by how well they matched that buyer's criteria.
+- Surfaced the project's match to a spec with a simple score that could be hovered to view the full match breakdown.
+
+This started as a scrappy Figma mock and quickly became one of the most useful UX patterns in the platform. It made the connection between "what I said I care about" and "what I am seeing on screen" explicit, without forcing buyers to manually manage filters for every slice of the market.
+
+In parallel, we kept the core information architecture principle consistent. The main sourcing view surfaced decision making signals. The project detail view nested the deeper, expert level fields. Experts could read further down when the task demanded it. Role based access governed sensitive information like pricing and supplier details, but the underlying mental model stayed consistent.`,
+    },
+    {
+      type: "text",
+      content: `## Outcomes`,
+    },
+    {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/source-outcome.png",
+      alt: "What if I could tell the sourcing platform what I was looking for, rather than click through hundreds of filters and complex sorting logic.",
+      caption:
+        "The final result was a platform that balanced density with information architecture, prioritizing key data points with visual weight and positioning, and offering consolidated data bundled in logical ways depending on user access.",
+    },
+    {
+      type: "text",
+      content: `I cannot share detailed metrics, given the nature of Patch's product. The clearest outcomes are organizational and qualitative.
+
+If we had simply executed the original brief, we would have shipped a polished new UI onto a market that experts and mature buyers still could not fully trust. Internal teams would likely have stayed in Excel. Enterprise deals would still have stalled at diligence because buyers could not complete the work inside the product. The refactor would have looked good in demos and left the underlying system unchanged.
+
+What actually happened was different. Internal teams came back first. The climate experts who had drifted to spreadsheets returned to the platform because it now reflected the way they thought and worked, and it made that work faster. Recommendations could be shaped around each buyer's spec rather than re assembled from scratch each time. Over time, the spreadsheet was deprecated as the primary workspace. For a designer, replacing Excel as the power user tool is a meaningful outcome.
+
+On the buyer side, we saw deals move through diligence with fewer back and forth conversations about missing or unclear information, and buyers spent more of their time comparing options instead of chasing basic facts.
+
+The sourcing platform also became the data hub that other functions relied on. Supply, sales, and operations all worked in it, tracking projects, updating them, and presenting them to buyers from the same source. That was the real return on shaping the data first. A surface alone does not pull three functions onto one system. A data model that each of them can trust does.
+
+The hardest moment in the project was asking leadership to delay a visible UI refresh in favor of invisible data work. I came in expecting pushback, so I brought prototypes and specific failure examples from sales calls to keep the discussion grounded in how experts and buyers were actually behaving.`,
+    },
+    {
+      type: "text",
+      content: `## Reflexions
+
+In this project, the value of design was not just about individual screens, UI and information architecture, it was also about how the system fit together. Design is so much more than the top layers of a product, and it's most useful when it can help at every level of it.
+
+- 0 to 1 and reframing. I pushed back on a UI first brief and reframed the problem around data quality and model design, using scrappy prototypes and realistic data to make the risks visible instead of debating them in the abstract.
+- Systems thinking. I treated the sourcing platform as part of a larger system that linked registries, internal experts, buyers, and other Patch teams, and used that lens to shape both the data model and the information architecture.
+- Scoping and tradeoffs. With one or two engineers, I helped the team choose to invest in the data model first, accepting a slower, less visible path in the short term in exchange for a platform other teams could build on.
+- Stakeholder management. I used interactive prototypes in live sales calls and internal reviews to align product, engineering, and commercial stakeholders around what success needed to look like for experts and buyers, not just for demos.
+- Collaboration. I worked closely with climate experts to define where AI automation was safe and where expert judgment was necessary, and with engineering to ensure that the model we designed together was actually buildable within constraints.`,
     },
   ],
   fr: [
@@ -175,7 +274,11 @@ It also became the ground the next thing was built on: search that could read a 
     },
     {
       type: "text",
-      content: `## Cadre
+      content: "## À propos de Patch et du produit",
+    },
+    {
+      type: "text",
+      content: `## Cadre : pourquoi nous avons dû changer
 
 Le produit sourcing de Patch a d'abord été conçu pour environ 200 projets de crédits carbone. Fin 2024, nous l'avons porté à plus de 25 000.
 
@@ -184,8 +287,16 @@ Cette montée en charge a accompagné notre progression vers des acheteurs enter
 Un marché consultable est un produit différent d'un catalogue curaté. Le reconstruire signifiait concevoir pour deux publics à la fois. Les experts climat ont besoin de profondeur sur chaque dimension d'un projet. Les acheteurs ont besoin d'un chemin clair vers une décision qu'ils peuvent assumer. Une seule surface massive pour deux modèles mentaux — et cette tension a traversé chaque décision qui a suivi.`,
     },
     {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/patch-sourcing-portfolio-details.png",
+      alt: "Marketplace Patch sourcing avec portfolios expert et catalogue de projets consultable",
+      caption:
+        "Est-ce qu'on peut ajouter des filtres et retravailler l'UI pour que la plateforme supporte 25 000 projets ?",
+    },
+    {
       type: "text",
-      content: "## Recadrage",
+      content: "## Recadrage du problème",
     },
     {
       type: "desktopMock",
@@ -194,39 +305,56 @@ Un marché consultable est un produit différent d'un catalogue curaté. Le reco
       alt: "Feuille de calcul d'inventaire Patch utilisée comme source de vérité pour les projets de crédits carbone",
     },
     {
-      type: "desktopMockGallery",
-      images: [
-        {
-          src: "/images/work/patch-sourcing-source-tab-filters.png",
-          alt: "Onglet source de Patch montrant les filtres, les colonnes triables et les résultats d'inventaire projets",
-        },
-        {
-          src: "/images/work/patch-sourcing-project-matching.png",
-          alt: "Vue de matching projet de Patch montrant les critères d'achat et les attributs projet correspondants",
-        },
-        {
-          src: "/images/work/patch-sourcing-source-tab-table.png",
-          alt: "Onglet source de Patch montrant un tableau filtré avec les données de registre, d'inventaire et de prix",
-        },
-      ],
+      type: "desktopMock",
+      variant: "content",
+      src: "/images/work/uxr-screenshot.png",
+      alt: "Capture d'écran de recherche client issue d'une session de retour sur un prototype sourcing Patch",
+      caption:
+        "Chez Patch, nous menions la recherche utilisateur de façon pragmatique, adaptée à une très petite équipe EPD constamment à court de temps. Plutôt que de prendre chaque commentaire au pied de la lettre, nous cherchions les tendances et utilisions notre contexte interne pour interpréter ce que nous entendions. Nous ne visions pas toujours juste, mais nous apprenions constamment.",
+    },
+    {
+      type: "text",
+      content: "## Le défi : un système, pas un seul écran",
     },
     {
       type: "desktopMock",
       variant: "full",
-      src: "/images/work/patch-sourcing-portfolio-details.png",
-      alt: "Marketplace Patch sourcing avec portfolios expert et catalogue de projets consultable",
+      src: "/images/work/project-details-page.png",
+      alt: "Page de détail projet Patch montrant des données carbone regroupées pour acheteurs et experts",
+      caption:
+        "Les données au niveau projet sont profondes dans Patch, allant des métadonnées de base à une due diligence experte étendue et à des évaluations qualité pilotées par l'IA.",
     },
     {
       type: "text",
-      content: "## Le levier",
+      content: "## Modéliser la donnée",
+    },
+    {
+      type: "desktopMock",
+      variant: "content",
+      src: "/images/work/Sourcing status.png",
+      alt: "Indicateur de statut de sourcing Patch montrant des signaux consolidés de disponibilité et de sourcing",
     },
     {
       type: "text",
-      content: "## La vitre à deux faces",
+      content: "## Contextualiser : rendre la pertinence évidente",
+    },
+    {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/source-with-scorecard.png",
+      alt: "Résultats sourcing Patch montrant des scorecards de projets comparées aux critères de l'acheteur",
     },
     {
       type: "text",
       content: "## Résultats",
+    },
+    {
+      type: "desktopMock",
+      variant: "full",
+      src: "/images/work/source-outcome.png",
+      alt: "Et si je pouvais dire à la plateforme de sourcing ce que je cherchais, plutôt que de cliquer à travers des centaines de filtres et une logique de tri complexe.",
+      caption:
+        "Le résultat final était une plateforme qui équilibrait densité et architecture de l'information, en donnant plus de poids visuel et une meilleure position aux données clés, et en regroupant les données consolidées de manière logique selon les accès de chaque utilisateur.",
     },
     {
       type: "text",
@@ -239,9 +367,9 @@ const naturalLanguageSearchBlocks: Record<Locale, CaseStudyBlock[]> = {
   en: [
     {
       type: "desktopMock",
-      variant: "full",
-      src: "/images/work/Source tab.png",
-      alt: "What if I could tell the sourcing platform what I was looking for, rather than click through hundreds of filters and complex sorting logic.",
+      variant: "content",
+      src: "/images/work/Ai-search-hero-image.mp4",
+      alt: "Natural language search translating a typed query into visible, editable filter state on the Patch sourcing platform",
     },
     {
       type: "text",
@@ -255,27 +383,30 @@ In 2026, a proper AI setup made it so a designer could see the gap, scope it, an
     },
     {
       type: "text",
-      content: `## Built it in two weeks
-
-For this, I didn't build a chat interface. We had solid filtering and sorting functionality, and a set of structured data. What we needed was a probabilistic, natural language interpretation of a user's query that we could turn into deterministic results. Natural language in, a visible and editable set of filters out. You type what you're looking for, the AI translates it into filter state, and you see exactly what it did. It misinterpreted you? Or maybe you didn't query exactly as you intended? Not a problem, you can just adjust the filters directly. The AI simply lowers the cost of saying what you want. It doesn't take the decision away from you.`,
+      content: `## Built it in two weeks`,
     },
     {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/FIgma Mock AI Search.png",
-      alt: "A quick figma prototype was all that was needed to stress test the visuals: no extensive spec, no overly complex brief or RFC.",
+      type: "desktopMockGallery",
+      images: [
+        {
+          src: "/images/work/post-ai-source.png",
+          alt: "After: Once search could handle most of the interaction, we could make the view denser with useful data instead of forcing users to manipulate filters directly.",
+          caption: "After: Once search could handle most of the interaction, we could make the view denser with useful data instead of forcing users to manipulate filters directly.",
+        },
+        {
+          src: "/images/work/source-pre-AI.png",
+          alt: "Before: Applying any meaningful filtering to the sourcing platform required manually applying a deep set of filters & sorting logic manually.",
+          caption: "Before: Applying any meaningful filtering to the sourcing platform required manually applying a deep set of filters & sorting logic manually.",
+        },
+      ],
     },
     {
       type: "text",
-      content: `From some quick Figma mocks, to a locally working Cursor-built proof of concept with real project data, to a working PR in three days and shipped end to end in two weeks, this went from idea to prod with no roadmap item. The idea was clear and the build was cheap enough that overthinking it would have been the mistake. Engineers were invaluable to the process with their feedback, but otherwise could stay focused on higher priority roadmap items they were working on.
+      content: `For this, I didn't build a chat interface. We had solid filtering and sorting functionality, and a set of structured data. What we needed was a probabilistic, natural language interpretation of a user's query that we could turn into deterministic results. Natural language in, a visible and editable set of filters out. You type what you're looking for, the AI translates it into filter state, and you see exactly what it did. It misinterpreted you? Or maybe you didn't query exactly as you intended? Not a problem, you can just adjust the filters directly. The AI simply lowers the cost of saying what you want. It doesn't take the decision away from you.
+
+From some quick Figma mocks, to a locally working Cursor-built proof of concept with real project data, to a working PR in three days and shipped end to end in two weeks, this went from idea to prod with no roadmap item. The idea was clear and the build was cheap enough that overthinking it would have been the mistake. Engineers were invaluable to the process with their feedback, but otherwise could stay focused on higher priority roadmap items they were working on.
 
 The experience was simple: type your natural language query into the search bar and a small Haiku agent, aware of the set of filters and sorting options available to it and knowledgeable about key terminology, interpreted the query and automatically applied, with visible feedback, a set of filters and sorting logic that met your criteria, that you could review and edit as needed, either with natural language again, or more traditional filter and sort patterns.`,
-    },
-    {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/Ai-search-hero-image.mp4",
-      alt: "Natural language search translating a typed query into visible, editable filter state on the Patch sourcing platform",
     },
     {
       type: "text",
@@ -295,9 +426,9 @@ And a designer's leverage has changed. UX-first work like this at Patch used to 
   fr: [
     {
       type: "desktopMock",
-      variant: "full",
-      src: "/images/work/Source tab.png",
-      alt: "Et si je pouvais dire à la plateforme de sourcing ce que je cherchais, plutôt que de cliquer à travers des centaines de filtres et une logique de tri complexe.",
+      variant: "content",
+      src: "/images/work/Ai-search-hero-image.mp4",
+      alt: "Recherche en langage naturel traduisant une requête saisie en état de filtres visible et modifiable sur la plateforme Patch",
     },
     {
       type: "text",
@@ -311,27 +442,30 @@ En 2026, avec un bon setup IA, un designer peut voir l'écart, en cadrer le pér
     },
     {
       type: "text",
-      content: `## Construit en deux semaines
-
-Pour ça, je n'ai pas construit une interface de chat. Nous avions déjà un système de filtres et de tri solide, ainsi qu'un ensemble de données structurées. Ce dont nous avions besoin, c'était d'une interprétation probabiliste en langage naturel de la requête d'un utilisateur, que nous pourrions transformer en résultats déterministes. Langage naturel en entrée, un ensemble de filtres visible et modifiable en sortie. Vous tapez ce que vous cherchez, l'IA le traduit en état de filtres, et vous voyez exactement ce qu'elle a fait. Elle vous a mal compris ? Ou peut-être n'avez-vous pas formulé votre requête exactement comme vous le vouliez ? Aucun problème : il suffit d'ajuster les filtres directement. L'IA réduit simplement le coût d'exprimer ce que vous voulez. Elle ne vous retire pas la décision.`,
+      content: `## Construit en deux semaines`,
     },
     {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/FIgma Mock AI Search.png",
-      alt: "Un prototype Figma rapide a suffi pour mettre les visuels à l'épreuve : pas de spec lourde, pas de brief ou de RFC inutilement complexe.",
+      type: "desktopMockGallery",
+      images: [
+        {
+          src: "/images/work/post-ai-source.png",
+          alt: "Après : Une fois la recherche assez puissante pour gérer la plupart des interactions, nous pouvions densifier la vue avec des données utiles au lieu d'obliger les utilisateurs à manipuler directement les filtres.",
+          caption: "Après : Une fois la recherche assez puissante pour gérer la plupart des interactions, nous pouvions densifier la vue avec des données utiles au lieu d'obliger les utilisateurs à manipuler directement les filtres.",
+        },
+        {
+          src: "/images/work/source-pre-AI.png",
+          alt: "Avant : Appliquer un filtrage significatif sur la plateforme de sourcing nécessitait d'appliquer manuellement un ensemble profond de filtres et de logique de tri.",
+          caption: "Avant : Appliquer un filtrage significatif sur la plateforme de sourcing nécessitait d'appliquer manuellement un ensemble profond de filtres et de logique de tri.",
+        },
+      ],
     },
     {
       type: "text",
-      content: `De quelques maquettes Figma rapides, à une preuve de concept fonctionnelle construite avec Cursor sur de vraies données de projets, puis à une PR fonctionnelle en trois jours et un déploiement de bout en bout en deux semaines, le projet est passé de l'idée à la prod sans jamais devenir un item de roadmap. L'idée était claire et le coût du build suffisamment faible pour que trop réfléchir aurait été l'erreur. Les ingénieurs ont été précieux par leurs retours, tout en pouvant rester concentrés sur les sujets roadmap plus prioritaires sur lesquels ils travaillaient.
+      content: `Pour ça, je n'ai pas construit une interface de chat. Nous avions déjà un système de filtres et de tri solide, ainsi qu'un ensemble de données structurées. Ce dont nous avions besoin, c'était d'une interprétation probabiliste en langage naturel de la requête d'un utilisateur, que nous pourrions transformer en résultats déterministes. Langage naturel en entrée, un ensemble de filtres visible et modifiable en sortie. Vous tapez ce que vous cherchez, l'IA le traduit en état de filtres, et vous voyez exactement ce qu'elle a fait. Elle vous a mal compris ? Ou peut-être n'avez-vous pas formulé votre requête exactement comme vous le vouliez ? Aucun problème : il suffit d'ajuster les filtres directement. L'IA réduit simplement le coût d'exprimer ce que vous voulez. Elle ne vous retire pas la décision.
+
+De quelques maquettes Figma rapides, à une preuve de concept fonctionnelle construite avec Cursor sur de vraies données de projets, puis à une PR fonctionnelle en trois jours et un déploiement de bout en bout en deux semaines, le projet est passé de l'idée à la prod sans jamais devenir un item de roadmap. L'idée était claire et le coût du build suffisamment faible pour que trop réfléchir aurait été l'erreur. Les ingénieurs ont été précieux par leurs retours, tout en pouvant rester concentrés sur les sujets roadmap plus prioritaires sur lesquels ils travaillaient.
 
 L'expérience était simple : taper une requête en langage naturel dans la barre de recherche, puis laisser un petit agent Haiku, conscient de l'ensemble des filtres et options de tri à sa disposition et connaissant la terminologie clé, interpréter la requête et appliquer automatiquement, avec un retour visible, un ensemble de filtres et une logique de tri correspondant aux critères. L'utilisateur pouvait ensuite revoir et modifier cela si besoin, soit de nouveau en langage naturel, soit via des patterns de filtre et de tri plus classiques.`,
-    },
-    {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/Ai-search-hero-image.mp4",
-      alt: "Recherche en langage naturel traduisant une requête saisie en état de filtres visible et modifiable sur la plateforme Patch",
     },
     {
       type: "text",
@@ -350,104 +484,6 @@ Et l'effet de levier d'un designer a changé. Un travail UX-first comme celui-ci
   ],
 };
 
-const shopPayInstallmentsBlocks: Record<Locale, CaseStudyBlock[]> = {
-  en: [
-    {
-      type: "desktopMock",
-      variant: "full",
-      src: "/images/work/Final purchase.png",
-      alt: "Shop Pay Installments final purchase screen showing 4-payment breakdown with no interest",
-      caption: "Shop Pay Installments allowed buyers to pay for the purchase in 4 payments with no interest, and needed to work across millions of online stores & complex checkout permutations.",
-      width: 1440,
-      height: 748,
-    },
-    {
-      type: "text",
-      content: `## Context
-
-Shopify wanted to let buyers split a purchase into smaller payments. The reasoning was simple. Conversion dropped as carts got more expensive, and a lot of buyers were already looking for ways to keep their budget flexible.
-
-Shop Pay was a natural place to put it. It had reach, it knew its buyers, and it could offer installments right in the flow instead of as a separate signup. We built the product with Affirm as a partner, which added real constraints to what the experience could be.
-
-I led design for the buyer side, from pre-purchase through to post-purchase.`,
-    },
-    {
-      type: "text",
-      content: `## What we did
-
-We started with research. A survey of over a thousand respondents, partner insights, and twelve interviews split across two groups: people who already used Buy-Now-Pay-Later, and people who didn't. We wanted to understand how buyers actually thought about it before picking a direction.`,
-    },
-    {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/uxrbnpl.png",
-      alt: "UXR research synthesis showing buyer profiles for Shop Pay Installments BNPL solution",
-      caption: "We ran extensive UXR research, with both a survey and in-person interviews, to establish buyer profiles for our BNPL solution.",
-      width: 1662,
-      height: 924,
-    },
-    {
-      type: "text",
-      content: `A few things stood out. Buyers felt very differently about installments depending on who they were, but Shop Pay's buyers leaned positive and tended to treat it as a budgeting tool. Some worried that interest would make an already hard purchase decision harder. And in early testing, a few buyers started to see Shop Pay itself as an installments company, which was a brand risk worth keeping an eye on.
-
-Most of my time went to the post-purchase experience. That's where a buyer tracks their order, sees what they still owe, and makes payments over the next six to eight weeks. It's the least visible part of installments. It's also where things quietly go wrong, so it had to be clear and calm. We prototyped, ran unmoderated task-based tests on the riskier assumptions, and instrumented the flows so we could watch support load, repayment rates, and failed payments once it shipped.`,
-    },
-    {
-      type: "text",
-      content: `## Where we landed
-
-Shop Pay Installments left beta and launched in April 2021. Within a few months it was the largest installments provider in the US by merchant count, and it accounted for roughly 7% of Shop Pay orders.`,
-    },
-  ],
-  fr: [
-    {
-      type: "desktopMock",
-      variant: "full",
-      src: "/images/work/Final purchase.png",
-      alt: "Écran d'achat final Shop Pay Versements montrant la répartition en 4 paiements sans intérêts",
-      caption: "Shop Pay Versements permettait aux acheteurs de payer leur achat en 4 versements sans intérêts, et devait fonctionner dans des millions de boutiques en ligne avec des permutations de paiement complexes.",
-      width: 1440,
-      height: 748,
-    },
-    {
-      type: "text",
-      content: `## Contexte
-
-Shopify souhaitait permettre aux acheteurs de diviser un achat en plusieurs paiements. Le raisonnement était simple. La conversion chutait à mesure que les paniers devenaient plus coûteux, et de nombreux acheteurs cherchaient déjà des moyens de garder leur budget flexible.
-
-Shop Pay était l'endroit naturel pour l'intégrer. Il avait la portée, connaissait ses acheteurs, et pouvait proposer les versements directement dans le parcours plutôt que comme une inscription séparée. Nous avons construit le produit avec Affirm comme partenaire, ce qui ajoutait de vraies contraintes à ce que l'expérience pouvait être.
-
-J'ai dirigé le design pour le côté acheteur, du pré-achat jusqu'au post-achat.`,
-    },
-    {
-      type: "text",
-      content: `## Ce que nous avons fait
-
-Nous avons commencé par la recherche. Un sondage auprès de plus d'un millier de répondants, des insights partenaires, et douze entretiens répartis en deux groupes : des personnes qui utilisaient déjà le Buy-Now-Pay-Later, et des personnes qui ne l'utilisaient pas. Nous voulions comprendre comment les acheteurs pensaient réellement au produit avant de choisir une direction.`,
-    },
-    {
-      type: "desktopMock",
-      variant: "content",
-      src: "/images/work/uxrbnpl.png",
-      alt: "Synthèse de recherche UXR montrant les profils d'acheteurs pour la solution BNPL de Shop Pay",
-      caption: "Nous avons mené une recherche UXR approfondie, avec à la fois un sondage et des entretiens en personne, pour établir les profils d'acheteurs de notre solution BNPL.",
-      width: 1662,
-      height: 924,
-    },
-    {
-      type: "text",
-      content: `Quelques éléments se sont démarqués. Les acheteurs ressentaient les versements très différemment selon leur profil, mais les acheteurs Shop Pay penchaient positivement et avaient tendance à le traiter comme un outil de gestion budgétaire. Certains craignaient que les intérêts ne rendent une décision d'achat déjà difficile encore plus compliquée. Et lors des premiers tests, quelques acheteurs ont commencé à percevoir Shop Pay lui-même comme une entreprise de versements, ce qui représentait un risque de marque à surveiller.
-
-La majeure partie de mon temps a été consacrée à l'expérience post-achat. C'est là qu'un acheteur suit sa commande, voit ce qu'il doit encore payer, et effectue ses paiements sur les six à huit semaines suivantes. C'est la partie la moins visible des versements. C'est aussi là que les choses se passent discrètement mal, donc il fallait que ce soit clair et calme. Nous avons prototypé, effectué des tests non modérés basés sur des tâches pour les hypothèses les plus risquées, et instrumenté les parcours pour surveiller la charge du support, les taux de remboursement et les paiements échoués une fois le produit lancé.`,
-    },
-    {
-      type: "text",
-      content: `## Où nous en sommes arrivés
-
-Shop Pay Versements a quitté la bêta et lancé en avril 2021. En quelques mois, c'était le plus grand fournisseur de versements aux États-Unis en nombre de marchands, et il représentait environ 7 % des commandes Shop Pay.`,
-    },
-  ],
-};
 
 // ---------------------------------------------------------------------------
 // Case study data (pure TypeScript — no YAML serialization needed for blocks)
@@ -458,7 +494,7 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
     {
       slug: "patch-sourcing-marketplace",
       data: {
-        title: "From a curated marketplace to a transparent market (temporary)",
+        title: "Scaling Patch's sourcing platform from 300 to 25,000 projects",
         summary:
           "Patch grew its sourcing data from 200 to 25,000+ carbon projects. I led the redesign that turned an unusable pile of data into a market buyers and in-house experts could both navigate.",
         company: "Patch",
@@ -509,30 +545,28 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
       },
     },
     {
-      slug: "shop-pay-installments",
+      slug: "patch-offer-log",
       data: {
-        title: "Shop Pay Installments",
-        summary:
-          "A Buy-Now-Pay-Later product built into Shop Pay. I led buyer experience design for the entire project, focused on the purchase flow as much as the post-purchase journey, where buyers track and repay their installments.",
-        company: "Shopify",
+        title: "Offer log: tracking complex deal logistics",
+        summary: "",
+        company: "Patch",
         role: "Lead Product Designer",
-        timeline: "2020–2021",
+        timeline: "Q2 2025",
         team: "Placeholder",
         tools: ["Figma"],
-        topics: ["Fintech", "Payments", "Post-purchase"],
+        topics: ["Carbon markets", "Operations"],
         coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Placeholder preview for Shop Pay Installments case study.",
+          alt: "Placeholder preview for Offer log case study.",
         },
         featured: true,
-        problem:
-          "Conversion dropped as carts got more expensive. Shopify needed a way to let buyers split purchases into smaller payments without breaking the Shop Pay experience.",
-        outcome:
-          "Shop Pay Installments launched in April 2021 and became the largest installments provider in the US by merchant count within months, accounting for ~7% of Shop Pay orders.",
+        problem: "",
+        outcome: "",
         order: 3,
-        blocks: shopPayInstallmentsBlocks.en,
+        comingSoon: true,
+        blocks: [],
       },
     },
   ],
@@ -540,7 +574,7 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
     {
       slug: "patch-sourcing-marketplace",
       data: {
-        title: "D'un marché curaté à un marché transparent (temporaire)",
+        title: "Faire passer la plateforme sourcing de Patch de 300 à 25 000 projets",
         summary:
           "Patch est passé de 200 à plus de 25 000 projets carbone dans ses données sourcing. J'ai mené la refonte qui a transformé une masse de données inutilisable en un marché que les acheteurs et les experts internes pouvaient tous deux parcourir.",
         company: "Patch",
@@ -591,34 +625,125 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
       },
     },
     {
-      slug: "shop-pay-installments",
+      slug: "patch-offer-log",
       data: {
-        title: "Shop Pay Versements",
-        summary:
-          "Un produit Buy-Now-Pay-Later intégré à Shop Pay. J'ai dirigé le design de l'expérience acheteur pour l'ensemble du projet, en me concentrant autant sur le parcours d'achat que sur le parcours post-achat, où les acheteurs suivent et remboursent leurs versements.",
-        company: "Shopify",
+        title: "Offer log: tracking complex deal logistics",
+        summary: "",
+        company: "Patch",
         role: "Lead Product Designer",
-        timeline: "2020–2021",
+        timeline: "Q2 2025",
         team: "Placeholder",
         tools: ["Figma"],
-        topics: ["Fintech", "Paiements", "Post-achat"],
+        topics: ["Carbon markets", "Operations"],
         coverImage: "/images/work/case-study-preview-placeholder.png",
         previewMedia: {
           type: "image",
           src: "/images/work/case-study-preview-placeholder.png",
-          alt: "Aperçu placeholder pour l'étude de cas Shop Pay Versements.",
+          alt: "Placeholder preview for Offer log case study.",
         },
         featured: true,
-        problem:
-          "La conversion chutait à mesure que les paniers devenaient plus coûteux. Shopify avait besoin d'un moyen de permettre aux acheteurs de diviser leurs achats en paiements plus petits sans briser l'expérience Shop Pay.",
-        outcome:
-          "Shop Pay Versements a lancé en avril 2021 et est devenu le plus grand fournisseur de versements aux États-Unis en nombre de marchands en quelques mois, représentant ~7 % des commandes Shop Pay.",
+        problem: "",
+        outcome: "",
         order: 3,
-        blocks: shopPayInstallmentsBlocks.fr,
+        comingSoon: true,
+        blocks: [],
       },
     },
   ],
 };
+
+const otherWorkEntries: OtherWorkEntry[] = [
+  {
+    slug: "patch-portfolio-management",
+    name: "Portfolio management",
+    summary:
+      "Redesigned a carbon credit ledger into a planning tool that helped enterprise buyers manage inventory, track status, and plan retirements with confidence.",
+    timeframe: "January 2026",
+    company: "Patch",
+    images: [
+      {
+        src: "/images/work/Project page/Portfolio overview (10yrs, status, vintage).png",
+        alt: "Patch portfolio management — portfolio overview showing 10-year horizon with status and vintage breakdown",
+      },
+      {
+        src: "/images/work/Project page/Overview.png",
+        alt: "Patch portfolio management — overview page showing high-level portfolio summary and credit status",
+      },
+      {
+        src: "/images/work/Project page/Inventory.png",
+        alt: "Patch portfolio management — inventory view showing credit lifecycle across delivered, undelivered, and pre-retirement states",
+      },
+    ],
+    content: `## Challenge
+
+Our previous portfolio management feature was built to meet table stakes: it worked like a transaction ledger, simply put. Customers were coming to us with much more complex planning needs. They needed to understand inventory across delivered, undelivered, and not-yet-issued credits, then decide which credits to retire against specific future years and claims. The complexity came from the lifecycle itself: issuance, delivery, payment, and retirement all moved on different timelines, and the product wasn't helping customers make sense of that.
+
+## Customer Research & Framing
+
+We treated this as a focused generative research effort over about three weeks. I put together the research plan, got buyer interviews on the schedule, and combined internal conversations with Patch teams and direct customer interviews to understand how people actually thought about inventory, status, and retirement planning. The first week was planning, the second was execution, and the third was analysis of the insights, all that while pushing the actual design explorations forward in parallel.
+
+## Designing for Complex Inventory
+
+The core design challenge was making a complicated portfolio feel legible without flattening the nuance or losing the details. Customers needed to see what had been purchased, what was actually available, what was still pre-retirement, and what had already been allocated or retired. I focused on organizing the experience around planning and traceability, so buyers could understand both the current state of their inventory and what actions they could take next. That made the system more useful for day-to-day decision-making and for reporting to investors or governing bodies.
+
+## Build & Collaboration
+
+This project moved in a very fast build environment, with engineering using AI heavily to accelerate execution. My role was to create enough clarity that engineers could keep moving without waiting on every final UI detail, while still making sure we weren't under-designing and shipping something too loose. We worked in a tight loop where prototypes, specs, and implementation evolved together, and I made sure the team had a strong enough view of the direction that they could stay unblocked as the interface firmed up. That balance between speed and product judgment was one of the most important parts of the work.
+
+## Outcomes
+
+This wasn't a paid feature, so success showed up in operational impact rather than direct revenue. After launch, we saw an 82% decrease over three months in customer requests to sales & operations asking basic but critical questions about their credits and status.`,
+    href: "/work/patch-portfolio-management",
+    order: 1,
+  },
+  {
+    slug: "shop-pay-installments-ux",
+    name: "Shop Pay installments",
+    summary:
+      "Designed the buyer experience for Shop Pay Installments, from purchase through repayment, balancing conversion, trust, and brand risk at Shopify scale.",
+    timeframe: "2020",
+    company: "Shopify",
+    images: [
+      {
+        src: "/images/work/3.png",
+        alt: "Shop Pay Installments buyer experience",
+      },
+      {
+        src: "/images/work/5.png",
+        alt: "Shop Pay Installments post-purchase payment schedule",
+      },
+    ],
+    content: `## Context
+
+In 2020, I led IC design for the buyer experience of Shop Pay Installments across pre-purchase, checkout, and post-purchase. The product built on top of Shop Pay, Shopify's accelerated checkout, and aimed to give buyers a flexible way to pay for higher-value purchases without adding friction to checkout. The opportunity was clear, but so were the risks: buy now, pay later was still emerging, buyer sentiment was mixed, and we were careful not to position Shopify as a lender-first brand.
+
+## Research & Framing
+
+This was a research-heavy project from the start. We combined partner insights, a survey of roughly 1,000 respondents, and in-depth interviews with more than 20 buyers to understand expectations, concerns, and decision-making around installments. I worked closely with researchers throughout, helping shape the problem space and translate the findings into product decisions. One of the most important insights was that buyers often saw installments as a helpful budgeting tool, but interest-bearing models introduced hesitation and cognitive overhead at the moment of purchase.
+
+## Designing for Trust
+
+A major design challenge was deciding how much information to show, and when, so buyers could make an informed choice without feeling overwhelmed. We led with a simple four-pay, no-interest model for smaller purchases and designed the flow so buyers could clearly compare paying in full versus paying over time, understand their approval state, and move forward with confidence. Because this wasn't the kind of financial product you ship lightly and fix later, we spent significant time designing for edge cases, especially around approvals, rejections, and moments where trust could break down.
+
+## Post-purchase Experience
+
+The most interesting part of the work was post-purchase. Installments stretch a single purchase across six weeks, and once buyers have overlapping orders, upcoming charges, refunds, and delivery timelines, it becomes easy to lose track of what's happening. I focused on making that experience legible across web and app, so buyers could understand their payment schedule, see what was charged and what was next, and stay informed through email and push notifications. We also made sure buyers didn't need the Shop app to manage their payments, which kept the experience accessible and reduced dependency on a single channel.
+
+## Validation & Delivery
+
+We validated the experience through repeated unmoderated task-based testing and gave participants real gift card funds so they could go through flows with actual stakes instead of hypothetical intent. That helped us catch where people got stuck and evaluate the experience under more realistic conditions. Throughout the project, we also instrumented key flows, set up tripwires for performance, and reviewed the work regularly with UX and business stakeholders. The result was a simple experience on the surface, backed by a lot of careful systems thinking underneath.
+
+## Outcomes
+
+By the time I left Shopify in April 2021, just a few months after launch, Shop Pay Installments had already become the largest installments provider in the US by merchant count. It accounted for 7% of Shop Pay orders and 15% of overall installments volume on Shopify, which showed how quickly buyers and merchants adopted it. For me, the strongest outcome was that we shipped a financial product with meaningful complexity in a way that felt clear, lightweight, and trustworthy.
+
+## Reflections
+
+This project taught me a lot about working with third parties and about staying opinionated without becoming rigid. Many constraints turned out to be less fixed than they first appeared, and I learned how important it is to document unresolved UX opportunities and revisit them as the product matures. If I did it again, I'd push earlier for easier testing infrastructure, use internal behavioral data sooner, and stay more closely involved through build and QA to protect the details that matter in a high-trust experience.`,
+    href: "/work/shop-pay-installments-ux",
+    order: 2,
+  },
+];
 
 // ---------------------------------------------------------------------------
 // Public API (same shape as before — cached async functions)
@@ -633,9 +758,18 @@ export const getFeaturedCaseStudies = cache(async (locale: Locale = DEFAULT_LOCA
   return projects.filter((project) => project.data.featured);
 });
 
+export const getOtherWork = cache(async () => {
+  return otherWorkEntries.sort((a, b) => a.order - b.order);
+});
+
 export const getCaseStudyBySlug = cache(
   async (slug: string, locale: Locale = DEFAULT_LOCALE) => {
     const projects = await getCaseStudies(locale);
     return projects.find((project) => project.slug === slug);
   },
 );
+
+export const getOtherWorkBySlug = cache(async (slug: string) => {
+  const entries = await getOtherWork();
+  return entries.find((entry) => entry.slug === slug);
+});

@@ -9,7 +9,7 @@ const enMessages = {
       about: "Bio",
       cv: "CV",
       email: "Email",
-      connect: "Connect",
+      connect: "LinkedIn",
     },
   },
   shell: {
@@ -21,7 +21,7 @@ const enMessages = {
     sections: {
       workExperience: "Experience",
       whoIAm: "Who I am",
-      caseStudies: "Work",
+      caseStudies: "Case studies",
       connect: "Connect",
     },
     popovers: {

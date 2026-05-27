@@ -52,6 +52,7 @@ const desktopMockBlockSchema = z.object({
 const desktopMockGalleryItemSchema = z.object({
   src: z.string(),
   alt: z.string().default(""),
+  caption: z.string().optional(),
 });
 
 const desktopMockGalleryBlockSchema = z.object({
@@ -147,6 +148,7 @@ export const caseStudySchema = z.object({
   definitions: z.record(z.string(), inlineDefinitionSchema).optional(),
   hero: caseStudyHeroSchema.optional(),
   meta: caseStudyMetaSchema.optional(),
+  comingSoon: z.boolean().optional(),
 });
 
 export type CaseStudyFrontmatter = z.infer<typeof caseStudySchema>;

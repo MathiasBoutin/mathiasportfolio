@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { type Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
 import { localizePath } from "@/lib/i18n/routing";
-import { getFeaturedCaseStudies } from "@/lib/content/work";
+import { getFeaturedCaseStudies, getOtherWork } from "@/lib/content/work";
 import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
@@ -20,6 +20,7 @@ type HomePageContentProps = {
 
 export async function HomePageContent({ locale }: HomePageContentProps) {
   const featuredStudies = await getFeaturedCaseStudies(locale);
+  const otherWork = await getOtherWork();
   const homeContent = getHomeContent(locale);
   const theme = getActivePresentationTheme();
   const messages = getMessages(locale);
@@ -121,13 +122,40 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
               <ul className="space-y-1">
                 {featuredStudies.map((study) => (
                   <li key={study.slug}>
-                    <Link
-                      href={localizePath(`/work/${study.slug}`, locale)}
-                      className="soft-link"
-                    >
-                      {study.data.title}{" "}
+                    {study.data.comingSoon ? (
+                      <span className="cursor-default text-foreground/40">
+                        {study.data.title}{" "}
+                        <span className="text-muted-foreground/40">
+                          (Coming soon...)
+                        </span>
+                      </span>
+                    ) : (
+                      <Link
+                        href={localizePath(`/work/${study.slug}`, locale)}
+                        className="soft-link"
+                      >
+                        {study.data.title}{" "}
+                        <span className="text-muted-foreground/60">
+                          ({study.data.company}, {study.data.timeline})
+                        </span>
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="space-y-2">
+              <h2 className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
+                Other work
+              </h2>
+              <ul className="space-y-1">
+                {otherWork.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/work/${item.slug}`} className="soft-link">
+                      {item.name}{" "}
                       <span className="text-muted-foreground/60">
-                        ({study.data.company}, {study.data.timeline})
+                        ({item.company}, {item.timeframe})
                       </span>
                     </Link>
                   </li>
