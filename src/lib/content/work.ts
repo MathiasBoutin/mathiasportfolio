@@ -109,6 +109,7 @@ What we deliberately didn't do was the safe version of the brief: a UI/UX refact
     },
     {
       type: "desktopMock",
+      variant: "full",
       src: "/images/work/patch-sourcing-portfolio-details.png",
       alt: "Patch sourcing marketplace showing expert-built portfolios and a browsable project catalog",
     },
@@ -211,6 +212,7 @@ Un marché consultable est un produit différent d'un catalogue curaté. Le reco
     },
     {
       type: "desktopMock",
+      variant: "full",
       src: "/images/work/patch-sourcing-portfolio-details.png",
       alt: "Marketplace Patch sourcing avec portfolios expert et catalogue de projets consultable",
     },
