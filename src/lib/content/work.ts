@@ -47,7 +47,7 @@ const patchSourcingDefinitions: Record<string, InlineDefinition> = {
     title: "The aligning power of design",
     theme: "default",
     definition:
-      "I reach for mocks or prototypes early if the timeline is tight, before I consider them truly \"earned,\" because they turn a vague challenge or disagreement into something real. It's much easier to align people around ideas and concepts they can see and react to than something they have to imagine. Stronger alignment, more rapidly. The risk is that a mock can also paint you into a corner — people anchor on it. So I try to be explicit that an early mock is a question, not a proposal.",
+      "I reach for mocks or prototypes early if the timeline is tight, before I consider them truly \"earned,\" because they turn a vague challenge or disagreement into something real. It's much easier to align people around ideas and concepts they can see and react to than something they have to imagine. Stronger alignment, more rapidly. The risk is that a mock can also paint you into a corner: people anchor on it. So I try to be explicit that an early mock is a question, not a proposal.",
   },
   "j'ai construit une maquette": {
     term: "j'ai construit une maquette",
@@ -545,7 +545,7 @@ const caseStudiesByLocale: Record<Locale, CaseStudyEntry[]> = {
         },
         featured: true,
         problem:
-          "Expressing a simple intent on the sourcing platform meant navigating a deep filter taxonomy — a repeated minute-long task where one sentence should have been enough.",
+          "Expressing a simple intent on the sourcing platform meant navigating a deep filter taxonomy, a repeated minute-long task where one sentence should have been enough.",
         outcome:
           "A natural language query translated into visible, editable filter state, turning a repeated minute-long task into a seconds-long workflow.",
         order: 2,
@@ -671,15 +671,15 @@ const otherWorkEntries: OtherWorkEntry[] = [
     images: [
       {
         src: "/images/work/Project page/Portfolio overview (10yrs, status, vintage).png",
-        alt: "Patch portfolio management — portfolio overview showing 10-year horizon with status and vintage breakdown",
+        alt: "Patch portfolio management: portfolio overview showing 10-year horizon with status and vintage breakdown",
       },
       {
         src: "/images/work/Project page/Overview.png",
-        alt: "Patch portfolio management — overview page showing high-level portfolio summary and credit status",
+        alt: "Patch portfolio management: overview page showing high-level portfolio summary and credit status",
       },
       {
         src: "/images/work/Project page/Inventory.png",
-        alt: "Patch portfolio management — inventory view showing credit lifecycle across delivered, undelivered, and pre-retirement states",
+        alt: "Patch portfolio management: inventory view showing credit lifecycle across delivered, undelivered, and pre-retirement states",
       },
     ],
     content: `## Challenge
