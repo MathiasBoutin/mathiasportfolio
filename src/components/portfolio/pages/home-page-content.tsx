@@ -58,7 +58,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                 {homeMessages.sections.workExperience}
               </h2>
               <p>
-                {homeContent.workExperienceText.beforeFirstPopover}{" "}
+                {homeContent.workExperienceText.beforeShopify}{" "}
                 <DefinitionPopover
                   term={homeMessages.popovers.shopify.term}
                   pronunciation={homeMessages.popovers.shopify.pronunciation}
@@ -67,7 +67,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                   learnMoreLabel={homeMessages.popovers.shopify.learnMoreLabel}
                   theme={definitionPopoverThemes.shopify}
                 />{" "}
-                {homeContent.workExperienceText.betweenPopovers}{" "}
+                {homeContent.workExperienceText.beforePatch}{" "}
                 <DefinitionPopover
                   term={homeMessages.popovers.patch.term}
                   pronunciation={homeMessages.popovers.patch.pronunciation}
@@ -75,8 +75,35 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
                   learnMoreHref={homeMessages.popovers.patch.learnMoreHref}
                   learnMoreLabel={homeMessages.popovers.patch.learnMoreLabel}
                   theme={definitionPopoverThemes.patch}
+                />
+                {homeContent.workExperienceText.beforeShopPay}{" "}
+                <DefinitionPopover
+                  term={homeMessages.popovers.shopPay.term}
+                  pronunciation={homeMessages.popovers.shopPay.pronunciation}
+                  definition={homeMessages.popovers.shopPay.definition}
+                  learnMoreHref={homeMessages.popovers.shopPay.learnMoreHref}
+                  learnMoreLabel={homeMessages.popovers.shopPay.learnMoreLabel}
+                  theme={definitionPopoverThemes.shop}
                 />{" "}
-                {homeContent.workExperienceText.afterSecondPopover}
+                {homeContent.workExperienceText.beforeShopApp}{" "}
+                <DefinitionPopover
+                  term={homeMessages.popovers.shopApp.term}
+                  pronunciation={homeMessages.popovers.shopApp.pronunciation}
+                  definition={homeMessages.popovers.shopApp.definition}
+                  learnMoreHref={homeMessages.popovers.shopApp.learnMoreHref}
+                  learnMoreLabel={homeMessages.popovers.shopApp.learnMoreLabel}
+                  theme={definitionPopoverThemes.shop}
+                />{" "}
+                {homeContent.workExperienceText.beforeAIServices}{" "}
+                <DefinitionPopover
+                  term={homeMessages.popovers.aiServices.term}
+                  pronunciation={homeMessages.popovers.aiServices.pronunciation}
+                  definition={homeMessages.popovers.aiServices.definition}
+                  learnMoreHref={homeMessages.popovers.aiServices.learnMoreHref}
+                  learnMoreLabel={homeMessages.popovers.aiServices.learnMoreLabel}
+                  theme={definitionPopoverThemes.patch}
+                />
+                {homeContent.workExperienceText.afterAIServices}
               </p>
             </section>
 

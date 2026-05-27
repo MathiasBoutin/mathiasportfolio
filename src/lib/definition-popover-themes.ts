@@ -1,7 +1,7 @@
 import type { CaseStudyLinkPreviewPopoverTheme } from "@/components/portfolio/case-study-link-preview-popover";
 import type { DefinitionPopoverTheme } from "@/components/ui/definition-popover";
 
-export const definitionPopoverThemeIds = ["default", "shopify", "patch"] as const;
+export const definitionPopoverThemeIds = ["default", "shopify", "shop", "patch"] as const;
 
 export type DefinitionPopoverThemeId = (typeof definitionPopoverThemeIds)[number];
 
@@ -22,6 +22,15 @@ export const definitionPopoverThemes: Record<
     pronunciation: "text-[#6BFF91]",
     description: "text-[#6BFF91]",
     link: "bg-[#6BFF91] text-[#1B3B36] hover:bg-[#6BFF91] hover:text-[#1B3B36]",
+  },
+  shop: {
+    trigger:
+      "hover:bg-[#5433EB] hover:text-white data-[popup-open]:bg-[#5433EB] data-[popup-open]:text-white",
+    popup: "border-0 bg-[#5433EB] text-white",
+    title: "text-white",
+    pronunciation: "text-white/60",
+    description: "text-white/85",
+    link: "bg-white text-[#5433EB] hover:bg-white hover:text-[#5433EB]",
   },
   patch: {
     trigger:

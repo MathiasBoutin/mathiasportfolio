@@ -41,6 +41,30 @@ const frMessages = {
         learnMoreHref: "https://www.patch.io",
         learnMoreLabel: "Visiter Patch",
       },
+      shopPay: {
+        term: "Shop Pay",
+        pronunciation: "shop pay",
+        definition:
+          "Le checkout accéléré de Shopify — enregistre les informations de paiement et de livraison pour un achat en un clic chez des millions de marchands.",
+        learnMoreHref: "https://shop.app/pay",
+        learnMoreLabel: "En savoir plus sur Shop Pay",
+      },
+      shopApp: {
+        term: "Shop App",
+        pronunciation: "shop app",
+        definition:
+          "L'application mobile grand public de Shopify pour suivre ses commandes, découvrir des produits et passer à la caisse en un clic.",
+        learnMoreHref: "https://shop.app",
+        learnMoreLabel: "Visiter Shop",
+      },
+      aiServices: {
+        term: "services propulsés par l'IA",
+        pronunciation: "ay-eye",
+        definition:
+          "La stratégie climatique embarquée de Patch — une IA dédiée à l'intelligence des commodités environnementales, combinée à des stratèges climatiques experts intégrés dans les équipes clientes.",
+        learnMoreHref: "https://www.patch.io/embedded-climate-strategy",
+        learnMoreLabel: "En savoir plus",
+      },
     },
     languagePicker: {
       switchLabel: "Choisir la langue",

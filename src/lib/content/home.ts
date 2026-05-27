@@ -6,11 +6,14 @@ const homeContentByLocale = {
     heroTitle:
       "I'm Mathias, and I design products, systems, and the path to get them right.",
     workExperienceText: {
-      beforeFirstPopover:
+      beforeShopify:
         "My experience spans both B2C and B2B, from large-scale consumer products at",
-      betweenPopovers: "to climate infrastructure software at",
-      afterSecondPopover:
-        ". From 2017–2021, I worked on Shop Pay and the Shop app across checkout and buyer experiences; in 2021, I joined Patch to design environmental impact infrastructure software as the company grew from startup to scale-up and evolved toward AI-powered services.",
+      beforePatch: "to climate infrastructure software at",
+      beforeShopPay: ". From 2017–2021, I worked on",
+      beforeShopApp: "and the",
+      beforeAIServices:
+        "across checkout and buyer experiences; in 2021, I joined Patch to design environmental impact infrastructure software as the company grew from startup to scale-up and evolved toward",
+      afterAIServices: ".",
     },
     aboutEyebrow: "About",
     aboutLead:
@@ -37,11 +40,14 @@ const homeContentByLocale = {
     heroTitle:
       "Je suis Mathias, et je conçois des produits, des systèmes et le chemin pour les faire bien.",
     workExperienceText: {
-      beforeFirstPopover:
+      beforeShopify:
         "Mon parcours couvre le B2C et le B2B, des produits grand public à grande échelle chez",
-      betweenPopovers: "aux logiciels d'infrastructure climatique chez",
-      afterSecondPopover:
-        ". De 2017 à 2021, j'ai travaillé sur Shop Pay et l'app Shop sur les parcours checkout et acheteur ; en 2021, j'ai rejoint Patch pour concevoir des logiciels d'infrastructure d'impact environnemental, alors que l'entreprise passait du stade de startup à celui de scale-up et évoluait vers des services propulsés par l'IA.",
+      beforePatch: "aux logiciels d'infrastructure climatique chez",
+      beforeShopPay: ". De 2017 à 2021, j'ai travaillé sur",
+      beforeShopApp: "et l'",
+      beforeAIServices:
+        "sur les parcours checkout et acheteur ; en 2021, j'ai rejoint Patch pour concevoir des logiciels d'infrastructure d'impact environnemental, alors que l'entreprise passait du stade de startup à celui de scale-up et évoluait vers des",
+      afterAIServices: ".",
     },
     aboutEyebrow: "À propos",
     aboutLead:

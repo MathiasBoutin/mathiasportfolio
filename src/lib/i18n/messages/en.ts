@@ -41,6 +41,30 @@ const enMessages = {
         learnMoreHref: "https://www.patch.io",
         learnMoreLabel: "Visit Patch",
       },
+      shopPay: {
+        term: "Shop Pay",
+        pronunciation: "shop pay",
+        definition:
+          "Shopify's accelerated checkout — saves payment and shipping details for one-tap purchasing across millions of merchants.",
+        learnMoreHref: "https://shop.app/pay",
+        learnMoreLabel: "Learn about Shop Pay",
+      },
+      shopApp: {
+        term: "Shop App",
+        pronunciation: "shop app",
+        definition:
+          "Shopify's consumer mobile app for order tracking, product discovery, and one-tap checkout.",
+        learnMoreHref: "https://shop.app",
+        learnMoreLabel: "Visit Shop",
+      },
+      aiServices: {
+        term: "AI-powered services",
+        pronunciation: "ay-eye pow-erd",
+        definition:
+          "Patch's Embedded Climate Strategy — purpose-built AI for environmental commodity intelligence combined with expert climate strategists embedded in client teams.",
+        learnMoreHref: "https://www.patch.io/embedded-climate-strategy",
+        learnMoreLabel: "Learn more",
+      },
     },
     languagePicker: {
       switchLabel: "Choose language",
