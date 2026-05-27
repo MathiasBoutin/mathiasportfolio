@@ -42,6 +42,7 @@ export async function WorkDetailPageContent({ slug, locale }: WorkDetailPageCont
         <BlockRenderer
           blocks={caseStudy.data.blocks}
           definitions={caseStudy.data.definitions}
+          galleryLabels={workMessages.gallery}
         />
       </Section>
     </div>

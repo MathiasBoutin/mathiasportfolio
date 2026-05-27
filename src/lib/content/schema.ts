@@ -43,6 +43,20 @@ const desktopMockBlockSchema = z.object({
   type: z.literal("desktopMock"),
   src: z.string().optional(),
   alt: z.string().default(""),
+  caption: z.string().optional(),
+  width: z.number().optional(),
+  height: z.number().optional(),
+  variant: z.enum(["full", "content"]).default("full"),
+});
+
+const desktopMockGalleryItemSchema = z.object({
+  src: z.string(),
+  alt: z.string().default(""),
+});
+
+const desktopMockGalleryBlockSchema = z.object({
+  type: z.literal("desktopMockGallery"),
+  images: z.array(desktopMockGalleryItemSchema).min(2),
 });
 
 const growthBarRowSchema = z.object({
@@ -58,6 +72,7 @@ const growthBarBlockSchema = z.object({
 });
 
 export type DesktopMockBlock = z.infer<typeof desktopMockBlockSchema>;
+export type DesktopMockGalleryBlock = z.infer<typeof desktopMockGalleryBlockSchema>;
 export type GrowthBarBlock = z.infer<typeof growthBarBlockSchema>;
 
 export const caseStudyBlockSchema = z.discriminatedUnion("type", [
@@ -65,6 +80,7 @@ export const caseStudyBlockSchema = z.discriminatedUnion("type", [
   bigTextBlockSchema,
   mediaBlockSchema,
   desktopMockBlockSchema,
+  desktopMockGalleryBlockSchema,
   growthBarBlockSchema,
 ]);
 

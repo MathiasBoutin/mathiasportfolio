@@ -8,6 +8,8 @@ const enMessages = {
       work: "Case Studies",
       about: "Bio",
       cv: "CV",
+      email: "Email",
+      connect: "Connect",
     },
   },
   shell: {
@@ -18,7 +20,7 @@ const enMessages = {
   home: {
     sections: {
       workExperience: "Experience",
-      strengths: "Skills",
+      whoIAm: "Who I am",
       caseStudies: "Work",
       connect: "Connect",
     },
@@ -61,6 +63,7 @@ const enMessages = {
     title: "Selected product work",
     description:
       "A curated set of projects showing the problem, process, design decisions, and measurable results.",
+    keepReading: "Keep reading",
     tldrLabel: "TL;DR",
     detailLabels: {
       problem: "Problem",
@@ -71,6 +74,14 @@ const enMessages = {
       role: "Role",
       scope: "Scope",
       team: "Team",
+    },
+    gallery: {
+      gallery: "Image gallery",
+      previousImage: "Previous image",
+      nextImage: "Next image",
+      goToImage: "Go to image",
+      image: "Image",
+      of: "of",
     },
   },
   cv: {

@@ -62,10 +62,11 @@
 
 :root,
 [data-presentation-theme="default"] {
-  --case-study-reading-width: 45rem;
+  --case-study-reading-width: 40rem;
   --case-study-reading-padding: 1.5rem;
   --case-study-media-wider: min(80vw, 100%);
   --desktop-mock-bg: #2b261c;
+  --desktop-mock-gallery-shadow: color-mix(in oklab, var(--desktop-mock-bg) 82%, transparent);
   --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
   --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
   --growth-bar-accent: #f48c60;
@@ -133,9 +134,10 @@
 }
 
 [data-presentation-theme="dark"] {
-  --case-study-reading-width: 45rem;
+  --case-study-reading-width: 40rem;
   --case-study-reading-padding: 1.5rem;
   --desktop-mock-bg: #2b261c;
+  --desktop-mock-gallery-shadow: color-mix(in oklab, var(--desktop-mock-bg) 82%, transparent);
   --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
   --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
   --growth-bar-accent: #f48c60;
@@ -209,10 +211,11 @@
 }
 
 [data-presentation-theme="proof"] {
-  --case-study-reading-width: 45rem;
+  --case-study-reading-width: 40rem;
   --case-study-reading-padding: 1.5rem;
   --case-study-media-wider: min(80vw, 100%);
   --desktop-mock-bg: #2b261c;
+  --desktop-mock-gallery-shadow: color-mix(in oklab, var(--desktop-mock-bg) 82%, transparent);
   --desktop-mock-caption: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
   --desktop-mock-grid-dot: color-mix(in oklab, var(--primary-foreground) 38%, transparent);
   --growth-bar-accent: #f48c60;
@@ -425,6 +428,10 @@ html.lenis body {
 
 .page-rails-rule-list::before {
   top: 0;
+}
+
+[data-case-study-page] .page-rails-rule-list::before {
+  content: none;
 }
 
 .page-rails-rule-row {

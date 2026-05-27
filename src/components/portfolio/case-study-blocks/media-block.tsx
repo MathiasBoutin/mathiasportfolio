@@ -19,7 +19,7 @@ function getImageSizes(width: MediaWidth) {
     return "(max-width: 768px) 100vw, 80vw";
   }
 
-  return "(max-width: 768px) 100vw, 61rem";
+  return "(max-width: 768px) 100vw, 40rem";
 }
 
 export function MediaBlock({ media, width = "same", className }: MediaBlockProps) {

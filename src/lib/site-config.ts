@@ -5,6 +5,7 @@ export const siteConfig = {
   name: "Mathias Boutin Portfolio",
   url: "https://mathiasboutin.com",
   contactEmail: "mathiasboutin@gmail.com",
+  linkedin: "https://www.linkedin.com/in/mathias-boutin-981ab6114/",
 } as const;
 
 export function getSiteCopy(locale: Locale = DEFAULT_LOCALE) {

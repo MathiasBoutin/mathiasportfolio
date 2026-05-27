@@ -21,6 +21,8 @@ type PointerState = {
   active: boolean;
 };
 
+export type DesktopMockGridPointerState = PointerState;
+
 function getCursorFalloff(normalizedDistance: number) {
   const t = Math.max(0, 1 - normalizedDistance);
   // Smoothstep: gentler ramp toward center than quadratic falloff.
@@ -88,7 +90,17 @@ function getDotTransform(point: GridPoint, pointer: PointerState, reducedMotion:
   };
 }
 
-export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) {
+type DesktopMockGridOverlayProps = {
+  masked?: boolean;
+  className?: string;
+  pointerState?: PointerState;
+};
+
+export function DesktopMockGridOverlay({
+  masked = true,
+  className,
+  pointerState,
+}: DesktopMockGridOverlayProps) {
   const rootRef = React.useRef<SVGSVGElement | null>(null);
   const animationFrameRef = React.useRef<number | null>(null);
   const targetPointerRef = React.useRef<PointerState>({
@@ -135,26 +147,7 @@ export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) 
     };
   }, []);
 
-  const points = React.useMemo(() => {
-    if (size.width <= 0 || size.height <= 0) {
-      return [];
-    }
-
-    const rows = Math.ceil(size.height / GRID_SIZE) + 1;
-    const columns = Math.ceil(size.width / GRID_SIZE) + 1;
-
-    return Array.from({ length: rows * columns }, (_, index) => {
-      const column = index % columns;
-      const row = Math.floor(index / columns);
-
-      return {
-        x: column * GRID_SIZE + GRID_SIZE / 2,
-        y: row * GRID_SIZE + GRID_SIZE / 2,
-      };
-    });
-  }, [size.height, size.width]);
-
-  function schedulePointerSmoothing() {
+  const schedulePointerSmoothing = React.useCallback(() => {
     if (animationFrameRef.current !== null) {
       return;
     }
@@ -186,12 +179,53 @@ export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) 
         schedulePointerSmoothing();
       }
     });
-  }
+  }, []);
+
+  React.useEffect(() => {
+    if (!pointerState) {
+      return;
+    }
+
+    targetPointerRef.current = pointerState;
+
+    if (!pointerState.active) {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+
+      setPointer((current) => (
+        current.active ? { ...current, active: false } : current
+      ));
+      return;
+    }
+
+    schedulePointerSmoothing();
+  }, [pointerState, schedulePointerSmoothing]);
+
+  const points = React.useMemo(() => {
+    if (size.width <= 0 || size.height <= 0) {
+      return [];
+    }
+
+    const rows = Math.ceil(size.height / GRID_SIZE) + 1;
+    const columns = Math.ceil(size.width / GRID_SIZE) + 1;
+
+    return Array.from({ length: rows * columns }, (_, index) => {
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+
+      return {
+        x: column * GRID_SIZE + GRID_SIZE / 2,
+        y: row * GRID_SIZE + GRID_SIZE / 2,
+      };
+    });
+  }, [size.height, size.width]);
 
   function handlePointerMove(event: React.PointerEvent<SVGSVGElement>) {
     const element = rootRef.current;
 
-    if (!element || reducedMotion) {
+    if (!element || reducedMotion || pointerState) {
       return;
     }
 
@@ -206,6 +240,10 @@ export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) 
   }
 
   function handlePointerLeave() {
+    if (pointerState) {
+      return;
+    }
+
     if (animationFrameRef.current !== null) {
       window.cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
@@ -229,6 +267,7 @@ export function DesktopMockGridOverlay({ masked = true }: { masked?: boolean }) 
         "absolute inset-0 z-0 size-full rounded-[16px] text-[var(--desktop-mock-grid-dot)]",
         masked &&
           "[mask-image:var(--desktop-mock-grid-mask)] [-webkit-mask-image:var(--desktop-mock-grid-mask)]",
+        className,
       )}
       aria-hidden
       viewBox={`0 0 ${Math.max(size.width, 1)} ${Math.max(size.height, 1)}`}

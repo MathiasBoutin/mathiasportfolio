@@ -2,18 +2,19 @@ import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
 const homeContentByLocale = {
   en: {
-    heroBadge: "Staff product design @ Patch",
-    heroTitle: "I'm Mathias, and I define, design & craft human experiences.",
+    heroBadge: "Staff product design",
+    heroTitle:
+      "I'm Mathias, and I design products, systems, and the path to get them right.",
     workExperienceText: {
-      beforeFirstPopover: "I spent 2017-2021 at",
-      betweenPopovers:
-        "shaping Shop Pay and the Shop app across checkout and buyer experiences. In 2021, I joined",
+      beforeFirstPopover:
+        "My experience spans both B2C and B2B, from large-scale consumer products at",
+      betweenPopovers: "to climate infrastructure software at",
       afterSecondPopover:
-        "to design environmental impact infrastructure software for climate action.",
+        ". From 2017–2021, I worked on Shop Pay and the Shop app across checkout and buyer experiences; in 2021, I joined Patch to design environmental impact infrastructure software as the company grew from startup to scale-up and evolved toward AI-powered services.",
     },
     aboutEyebrow: "About",
     aboutLead:
-      "I turn ambiguous product problems into clear interaction models, practical systems, and interfaces that feel resolved.",
+      "I'm a designer who thrives in 0-to-1 work, ambiguous challenges, and steep learning curves. I adapt quickly to the realities of each project, work in a structured and intentional way, and embrace new tools and technologies, including AI, to help teams move faster and make better decisions.",
     aboutBody:
       "My work sits between research, product strategy, interaction design, and design systems. I prefer simple ideas, careful details, and close collaboration with engineers.",
     experience: [
@@ -32,19 +33,19 @@ const homeContentByLocale = {
     ],
   },
   fr: {
-    heroBadge: "Staff product design @ Patch",
+    heroBadge: "Staff product design",
     heroTitle:
-      "Je suis Mathias, et je clarifie, conçois et crée des expériences humaines.",
+      "Je suis Mathias, et je conçois des produits, des systèmes et le chemin pour les faire bien.",
     workExperienceText: {
-      beforeFirstPopover: "De 2017 à 2021, j'étais chez",
-      betweenPopovers:
-        "où j'ai façonné Shop Pay et l'app Shop sur les parcours checkout et acheteur. En 2021, j'ai rejoint",
+      beforeFirstPopover:
+        "Mon parcours couvre le B2C et le B2B, des produits grand public à grande échelle chez",
+      betweenPopovers: "aux logiciels d'infrastructure climatique chez",
       afterSecondPopover:
-        "pour concevoir des logiciels d'infrastructure d'impact environnemental au service de l'action climatique.",
+        ". De 2017 à 2021, j'ai travaillé sur Shop Pay et l'app Shop sur les parcours checkout et acheteur ; en 2021, j'ai rejoint Patch pour concevoir des logiciels d'infrastructure d'impact environnemental, alors que l'entreprise passait du stade de startup à celui de scale-up et évoluait vers des services propulsés par l'IA.",
     },
     aboutEyebrow: "À propos",
     aboutLead:
-      "Je transforme des problèmes produits ambigus en modèles d'interaction clairs, systèmes pragmatiques et interfaces résolues.",
+      "Je suis un designer qui s'épanouit dans le travail 0-to-1, les défis ambigus et les courbes d'apprentissage abruptes. Je m'adapte rapidement aux réalités de chaque projet, travaille de façon structurée et intentionnelle, et adopte de nouveaux outils et technologies, dont l'IA, pour aider les équipes à avancer plus vite et prendre de meilleures décisions.",
     aboutBody:
       "Mon travail se situe entre recherche, stratégie produit, design d'interaction et design system. Je privilégie les idées simples, le soin du détail et la collaboration étroite avec les ingénieurs.",
     experience: [

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/portfolio/fade-in";
 import { LanguageGreetingPicker } from "@/components/portfolio/language-greeting-picker";
 import { Section } from "@/components/portfolio/section";
@@ -12,7 +11,7 @@ import { getFeaturedCaseStudies } from "@/lib/content/work";
 import { definitionPopoverThemes } from "@/lib/definition-popover-themes";
 import { getHomeContent } from "@/lib/content/home";
 import { getActivePresentationTheme } from "@/lib/presentation-themes";
-import { type as typeStyle } from "@/lib/typography";
+import { type as typeStyle, typeClasses } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
 type HomePageContentProps = {
@@ -29,7 +28,7 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
   return (
     <Section className={`${theme.slots.home.heroSection} !min-h-0 !py-6 md:!py-8`}>
       <FadeIn>
-        <div className="flex min-h-[calc(100svh-15rem)] w-full flex-col justify-center md:min-h-[calc(100svh-16rem)]">
+        <div className="flex min-h-[calc(100svh-15rem)] w-full flex-col justify-center pt-16 md:min-h-[calc(100svh-16rem)] md:pt-20">
           <Badge
             className={cn(
               "mb-5 inline-flex rounded-[4px] bg-foreground px-3 py-1 text-background",
@@ -38,24 +37,24 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
           >
             {homeContent.heroBadge}
           </Badge>
-          <LanguageGreetingPicker
-            locale={locale}
-            englishGreeting={homeMessages.languagePicker.englishGreeting}
-            frenchGreeting={homeMessages.languagePicker.frenchGreeting}
-            ariaLabel={homeMessages.languagePicker.switchLabel}
-            className={`${theme.slots.home.heroTitle} mb-2`}
-          />
-          <h1 className={`${theme.slots.home.heroTitle} whitespace-pre-line`}>
+          <h1 className={`${theme.slots.home.heroTitle} text-balance`}>
+            <LanguageGreetingPicker
+              locale={locale}
+              englishGreeting={homeMessages.languagePicker.englishGreeting}
+              frenchGreeting={homeMessages.languagePicker.frenchGreeting}
+              ariaLabel={homeMessages.languagePicker.switchLabel}
+              className="block"
+            />
             {homeContent.heroTitle}
           </h1>
           <div
             className={cn(
               "mt-10 space-y-8 text-foreground/70",
-              typeStyle("bodyBase"),
+              typeClasses({ size: 16, leading: "body", tracking: "tight", traits: ["textPretty"] }),
             )}
           >
-            <section className="space-y-1">
-              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
+            <section className="space-y-2">
+              <h2 className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
                 {homeMessages.sections.workExperience}
               </h2>
               <p>
@@ -81,38 +80,28 @@ export async function HomePageContent({ locale }: HomePageContentProps) {
               </p>
             </section>
 
-            <section className="space-y-1">
-              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
-                {homeMessages.sections.strengths}
+            <section className="space-y-2">
+              <h2 className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
+                {homeMessages.sections.whoIAm}
               </h2>
               <p>{homeContent.aboutLead}</p>
             </section>
 
-            <section className="space-y-1">
-              <h2 className={cn(typeStyle("headingSm"), "text-foreground/88")}>
+            <section className="space-y-2">
+              <h2 className={cn(typeClasses({ size: "16to20", weight: "semibold", tracking: "tight", traits: ["textPretty"] }), "text-foreground/88")}>
                 {homeMessages.sections.caseStudies}
               </h2>
-              <ul className="page-rails-rule-list -mx-6 md:-mx-8">
+              <ul className="space-y-1">
                 {featuredStudies.map((study) => (
-                  <li key={study.slug} className="page-rails-rule-row">
+                  <li key={study.slug}>
                     <Link
                       href={localizePath(`/work/${study.slug}`, locale)}
-                      className="group flex items-start justify-between gap-4 p-6 transition-colors duration-300 ease-out hover:bg-portfolio-surface-hover md:p-8"
+                      className="soft-link"
                     >
-                      <div className="min-w-0">
-                        <h3 className={theme.slots.home.featureHeading}>{study.data.title}</h3>
-                        <p className={cn(typeStyle("featureBody"), "mt-0.5 max-w-none text-muted-foreground/78")}>
-                          {study.data.summary}
-                        </p>
-                      </div>
-                      <div className="flex shrink-0 items-center gap-3 pt-0.5 md:gap-6">
-                        <span className={theme.slots.home.featureTimeline}>{study.data.company}</span>
-                        <span className={theme.slots.home.featureTimeline}>{study.data.timeline}</span>
-                        <ArrowRight
-                          size={14}
-                          className="shrink-0 text-muted-foreground/55 transition-transform group-hover:translate-x-0.5"
-                        />
-                      </div>
+                      {study.data.title}{" "}
+                      <span className="text-muted-foreground/60">
+                        ({study.data.company}, {study.data.timeline})
+                      </span>
                     </Link>
                   </li>
                 ))}

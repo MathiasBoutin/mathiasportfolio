@@ -4,14 +4,19 @@ import { TextBlock } from "./text-block";
 import { BigTextBlock } from "./big-text-block";
 import { MediaBlock } from "./media-block";
 import { DesktopMockBlock } from "./desktop-mock-block";
+import {
+  DesktopMockGalleryBlock,
+  type DesktopMockGalleryLabels,
+} from "./desktop-mock-gallery-block";
 import { GrowthBarBlock } from "./growth-bar-block";
 
 type BlockRendererProps = {
   blocks: CaseStudyBlock[];
   definitions?: Record<string, InlineDefinition>;
+  galleryLabels: DesktopMockGalleryLabels;
 };
 
-export function BlockRenderer({ blocks, definitions }: BlockRendererProps) {
+export function BlockRenderer({ blocks, definitions, galleryLabels }: BlockRendererProps) {
   const theme = getActivePresentationTheme();
 
   if (blocks.length === 0) return null;
@@ -49,6 +54,20 @@ export function BlockRenderer({ blocks, definitions }: BlockRendererProps) {
               key={index}
               src={block.src}
               alt={block.alt}
+              caption={block.caption}
+              width={block.width}
+              height={block.height}
+              variant={block.variant}
+            />
+          );
+        }
+
+        if (block.type === "desktopMockGallery") {
+          return (
+            <DesktopMockGalleryBlock
+              key={index}
+              images={block.images}
+              labels={galleryLabels}
             />
           );
         }

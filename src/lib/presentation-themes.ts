@@ -79,6 +79,15 @@ type PresentationThemeSlots = {
     desktopMockInner: string;
     desktopMockScreen: string;
     desktopMockCaption: string;
+    desktopMockGalleryStage: string;
+    desktopMockGalleryControls: string;
+    desktopMockGalleryDots: string;
+    desktopMockGalleryDot: string;
+    desktopMockGalleryDotActive: string;
+    desktopMockGalleryArrow: string;
+    desktopMockContentOuter: string;
+    desktopMockContentScreen: string;
+    desktopMockContentCaption: string;
   };
   caseStudyPage: {
     headerRoot: string;
@@ -175,9 +184,9 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
           "w-full mx-auto md:max-w-[var(--case-study-reading-width)]",
         textBlock: "",
         textH2: `mb-1 mt-10 ${type("headingMd")} text-foreground/88 first:mt-0`,
-        textP: `mt-3 ${type("articleBody")} text-foreground/80`,
-        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
-        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
+        textP: `mt-3 ${type("articleBody")} text-foreground`,
+        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground`,
+        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground`,
         bigTextBlock: `border-y border-border py-8 ${type("pullQuote")} text-foreground`,
         growthBarBlock: "w-full",
         growthBarBand:
@@ -210,6 +219,18 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         desktopMockScreen:
           "mx-auto h-auto w-full max-w-[1440px] overflow-hidden rounded-[16px]",
         desktopMockCaption: `mt-10 ${type("desktopMockCaption")} text-[var(--desktop-mock-caption)]`,
+        desktopMockGalleryStage:
+          "relative mx-auto aspect-[1440/1024] w-full max-w-[1440px] overflow-visible touch-pan-y",
+        desktopMockGalleryControls: "mb-8 flex items-center justify-center gap-4",
+        desktopMockGalleryDots: "flex flex-wrap items-center justify-center gap-3",
+        desktopMockGalleryDot:
+          "size-2.5 rounded-full bg-primary-foreground/28 transition-transform transition-colors hover:scale-110 hover:bg-primary-foreground/45 focus-visible:scale-110 focus-visible:bg-primary-foreground/55",
+        desktopMockGalleryDotActive: "scale-110 bg-primary-foreground",
+        desktopMockGalleryArrow:
+          "flex size-8 items-center justify-center rounded-md text-primary-foreground/60 transition-colors hover:bg-primary-foreground/8 hover:text-primary-foreground focus-visible:bg-primary-foreground/8 focus-visible:text-primary-foreground disabled:cursor-default disabled:text-primary-foreground/20 disabled:hover:bg-transparent disabled:hover:text-primary-foreground/20",
+        desktopMockContentOuter: "mx-auto w-full md:max-w-[var(--case-study-reading-width)]",
+        desktopMockContentScreen: "h-auto w-full overflow-hidden rounded-[12px]",
+        desktopMockContentCaption: `mt-4 text-center ${type("desktopMockCaption")} text-muted-foreground`,
       },
       caseStudyPage: {
         headerRoot: "space-y-8",
@@ -301,9 +322,9 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
           "w-full mx-auto md:max-w-[var(--case-study-reading-width)]",
         textBlock: "",
         textH2: `mb-1 mt-9 ${type("headingMd")} text-foreground/88 first:mt-0`,
-        textP: `mt-3 ${type("articleBody")} text-foreground/80`,
-        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
-        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground/80`,
+        textP: `mt-3 ${type("articleBody")} text-foreground`,
+        textUl: `mt-3 list-disc space-y-1 pl-5 ${type("articleBody")} text-foreground`,
+        textOl: `mt-3 list-decimal space-y-1 pl-5 ${type("articleBody")} text-foreground`,
         bigTextBlock: `border-y border-border py-7 ${type("pullQuote")} text-foreground`,
         growthBarBlock: "w-full",
         growthBarBand:
@@ -336,6 +357,18 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         desktopMockScreen:
           "mx-auto h-auto w-full max-w-[1440px] overflow-hidden rounded-[16px]",
         desktopMockCaption: `mt-10 ${type("desktopMockCaption")} text-[var(--desktop-mock-caption)]`,
+        desktopMockGalleryStage:
+          "relative mx-auto aspect-[1440/1024] w-full max-w-[1440px] overflow-visible touch-pan-y",
+        desktopMockGalleryControls: "mb-8 flex items-center justify-center gap-4",
+        desktopMockGalleryDots: "flex flex-wrap items-center justify-center gap-3",
+        desktopMockGalleryDot:
+          "size-2.5 rounded-full bg-primary-foreground/28 transition-transform transition-colors hover:scale-110 hover:bg-primary-foreground/45 focus-visible:scale-110 focus-visible:bg-primary-foreground/55",
+        desktopMockGalleryDotActive: "scale-110 bg-primary-foreground",
+        desktopMockGalleryArrow:
+          "flex size-8 items-center justify-center rounded-md text-primary-foreground/60 transition-colors hover:bg-primary-foreground/8 hover:text-primary-foreground focus-visible:bg-primary-foreground/8 focus-visible:text-primary-foreground disabled:cursor-default disabled:text-primary-foreground/20 disabled:hover:bg-transparent disabled:hover:text-primary-foreground/20",
+        desktopMockContentOuter: "mx-auto w-full md:max-w-[var(--case-study-reading-width)]",
+        desktopMockContentScreen: "h-auto w-full overflow-hidden rounded-[12px]",
+        desktopMockContentCaption: `mt-4 text-center ${type("desktopMockCaption")} text-muted-foreground`,
       },
       caseStudyPage: {
         headerRoot: "space-y-8",

@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "PATH=\"$HOME/.nvm/versions/node/v22.22.2/bin:$PATH\" next dev --turbopack --hostname 127.0.0.1 --port 3000",
+    "dev:lan": "node scripts/dev-lan.mjs",
+    "dev:tunnel": "node scripts/dev-tunnel.mjs",
     "dev:reset": "node scripts/dev-reset.mjs",
     "build": "next build",
     "build:next": "next build",

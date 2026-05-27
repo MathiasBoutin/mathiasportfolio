@@ -8,6 +8,8 @@ const frMessages = {
       work: "Études de cas",
       about: "Bio",
       cv: "CV",
+      email: "Email",
+      connect: "Connect",
     },
   },
   shell: {
@@ -18,7 +20,7 @@ const frMessages = {
   home: {
     sections: {
       workExperience: "Expérience",
-      strengths: "Compétences",
+      whoIAm: "Qui je suis",
       caseStudies: "Projets",
       connect: "Contact",
     },
@@ -61,6 +63,7 @@ const frMessages = {
     title: "Travaux produits sélectionnés",
     description:
       "Une sélection de projets qui montre le problème, la démarche, les décisions de design et les résultats mesurables.",
+    keepReading: "Continuer la lecture",
     tldrLabel: "TL;DR",
     detailLabels: {
       problem: "Problème",
@@ -71,6 +74,14 @@ const frMessages = {
       role: "Rôle",
       scope: "Portée",
       team: "Équipe",
+    },
+    gallery: {
+      gallery: "Galerie d'images",
+      previousImage: "Image précédente",
+      nextImage: "Image suivante",
+      goToImage: "Aller à l'image",
+      image: "Image",
+      of: "sur",
     },
   },
   cv: {
