@@ -62,6 +62,8 @@ type PresentationThemeSlots = {
     growthBarMetricValue: string;
     growthBarMetricUnit: string;
     growthBarMetricLabel: string;
+    growthBarMetrics: string;
+    growthBarMetricLine: string;
     growthBarLabel: string;
     growthBarValue: string;
     growthBarRowHeader: string;
@@ -198,6 +200,8 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         growthBarMetricValue: `flex items-baseline gap-1 ${type("growthBarMetricValue")} text-[var(--primary-foreground)]`,
         growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
         growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
+        growthBarMetrics: "flex flex-col gap-2 md:flex-row md:items-baseline md:gap-8",
+        growthBarMetricLine: `${type("pullQuote")} text-[var(--primary-foreground)]/90`,
         growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
         growthBarValue: `tabular-nums ${type("growthBarRowValue")} text-[var(--primary-foreground)]`,
         growthBarRowHeader: "flex items-baseline justify-between gap-4",
@@ -337,6 +341,8 @@ const basePresentationThemes: Record<"default" | "proof", PresentationTheme> = {
         growthBarMetricValue: `flex items-baseline gap-1 ${type("growthBarMetricValue")} text-[var(--primary-foreground)]`,
         growthBarMetricUnit: `-translate-y-1 ${type("growthBarMetricUnit")} text-[var(--desktop-mock-caption)]`,
         growthBarMetricLabel: `${type("growthBarMetricLabel")} text-[var(--desktop-mock-caption)]`,
+        growthBarMetrics: "flex flex-col gap-2 md:flex-row md:items-baseline md:gap-8",
+        growthBarMetricLine: `${type("pullQuote")} text-[var(--primary-foreground)]/90`,
         growthBarLabel: `${type("growthBarRowName")} text-[var(--desktop-mock-caption)]`,
         growthBarValue: `tabular-nums ${type("growthBarRowValue")} text-[var(--primary-foreground)]`,
         growthBarRowHeader: "flex items-baseline justify-between gap-4",

@@ -43,7 +43,7 @@ export function BlockRenderer({ blocks, definitions, galleryLabels }: BlockRende
         if (block.type === "growthBar") {
           return (
             <div key={index} className={theme.slots.caseStudyLayout.readingColumn}>
-              <GrowthBarBlock rows={block.rows} metricLabel={block.metricLabel} />
+              <GrowthBarBlock rows={block.rows} metricLabel={block.metricLabel} metrics={block.metrics} />
             </div>
           );
         }

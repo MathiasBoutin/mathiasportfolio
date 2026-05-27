@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -24,6 +24,7 @@ const COLOR_FADE_DURATION_S = 0.8;
 type GrowthBarBlockProps = {
   rows: GrowthBarBlock["rows"];
   metricLabel: string;
+  metrics?: string[];
   className?: string;
 };
 
@@ -250,7 +251,7 @@ function makeRowFormatter(displayValue?: string) {
   };
 }
 
-export function GrowthBarBlock({ rows, metricLabel, className }: GrowthBarBlockProps) {
+export function GrowthBarBlock({ rows, metricLabel, metrics, className }: GrowthBarBlockProps) {
   const layout = getActivePresentationTheme().slots.caseStudyLayout;
   const reducedMotion = useReducedMotion();
   const maxValue = Math.max(...rows.map((row) => row.value));
@@ -261,15 +262,31 @@ export function GrowthBarBlock({ rows, metricLabel, className }: GrowthBarBlockP
     <div className={cn(layout.growthBarBlock, className)}>
       <div className={layout.growthBarBand}>
         <figure className={layout.growthBarInner}>
-          <GrowthBarMetric
-            value={growthPercent}
-            label={metricLabel}
-            metricClassName={layout.growthBarMetric}
-            valueClassName={layout.growthBarMetricValue}
-            unitClassName={layout.growthBarMetricUnit}
-            labelClassName={layout.growthBarMetricLabel}
-            reducedMotion={reducedMotion}
-          />
+          {metrics && metrics.length > 0 ? (
+            <div className={layout.growthBarMetrics}>
+              {metrics.map((line, i) => (
+                <Fragment key={line}>
+                  {i > 0 && (
+                    <span
+                      aria-hidden
+                      className="hidden h-5 w-px self-center bg-[var(--primary-foreground)]/25 md:block"
+                    />
+                  )}
+                  <p className={layout.growthBarMetricLine}>{line}</p>
+                </Fragment>
+              ))}
+            </div>
+          ) : (
+            <GrowthBarMetric
+              value={growthPercent}
+              label={metricLabel}
+              metricClassName={layout.growthBarMetric}
+              valueClassName={layout.growthBarMetricValue}
+              unitClassName={layout.growthBarMetricUnit}
+              labelClassName={layout.growthBarMetricLabel}
+              reducedMotion={reducedMotion}
+            />
+          )}
           <div className={layout.growthBarRows}>
             {rows.map((row, rowIndex) => {
               const rowBarStartDelay = rowIndex * TOTAL_TICKS * TICK_STAGGER_S;

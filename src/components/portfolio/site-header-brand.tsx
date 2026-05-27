@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getMessages } from "@/lib/i18n/messages";
 import {
@@ -42,7 +42,7 @@ export function SiteHeaderBrand() {
   }
 
   return (
-    <Link href={homeHref} className="opacity-100 transition-opacity hover:opacity-70">
+    <span className="pointer-events-none select-none">
       <Image
         src="/images/work/Logo.png"
         alt="Mathias Boutin"
@@ -51,6 +51,6 @@ export function SiteHeaderBrand() {
         className="h-9 w-auto"
         priority
       />
-    </Link>
+    </span>
   );
 }

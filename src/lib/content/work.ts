@@ -63,6 +63,10 @@ const patchSourcingBlocks: Record<Locale, CaseStudyBlock[]> = {
     {
       type: "growthBar",
       metricLabel: "Project growth",
+      metrics: [
+        "12,400% growth in projects",
+        "30-80 data points per project",
+      ],
       rows: [
         { label: "before", value: 200, displayValue: "~200" },
         { label: "after", value: 25000, displayValue: "25,000+" },
@@ -267,6 +271,10 @@ In this project, the value of design was not just about individual screens, UI a
     {
       type: "growthBar",
       metricLabel: "Croissance des projets",
+      metrics: [
+        "12 400 % de croissance en projets",
+        "30-80 points de données par projet",
+      ],
       rows: [
         { label: "avant", value: 200, displayValue: "~200" },
         { label: "après", value: 25000, displayValue: "25 000+" },

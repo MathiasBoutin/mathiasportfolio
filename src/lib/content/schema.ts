@@ -70,6 +70,7 @@ const growthBarBlockSchema = z.object({
   type: z.literal("growthBar"),
   rows: z.array(growthBarRowSchema).min(2),
   metricLabel: z.string(),
+  metrics: z.array(z.string()).optional(),
 });
 
 export type DesktopMockBlock = z.infer<typeof desktopMockBlockSchema>;
