@@ -9,8 +9,8 @@ export function SiteFooter() {
   return (
     <footer data-print-hide className={theme.slots.shell.footer}>
       <div className={theme.slots.shell.footerInner}>
-        <p className={cn("mx-auto text-center text-muted-foreground/78", typeStyle("shellMeta"))}>
-          {defaultMessages.shell.footerLocation}
+        <p className="mx-auto normal-case text-center text-[18px] font-editorial font-light not-italic text-muted-foreground/78">
+          vibecoded <em className="italic">avec amour</em> in montréal, québec, canada
         </p>
       </div>
     </footer>
